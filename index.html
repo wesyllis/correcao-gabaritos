@@ -7,7 +7,11 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
 #app{max-width:520px;margin:auto;padding:58px 18px 28px}
-h1{font:600 23px/1.2 "Lora","Iowan Old Style",Georgia,serif;letter-spacing:-.01em;margin:0 0 16px}.ti{display:flex;align-items:center;gap:11px}.ti svg{flex:none}.q button.an{font-size:13px}.lg .f{fill:var(--pr);stroke:var(--pr)}
+h1{font:600 23px/1.2 "Lora","Iowan Old Style",Georgia,serif;letter-spacing:-.01em;margin:0 0 16px}.ti{display:flex;align-items:center;gap:11px}.ti svg{flex:none}.q button.an{font-size:13px}textarea{font:inherit;width:100%;padding:13px 14px;margin:5px 0;border-radius:12px;border:1px solid var(--bd);background:var(--ca);color:var(--tx);outline:0}.tr{height:6px;border-radius:3px;background:var(--bd);margin:8px 0 2px;overflow:hidden}.fl{height:100%;background:var(--pr)}.bar small{margin-top:4px}
+#nv{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;gap:4px;background:var(--bg);border-top:1px solid var(--bd);padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:8}
+.sn #nv{display:flex}.sn #app{padding-bottom:98px}.sn #t{bottom:86px}
+#nv button{position:relative;flex:1;max-width:170px;margin:0;padding:7px 0 5px;border:0;border-radius:10px;background:transparent;color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:500}
+#nv button.on{color:var(--pr)}#nv .bd{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--pr);color:var(--pt);font-size:10px;line-height:16px;text-align:center}.lg .f{fill:var(--pr);stroke:var(--pr)}
 button,select,input{font:inherit;width:100%;padding:13px 14px;margin:5px 0;border-radius:12px;border:1px solid var(--bd);background:var(--ca);color:var(--tx);outline:0}
 select:focus,input:focus{border-color:var(--mu)}button:focus-visible{outline:2px solid var(--mu);outline-offset:2px}
 button{background:var(--pr);color:var(--pt);border:0;font-weight:500;cursor:pointer}button:active{opacity:.85}
@@ -25,9 +29,9 @@ small{color:var(--mu);display:block;margin-top:12px;font-size:13px}
 #t{position:fixed;left:14px;right:14px;bottom:16px;background:var(--to);color:var(--tt);padding:12px 14px;border-radius:12px;display:none;z-index:9}
 .w{background:var(--am);padding:10px 12px;border-radius:10px;margin:8px 0}
 #th{position:absolute;top:12px;right:14px;width:40px;height:40px;padding:0;margin:0;border-radius:50%;background:transparent;color:var(--mu);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center}
-</style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23262624%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d8d5ce%22%20stroke-width%3D%223.4%22%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2221%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2243%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2243%22%20r%3D%229%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2221%22%20r%3D%229%22%20fill%3D%22%238fb0c9%22%20stroke%3D%22%238fb0c9%22%20stroke-width%3D%223.4%22/%3E%3C/svg%3E"></head><body><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button>
+</style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23262624%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d8d5ce%22%20stroke-width%3D%223.4%22%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2221%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2243%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2243%22%20r%3D%229%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2221%22%20r%3D%229%22%20fill%3D%22%238fb0c9%22%20stroke%3D%22%238fb0c9%22%20stroke-width%3D%223.4%22/%3E%3C/svg%3E"></head><body><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
-const $=q=>document.querySelector(q),LS=localStorage,h=s=>$('#app').innerHTML=s;
+const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').innerHTML=s;if(n!==undefined)navAtivo(n)};
 const IC={
  sol:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>',
  lua:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
@@ -39,9 +43,10 @@ function tema(){aplicaTema(document.documentElement.dataset.tema=='escuro'?'clar
 aplicaTema(document.documentElement.dataset.tema||'escuro');
 let cfg=JSON.parse(LS.cfg||'{}'),S={tipo:'A',gab:[],cont:0};
 const msg=t=>{const e=$('#t');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',4000)};
-async function api(acao,p={},post){p={...p,acao,chave:cfg.chave};
-  try{const r=post?await fetch(cfg.url,{method:'POST',body:JSON.stringify(p)}):await fetch(cfg.url+'?'+new URLSearchParams(p));
-    const j=await r.json();if(!j.ok)throw new Error(j.erro);return j}catch(e){msg('Erro: '+e.message);throw e}}
+async function api(acao,p={},post,quieto){p={...p,acao,chave:cfg.chave};let j;const c=new AbortController(),tm=setTimeout(()=>c.abort(),20000);
+  try{const r=post?await fetch(cfg.url,{method:'POST',body:JSON.stringify(p),signal:c.signal}):await fetch(cfg.url+'?'+new URLSearchParams(p),{signal:c.signal});j=await r.json()}
+  catch(e){const x=new Error('Sem conexão');x.rede=true;if(!quieto)msg('Sem conexão com a internet.');throw x}finally{clearTimeout(tm)}
+  if(!j.ok){msg('Erro: '+j.erro);throw new Error(j.erro)}return j}
 
 /* ---------- Leitor de bolhas (geometria do bloco 10x4: pontos relativos ao centro do quadrado superior esquerdo) ---------- */
 function solve(A,B){const n=8,M=A.map((r,i)=>[...r,B[i]]);for(let c=0;c<n;c++){let p=c;for(let r=c+1;r<n;r++)if(Math.abs(M[r][c])>Math.abs(M[p][c]))p=r;[M[c],M[p]]=[M[p],M[c]];
@@ -95,50 +100,50 @@ function lerImagem(im){const k=Math.min(1,1600/Math.max(im.width,im.height)),w=M
 
 /* ---------- Telas ---------- */
 function conf(){h(`<h1>Configuração</h1><label>Endereço do script (termina em /exec)</label><input id=u value="${cfg.url||''}" autocapitalize=off>
-<label>Chave</label><input id=k type=password value="${cfg.chave||''}"><button onclick=salvaCfg()>Testar e salvar</button>${cfg.url?'<button class=g onclick=home()>Voltar</button>':''}`)}
+<label>Chave</label><input id=k type=password value="${cfg.chave||''}"><button onclick=salvaCfg()>Testar e salvar</button>${cfg.url?'<button class=g onclick=ajustes()>Voltar</button>':''}`,'ajustes')}
 async function salvaCfg(){const o=cfg;cfg={url:$('#u').value.trim(),chave:$('#k').value.trim()};
   try{const j=await api('ping');LS.cfg=JSON.stringify(cfg);msg('Conectado: '+j.planilha);home()}catch{cfg=o}}
 async function home(){if(!cfg.url)return conf();h('<p>Carregando…</p>');
-  try{const[t,s]=await Promise.all([api('turmas'),api('simulados')]);S.turmas=t.turmas;S.sims=s.simulados}catch{return conf()}
-  if(!S.turmas.length||!S.sims.length)return h('<h1>Faltam dados</h1><p>Cadastre as turmas na aba Turmas da planilha. O gabarito pode ser cadastrado pelo botão abaixo.</p><button onclick=home()>Tentar de novo</button><button class=g onclick=gabNovo()>Cadastrar gabarito</button><button class=g onclick=conf()>Configuração</button>');
-  h(`<h1 class=ti>${IC.logo}Correção de Gabaritos</h1><label>Turma</label><select id=tu>${S.turmas.map(x=>`<option>${x}</option>`).join('')}</select>
+  try{const[t,s]=await Promise.all([lerC('turmas'),lerC('simulados')]);S.turmas=t.turmas;S.sims=s.simulados;if(t.cache||s.cache)msg('Sem internet: usando dados guardados.')}catch{return conf()}
+  if(!S.turmas.length||!S.sims.length)return h('<h1>Faltam dados</h1><p>Cadastre as turmas na aba Turmas da planilha. O gabarito pode ser cadastrado na aba Gabaritos, abaixo.</p><button onclick=home()>Tentar de novo</button>','corrigir');
+  h(`<h1 class=ti>${IC.logo}Correção de Gabaritos</h1><div id=pb>${pend()}</div><label>Turma</label><select id=tu>${S.turmas.map(x=>`<option>${x}</option>`).join('')}</select>
   <label>Simulado</label><select id=si onchange=tipos()>${S.sims.map(x=>`<option>${x.simulado}</option>`).join('')}</select>
-  <label>Tipo da prova</label><div id=tp></div><button onclick=ini()>Iniciar leitura</button><button class=g onclick=gabNovo()>Cadastrar gabarito</button><button class=g onclick=conf()>Configuração</button>`);tipos()}
+  <label>Tipo da prova</label><div id=tp></div><button onclick=ini()>Iniciar leitura</button>`,'corrigir');tipos()}
 function tipos(){const s=S.sims.find(x=>x.simulado==$('#si').value);if(!s.tipos.includes(S.tipo))S.tipo=s.tipos[0];
   $('#tp').innerHTML=s.tipos.map(t=>`<button class="s ${t==S.tipo?'on':''}" onclick="S.tipo='${t}';tipos()">Tipo ${t}</button>`).join('')}
-async function ini(){S.turma=$('#tu').value;S.sim=$('#si').value;S.cont=0;try{S.gab=(await api('gabarito',{simulado:S.sim})).tipos}catch{return}leitura()}
+async function ini(){S.turma=$('#tu').value;S.sim=$('#si').value;S.cont=0;try{S.gab=(await lerC('gabarito',{simulado:S.sim})).tipos}catch{return}lerC('alunos',{turma:S.turma,simulado:S.sim}).catch(()=>{});leitura()}
 function leitura(){h(`<div class=bar><b>${S.turma}</b> · ${S.sim}<br><span class=badge>TIPO ${S.tipo}</span>${S.gab.map(g=>`<button class="s ${g.tipo==S.tipo?'on':''}" onclick="S.tipo='${g.tipo}';leitura()">${g.tipo}</button>`).join('')}
   <span style="float:right">${S.cont} lidas</span></div>
   <input id=f type=file accept="image/*" capture=environment hidden onchange=foto(this)><input id=f2 type=file accept="image/*" hidden onchange=foto(this)>
   <button class=ic onclick=f.click()>${IC.cam}Fotografar prova</button><button class=g onclick=f2.click()>Escolher da galeria</button>
-  ${S.ult?'<button class=g onclick=desfaz()>Desfazer última nota</button>':''}<button class=g onclick=home()>Trocar turma / simulado</button>
-  <small>Folha na vertical, boa luz, sem sombra. Os 4 quadrados pretos do gabarito precisam aparecer na foto.</small>`)}
+  ${S.ult?'<button class=g onclick=desfaz()>Desfazer última nota</button>':''}<div id=pb>${pend()}</div><button class=g onclick=home()>Trocar turma / simulado</button>
+  <small>Folha na vertical, boa luz, sem sombra. Os 4 quadrados pretos do gabarito precisam aparecer na foto.</small>`,'corrigir')}
 async function foto(i){const f=i.files[0];if(!f)return;msg('Lendo…');
   const im=await createImageBitmap(f,{imageOrientation:'from-image'}).catch(()=>createImageBitmap(f));
   let r;try{r=lerImagem(im)}catch(e){r=null}i.value='';
   if(!r){h('<h1>Não consegui ler</h1><p>Não encontrei os 4 quadrados pretos do gabarito. Tente de novo mais perto, com a folha reta e sem sombra, mostrando o bloco inteiro.</p><button onclick=leitura()>Tirar outra foto</button>');return}
   S.r=r;res()}
 const nota=g=>S.r.resp.reduce((a,l,i)=>a+(g.respostas[i]=='ANULADA'||l==g.respostas[i]),0);
-function res(){const g=S.gab.find(x=>x.tipo==S.tipo),a=nota(g),o=S.gab.find(x=>x.tipo!=S.tipo),ao=o?nota(o):0,nt=Math.round(a/g.questoes*g.notaMax*100)/100;
+function res(){navAtivo(null);const g=S.gab.find(x=>x.tipo==S.tipo),a=nota(g),o=S.gab.find(x=>x.tipo!=S.tipo),ao=o?nota(o):0,nt=Math.round(a/g.questoes*g.notaMax*100)/100;
   h(`<div class=bar><span class=badge>TIPO ${S.tipo}</span> <b>${a}/${g.questoes} · nota ${nt}</b></div>
   ${o&&ao-a>=4?`<div class=w>Atenção: esta folha combina mais com o tipo ${o.tipo} (${ao} acertos). Confira a pilha.</div>`:''}
   ${S.r.resp.map((l,i)=>`<div class="q ${S.r.fl[i]?'f':''}"><b>Q.${i+1}</b>${'ABCD'.split('').map(x=>`<button class="${l==x?'on':''}" onclick="ed(${i},'${x}')">${x}</button>`).join('')}<button class="${l=='.'||l=='*'?'on':''}" onclick="ed(${i},'.')">${l=='*'?'✱':'—'}</button></div>`).join('')}
   <small>Linhas amarelas: em branco, mais de uma marca ou marca fraca. Toque na letra para corrigir.</small>
   <button onclick=alunos()>Escolher aluno</button><button class=g onclick=leitura()>Descartar e refazer foto</button>`)}
 function ed(i,x){S.r.resp[i]=x;S.r.fl[i]=false;res()}
-async function alunos(){let L;try{L=(await api('alunos',{turma:S.turma,simulado:S.sim})).alunos}catch{return}
-  L.sort((a,b)=>a.jaTem-b.jaTem||a.nome.localeCompare(b.nome));S.L=L;
+async function alunos(){navAtivo(null);let L;try{L=(await lerC('alunos',{turma:S.turma,simulado:S.sim})).alunos}catch{return}
+  FILA.forEach(q=>{if(q.sim==S.sim){const a=L.find(x=>x.id==q.id);if(a){a.jaTem=true;a.nota='na fila'}}});L.sort((a,b)=>a.jaTem-b.jaTem||a.nome.localeCompare(b.nome));S.L=L;
   h(`<h1>Quem é o aluno?</h1><input id=bs placeholder="Buscar nome…" oninput=lista()><div id=ls></div><button class=g onclick=res()>Voltar</button>`);lista()}
 function lista(){const b=($('#bs').value||'').toLowerCase();
   $('#ls').innerHTML=S.L.filter(a=>a.nome.toLowerCase().includes(b)).map(a=>`<button class="g al ${a.jaTem?'ok':''}" onclick="salva('${a.id}')"><span>${a.nome}</span><span>${a.jaTem?'✓ '+a.nota:''}</span></button>`).join('')}
-async function salva(id,sub){let j;try{j=await api('salvarNota',{simulado:S.sim,tipo:S.tipo,id,respostas:S.r.resp.map(l=>l||'.').join(''),substituir:!!sub},true)}catch{return}
+async function salva(id,sub){let j;try{j=await api('salvarNota',{simulado:S.sim,tipo:S.tipo,id,respostas:S.r.resp.map(l=>l||'.').join(''),substituir:!!sub},true,1)}catch(e){if(e.rede)return enfileira(id);return}
   if(j.conflito){if(confirm(`Este aluno já tem nota (${j.notaAnterior}). Substituir?`))return salva(id,true);return}
-  S.ult={sim:S.sim,id};if(!j.substituiu)S.cont++;msg(`${j.aluno}: ${j.acertos} acertos · nota ${j.nota}`);leitura()}
-async function desfaz(){if(!confirm('Apagar a última nota lançada?'))return;try{await api('excluirNota',{simulado:S.ult.sim,id:S.ult.id},true);S.cont=Math.max(0,S.cont-1);S.ult=null;msg('Nota apagada');leitura()}catch{}}
+  FILA=FILA.filter(q=>!(q.sim==S.sim&&q.id==id));salvaFila();S.ult={sim:S.sim,id};if(!j.substituiu)S.cont++;msg(`${j.aluno}: ${j.acertos} acertos · nota ${j.nota}`);leitura();sincroniza()}
+async function desfaz(){if(!confirm('Apagar a última nota lançada?'))return;if(S.ult.fila){FILA=FILA.filter(q=>!(q.sim==S.ult.sim&&q.id==S.ult.id));salvaFila();S.cont=Math.max(0,S.cont-1);S.ult=null;msg('Nota removida da fila');return leitura()}try{await api('excluirNota',{simulado:S.ult.sim,id:S.ult.id},true);S.cont=Math.max(0,S.cont-1);S.ult=null;msg('Nota apagada');leitura()}catch{}}
 /* ---------- Cadastro de gabarito ---------- */
 const esc=t=>String(t).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 let G={};
-function gabNovo(){G={sim:'',tipo:'A',nota:'',resp:Array(10).fill(''),fl:Array(10).fill(false)};gabForm()}
+function gabNovo(){S.sims=S.sims||[];G={sim:'',tipo:'A',nota:'',resp:Array(10).fill(''),fl:Array(10).fill(false)};gabForm()}
 function gabLinha(i){const l=G.resp[i];return `<div id=gq${i} class="q ${G.fl[i]?'f':''}"><b>Q.${i+1}</b>${'ABCD'.split('').map(x=>`<button class="${l==x?'on':''}" onclick="gabEd(${i},'${x}')">${x}</button>`).join('')}<button class="an ${l=='ANULADA'?'on':''}" onclick="gabEd(${i},'ANULADA')">Anul.</button></div>`}
 function gabForm(){h(`<h1>Cadastrar gabarito</h1>
   <label>Nome do simulado</label><input value="${esc(G.sim)}" list=dl oninput="gabNome(this.value)" autocapitalize=off placeholder="Ex.: Simulado 4.1 - 8º A">
@@ -150,7 +155,7 @@ function gabForm(){h(`<h1>Cadastrar gabarito</h1>
   <input id=gf type=file accept="image/*" hidden onchange=gabFoto(this)>
   <button class="g ic" onclick=gf.click()>${IC.cam}Preencher com folha-modelo</button>
   <small>Tire a foto de uma folha com o gabarito marcado. Questões em branco, com mais de uma marca ou com marca fraca ficam em amarelo para você conferir. Toque na letra para corrigir; toque de novo para limpar.</small>
-  <button onclick=gabSalva()>Salvar gabarito</button><button class=g onclick=home()>Voltar</button>`);gabAviso()}
+  <button onclick=gabSalva()>Salvar gabarito</button><button class=g onclick=home()>Voltar</button>`,'gab');gabAviso()}
 function gabNome(v){G.sim=v;const e=S.sims.find(x=>x.simulado==v.trim());if(e&&!G.nota){G.nota=e.notaMax;$('#gm').value=e.notaMax}gabAviso()}
 function gabAviso(){const e=S.sims.find(x=>x.simulado==G.sim.trim());
   $('#gw').innerHTML=e&&e.tipos.includes(G.tipo)?`<div class=w>Este simulado já tem o tipo ${G.tipo}. Salvar vai substituir o gabarito (as notas já lançadas não são recalculadas).</div>`:''}
@@ -174,6 +179,114 @@ async function gabSalva(){const sim=G.sim.trim(),nota=Number(String(G.nota).repl
   const o=G.tipo=='A'?'B':'A';
   if(!(e&&e.tipos.includes(o))&&confirm(`Cadastrar agora o tipo ${o} de "${sim}"?`)){G.tipo=o;G.resp=Array(10).fill('');G.fl=Array(10).fill(false);return gabForm()}
   home()}
+/* ---------- Fila offline ---------- */
+let FILA=[];try{FILA=JSON.parse(LS.fila||'[]')}catch(e){}
+const salvaFila=()=>{try{LS.fila=JSON.stringify(FILA)}catch(e){msg('Atenção: não consegui guardar a fila no celular.')}};
+const pend=()=>FILA.length?`<button class=g onclick=filaTela()>${FILA.length} nota(s) na fila para enviar</button>`:'';
+const atualizaPend=()=>{const e=$('#pb');if(e)e.innerHTML=pend();if(NAVA)navAtivo(NAVA)};
+async function lerC(acao,p={}){const k='c:'+(cfg.url||'').slice(-24)+':'+acao+':'+JSON.stringify(p);
+  try{const j=await api(acao,p,0,1);try{LS[k]=JSON.stringify(j)}catch(e){}return j}
+  catch(e){if(e.rede){if(LS[k]){const j=JSON.parse(LS[k]);j.cache=true;return j}msg('Sem internet e sem dados guardados. Abra o app com internet ao menos uma vez.')}throw e}}
+function enfileira(id){const a=S.L.find(x=>x.id==id),g=S.gab.find(x=>x.tipo==S.tipo),nm=a?a.nome:id;
+  FILA=FILA.filter(q=>!(q.sim==S.sim&&q.id==id));
+  FILA.push({sim:S.sim,tipo:S.tipo,id,nome:nm,resp:S.r.resp.map(l=>l||'.').join(''),esp:Math.round(nota(g)/g.questoes*g.notaMax*100)/100});
+  salvaFila();S.ult={sim:S.sim,id,fila:true};S.cont++;msg(`Sem internet. Nota de ${nm} guardada na fila (${FILA.length}).`);leitura()}
+let sincr=false;
+async function sincroniza(manual){if(sincr||!FILA.length||!cfg.url)return;sincr=true;let ok=0,falha='';
+  for(const q of [...FILA]){const pl=sub=>({simulado:q.sim,tipo:q.tipo,id:q.id,respostas:q.resp,substituir:sub});let j;
+    try{j=await api('salvarNota',pl(false),true,1)}catch(e){if(e.rede){falha='rede';break}q.erro=e.message;continue}
+    if(j.conflito&&!(j.notaAnterior==q.esp&&j.tipoAnterior==q.tipo)){
+      if(confirm(`${q.nome} já tem nota (${j.notaAnterior}) em "${q.sim}". Substituir pela leitura guardada (nota ${q.esp})?`)){
+        try{await api('salvarNota',pl(true),true,1)}catch(e){if(e.rede){falha='rede';break}q.erro=e.message;continue}}}
+    FILA=FILA.filter(x=>x!==q);ok++}
+  salvaFila();sincr=false;atualizaPend();
+  if(ok)msg(ok+' nota(s) enviada(s) à planilha.');else if(manual&&FILA.length)msg(falha=='rede'?'Sem internet. As notas continuam na fila.':'Não foi possível enviar. Veja o erro na fila.')}
+function filaTela(){h(`<h1>Notas na fila</h1>${FILA.length?FILA.map((q,i)=>`<div class=bar><b>${esc(q.nome)}</b><br>${esc(q.sim)} · tipo ${q.tipo} · nota ${q.esp}${q.erro?`<br><small>Erro: ${esc(q.erro)}</small>`:''}<button class="g s" onclick="descarta(${i})">Descartar</button></div>`).join(''):'<p>Nenhuma nota na fila.</p>'}${FILA.length?'<button onclick="sincroniza(1).then(filaTela)">Enviar agora</button>':''}<button class=g onclick=home()>Voltar</button>`,'corrigir')}
+function descarta(i){const q=FILA[i];if(!q||!confirm(`Descartar a nota de ${q.nome}? Ela não será enviada.`))return;FILA.splice(i,1);salvaFila();filaTela()}
+/* ---------- Menu inferior ---------- */
+const NS=d=>`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const NI={corrigir:NS('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 14.5l2 2 3.5-4"/>'),
+ gab:NS('<circle cx="8" cy="8" r="2.8"/><circle cx="16" cy="8" r="2.8"/><circle cx="8" cy="16" r="2.8"/><circle cx="16" cy="16" r="2.8"/>'),
+ res:NS('<path d="M5 20V10M12 20V4M19 20v-7"/>'),
+ ajustes:NS('<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>')};
+let NAVA=null;
+function navAtivo(a){NAVA=a;document.body.classList.toggle('sn',!!a);if(!a)return;
+  $('#nv').innerHTML=[['corrigir','Corrigir','irCorrigir()'],['res','Resultados','irRes()'],['gab','Gabaritos','irGab()'],['ajustes','Ajustes','irAjustes()']].map(([k,t,f])=>`<button class="${a==k?'on':''}" onclick="${f}">${NI[k]}${t}${k=='corrigir'&&FILA.length?`<span class=bd>${FILA.length}</span>`:''}</button>`).join('')}
+function irCorrigir(){if(NAVA!='corrigir'&&S.gab&&S.gab.length&&S.sim)leitura();else home()}
+function irGab(){if(NAVA=='gab')return;cfg.url?gabNovo():conf()}
+function irAjustes(){cfg.url?ajustes():conf()}
+/* ---------- Resultados ---------- */
+let REL={turma:'',sim:'',ord:'erro'};
+function irRes(){if(NAVA!='res')cfg.url?relTela():conf()}
+async function relTela(){
+  if(!S.turmas||!S.sims){try{const[t,s]=await Promise.all([lerC('turmas'),lerC('simulados')]);S.turmas=t.turmas;S.sims=s.simulados}catch{return}}
+  if(!S.sims.length)return h('<h1>Resultados</h1><p>Cadastre um gabarito e corrija algumas provas para ver os resultados.</p>','res');
+  if(!S.sims.some(x=>x.simulado==REL.sim))REL.sim=S.sims[0].simulado;
+  h(`<h1>Resultados</h1><label>Turma</label><select onchange="REL.turma=this.value;relCarrega()"><option value="">Todas as turmas</option>${S.turmas.map(x=>`<option ${x==REL.turma?'selected':''}>${esc(x)}</option>`).join('')}</select>
+  <label>Simulado</label><select onchange="REL.sim=this.value;relCarrega()">${S.sims.map(x=>`<option ${x.simulado==REL.sim?'selected':''}>${esc(x.simulado)}</option>`).join('')}</select><div id=rr><p>Carregando…</p></div>`,'res');relCarrega()}
+async function relCarrega(){let j;
+  try{j=await lerC('relatorio',{simulado:REL.sim,turma:REL.turma})}catch{const e=$('#rr');if(e)e.innerHTML='<p>Não foi possível carregar os resultados.</p>';return}
+  REL.d=j;relDesenha()}
+function relErros(q){return Object.keys(q.tipos).sort().map(t=>{const x=q.tipos[t];let m='',n=0;
+  Object.keys(x.marcas).forEach(k=>{if(k!=x.correta&&x.marcas[k]>n){n=x.marcas[k];m=k}});
+  return `<small>${['Tipo '+t,x.correta=='ANULADA'?'anulada':'certa '+x.correta,n?`erro mais comum ${m} (${n})`:'',x.branco?x.branco+' em branco':'',x.multi?x.multi+' com dupla marca':''].filter(Boolean).join(' · ')}</small>`}).join('')}
+function relDesenha(){const e=$('#rr'),d=REL.d;if(!e||!d)return;
+  if(!d.alunos){e.innerHTML='<p>Ainda não há notas lançadas para esta seleção.</p>';return}
+  const qs=[...d.questoes];if(REL.ord=='erro')qs.sort((a,b)=>a.pct-b.pct||a.n-b.n);
+  e.innerHTML=`<div class=bar><b>${d.alunos} aluno(s)</b> · média ${d.media} · maior ${d.maior} · menor ${d.menor}${d.faltam?`<small>Faltam ${d.faltam} aluno(s) sem nota${REL.turma?'':' (todas as turmas)'}.</small>`:''}</div>
+  <div>${[['erro','Mais erradas'],['prova','Ordem da prova']].map(([k,t])=>`<button class="s ${REL.ord==k?'on':''}" onclick="REL.ord='${k}';relDesenha()">${t}</button>`).join('')}</div>
+  ${qs.map(q=>`<div class=bar><div style="display:flex;justify-content:space-between"><b>Q.${q.n}</b><span>${q.pct}% acertaram</span></div><div class=tr><div class=fl style="width:${q.pct}%"></div></div>${relErros(q)}</div>`).join('')}
+  <small>Os tipos A e B são somados por número de questão. Questão anulada conta como acerto para todos.</small>`}
+/* ---------- Ajustes: turmas, alunos e notas ---------- */
+const AJ=(a,t,r)=>`<button class="g al" onclick="${a}"><span>${t}</span><span>${r||'›'}</span></button>`;
+function ajustes(){h(`<h1>Ajustes</h1>${AJ('turmasTela()','Turmas e alunos')}${AJ('notasTela()','Notas lançadas')}${AJ('conf()','Conexão com a planilha')}`,'ajustes')}
+async function turmasTela(){let t,a;
+  try{[t,a]=await Promise.all([api('turmas'),api('alunos',{turma:'',simulado:''})])}catch{return}
+  S.turmas=t.turmas;S.todos=a.alunos;
+  h(`<h1>Turmas e alunos</h1>${S.turmas.map(x=>`<button class="g al" data-t="${esc(x)}" onclick="alunosTurma(this.dataset.t)"><span>${esc(x)}</span><span>${S.todos.filter(y=>y.turma==x).length} aluno(s) ›</span></button>`).join('')||'<p>Nenhuma turma cadastrada.</p>'}
+  <button onclick=novaTurma()>Nova turma</button><button class=g onclick=ajustes()>Voltar</button>`,'ajustes')}
+async function novaTurma(){const n=(prompt('Nome da turma:')||'').trim();if(!n)return;
+  try{await api('salvarTurma',{nome:n},true)}catch{return}msg('Turma criada');turmasTela()}
+function alunosTurma(t){S.tt=t;const L=S.todos.filter(x=>x.turma==t).sort((a,b)=>a.nome.localeCompare(b.nome));
+  h(`<h1>${esc(t)}</h1><small style="margin:-8px 0 8px">${L.length} aluno(s)</small>${L.map(a=>`<button class="g al" data-i="${esc(a.id)}" onclick="alunoEd(this.dataset.i)"><span>${esc(a.nome)}</span><span>›</span></button>`).join('')}
+  <button onclick=alunosAdd()>Adicionar alunos</button>${L.length?'':'<button class=g onclick=turmaExclui()>Excluir esta turma</button>'}<button class=g onclick=turmasTela()>Voltar</button>`,'ajustes')}
+async function recarrega(t){try{S.todos=(await api('alunos',{turma:'',simulado:''})).alunos}catch{return}alunosTurma(t)}
+function alunosAdd(){h(`<h1>Adicionar alunos</h1><small style="margin:-8px 0 8px">Turma ${esc(S.tt)}</small><textarea id=nn rows=10 placeholder="Um nome por linha (pode colar a lista da turma)"></textarea>
+  <button onclick=alunosSalva()>Salvar</button><button class=g onclick="alunosTurma(S.tt)">Voltar</button>`,'ajustes')}
+async function alunosSalva(){const nomes=$('#nn').value.split('\n').map(x=>x.trim()).filter(Boolean);if(!nomes.length)return msg('Digite pelo menos um nome.');
+  let j;try{j=await api('salvarAluno',{turma:S.tt,nomes},true)}catch{return}
+  msg(j.adicionados+' aluno(s) adicionado(s)'+(j.ignorados.length?'; '+j.ignorados.length+' já existiam':''));recarrega(S.tt)}
+function alunoEd(id){const a=S.todos.find(x=>x.id==id);S.ae=a;
+  h(`<h1>Aluno</h1><label>Nome</label><input id=an value="${esc(a.nome)}"><label>Turma</label><select id=at>${S.turmas.map(x=>`<option ${x==a.turma?'selected':''}>${esc(x)}</option>`).join('')}</select>
+  <button onclick=alunoSalva()>Salvar</button><button class=g onclick=alunoExclui()>Excluir aluno</button><button class=g onclick="alunosTurma(S.tt)">Voltar</button>`,'ajustes')}
+async function alunoSalva(){const t=$('#at').value;try{await api('salvarAluno',{id:S.ae.id,nome:$('#an').value,turma:t},true)}catch{return}msg('Aluno atualizado');recarrega(t)}
+async function alunoExclui(){const a=S.ae;if(!confirm(`Excluir ${a.nome}?`))return;let j;
+  try{j=await api('excluirAluno',{id:a.id},true);
+    if(j.temNotas){if(!confirm(`${a.nome} tem ${j.temNotas} nota(s) lançada(s). Excluir o aluno e apagar essas notas?`))return;j=await api('excluirAluno',{id:a.id,apagarNotas:true},true)}}catch{return}
+  msg('Aluno excluído');recarrega(S.tt)}
+async function turmaExclui(){if(!confirm(`Excluir a turma ${S.tt}?`))return;try{await api('excluirTurma',{nome:S.tt},true)}catch{return}msg('Turma excluída');turmasTela()}
+
+let NT={turma:'',sim:'',L:[]},NE={};
+async function notasTela(){
+  if(!S.turmas||!S.sims){try{const[t,s]=await Promise.all([lerC('turmas'),lerC('simulados')]);S.turmas=t.turmas;S.sims=s.simulados}catch{return}}
+  if(!S.sims.length)return h('<h1>Notas lançadas</h1><p>Nenhum simulado cadastrado.</p><button class=g onclick=ajustes()>Voltar</button>','ajustes');
+  if(!S.sims.some(x=>x.simulado==NT.sim))NT.sim=S.sims[0].simulado;
+  h(`<h1>Notas lançadas</h1><label>Turma</label><select onchange="NT.turma=this.value;notasCarrega()"><option value="">Todas as turmas</option>${S.turmas.map(x=>`<option ${x==NT.turma?'selected':''}>${esc(x)}</option>`).join('')}</select>
+  <label>Simulado</label><select onchange="NT.sim=this.value;notasCarrega()">${S.sims.map(x=>`<option ${x.simulado==NT.sim?'selected':''}>${esc(x.simulado)}</option>`).join('')}</select><div id=nl><p>Carregando…</p></div><button class=g onclick=ajustes()>Voltar</button>`,'ajustes');notasCarrega()}
+async function notasCarrega(){let j;try{j=await api('notas',{simulado:NT.sim,turma:NT.turma})}catch{return}
+  NT.L=j.notas;const e=$('#nl');if(!e)return;
+  e.innerHTML=NT.L.length?NT.L.map((n,i)=>`<button class="g al" onclick="notaEd(${i})"><span>${esc(n.nome)} · tipo ${n.tipo}</span><span>${n.nota} ›</span></button>`).join(''):'<p>Nenhuma nota lançada para esta seleção.</p>'}
+function neLinha(k){const l=NE.resp[k];return `<div id=nq${k} class=q><b>Q.${k+1}</b>${'ABCD'.split('').map(x=>`<button class="${l==x?'on':''}" onclick="neEd(${k},'${x}')">${x}</button>`).join('')}<button class="${l=='.'||l=='*'?'on':''}" onclick="neEd(${k},'.')">${l=='*'?'✱':'—'}</button></div>`}
+function notaEd(i){const n=NT.L[i];NE={n,tipo:n.tipo,resp:n.respostas.split('')};notaDes()}
+function notaDes(){const n=NE.n,ts=(S.sims.find(x=>x.simulado==NT.sim)||{tipos:[n.tipo]}).tipos;
+  h(`<h1>${esc(n.nome)}</h1><small style="margin:-8px 0 8px">${esc(NT.sim)} · nota atual ${n.nota}</small><div>${ts.map(t=>`<button class="s ${t==NE.tipo?'on':''}" onclick="NE.tipo='${t}';notaDes()">Tipo ${t}</button>`).join('')}</div>
+  ${NE.resp.map((l,k)=>neLinha(k)).join('')}<small>Toque na letra para corrigir. A nota é recalculada ao salvar.</small>
+  <button onclick=neSalva()>Salvar correção</button><button class=g onclick=neApaga()>Apagar esta nota</button><button class=g onclick=notasTela()>Voltar</button>`,'ajustes')}
+function neEd(k,x){NE.resp[k]=x;$('#nq'+k).outerHTML=neLinha(k)}
+async function neSalva(){const n=NE.n;let j;try{j=await api('salvarNota',{simulado:NT.sim,tipo:NE.tipo,id:n.id,respostas:NE.resp.join(''),substituir:true},true)}catch{return}
+  msg(`${j.aluno}: ${j.acertos} acertos · nota ${j.nota}`);notasTela()}
+async function neApaga(){const n=NE.n;if(!confirm(`Apagar a nota de ${n.nome}?`))return;try{await api('excluirNota',{simulado:NT.sim,id:n.id},true)}catch{return}msg('Nota apagada');notasTela()}
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-home();
+addEventListener('online',()=>sincroniza());
+home().then(()=>sincroniza());
 </script></body></html>
