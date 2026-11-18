@@ -17,6 +17,12 @@ h1{font:600 23px/1.2 "Poppins",system-ui,sans-serif;letter-spacing:-.01em;margin
 @keyframes sd{to{stroke-dashoffset:0}}@keyframes sp{to{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){#sp path{animation:none;stroke-dashoffset:0}#sp circle{animation:none;transform:none}}
 #lk{position:fixed;inset:0;z-index:98;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#101a2c;color:#dde4ee;padding:24px;text-align:center}#lk.on{display:flex}#lk svg{width:64px;height:64px}#lk .lg{stroke:#5dcdb0}#lk .lg circle{fill:#5dcdb0}#lk button{width:auto;min-width:210px;background:#5dcdb0;color:#0c2230}#lk button.lk2{background:transparent;color:#8a98ae;font-size:14px;min-width:0}
+.sl{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;background:var(--ca);color:var(--tx);border:1px solid var(--bd);font-weight:400}.sl svg{flex:none;width:18px;height:18px;stroke:var(--mu);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ov{position:fixed;inset:0;z-index:90;background:rgba(8,13,24,.55);display:flex;align-items:flex-end;justify-content:center}
+.sh{width:100%;max-width:520px;max-height:70vh;overflow:auto;background:var(--ca);border:1px solid var(--bd);border-radius:18px 18px 0 0;padding:10px 10px calc(14px + env(safe-area-inset-bottom))}
+.op{display:flex;align-items:center;justify-content:space-between;width:100%;margin:2px 0;padding:14px;background:transparent;color:var(--tx);border:0;font-weight:400;text-align:left}.op.on{color:var(--pr);font-weight:600;background:var(--bg)}.op.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--pr)}
+@media(min-width:900px){.ov{align-items:center}.sh{border-radius:16px;max-width:420px}}
+a.btn{display:block;text-align:center;text-decoration:none;padding:13px 14px;margin:5px 0;border-radius:12px;background:var(--pr);color:var(--pt);font-weight:500}
 .lr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 4px;border-bottom:1px solid var(--bd)}.lr.no{color:var(--mu)}.tr{height:6px;border-radius:3px;background:var(--bd);margin:8px 0 2px;overflow:hidden}.fl{height:100%;background:var(--pr)}.bar small{margin-top:4px}
 #nv{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;gap:2px;background:var(--bg);border-top:1px solid var(--bd);padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:8}
 .sn #nv{display:flex}.sn #app{padding-bottom:98px}.sn #t{bottom:86px}
@@ -42,7 +48,7 @@ small{color:var(--mu);display:block;margin-top:12px;font-size:13px}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
-const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').innerHTML=s;if(n!==undefined)navAtivo(n)};
+const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').innerHTML=s;if(n!==undefined)navAtivo(n);melhoraSel()};
 const IC={
  sol:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>',
  lua:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
@@ -258,7 +264,7 @@ function relDesenha(){const e=$('#rr'),d=REL.d;if(!e||!d)return;
   <small>Os tipos A e B são somados por número de questão. Questão anulada conta como acerto para todos.</small>`}
 /* ---------- Ajustes: turmas, alunos e notas ---------- */
 const AJ=(a,t,r)=>`<button class="g al" onclick="${a}"><span>${t}</span><span>${r||'›'}</span></button>`;
-function ajustes(){h(`<h1>Ajustes</h1>${AJ('turmasTela()','Turmas e alunos')}${AJ('conf()','Conexão com a planilha')}${AJ('bioAlterna()','Bloqueio por biometria',LS.bio?'Ativado':'Desativado')}`,'ajustes')}
+function ajustes(){h(`<h1>Ajustes</h1>${AJ('turmasTela()','Turmas e alunos')}${AJ('planTela()','Abrir planilha')}${AJ('conf()','Conexão com a planilha')}${AJ('bioAlterna()','Bloqueio por biometria',LS.bio?'Ativado':'Desativado')}`,'ajustes')}
 async function turmasTela(){let t,a;
   try{[t,a]=await Promise.all([api('turmas'),api('alunos',{turma:'',simulado:''})])}catch{return}
   S.turmas=t.turmas;S.todos=a.alunos;
@@ -371,8 +377,25 @@ async function bioAlterna(){
   try{const c=await navigator.credentials.create({publicKey:{challenge:aleat(32),rp:{name:'Syntese'},user:{id:aleat(16),name:'professor',displayName:'Professor'},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'discouraged'},timeout:60000,attestation:'none'}});
     LS.bio=b64(c.rawId);saiu=0;msg('Bloqueio ativado');ajustes()}catch(e){msg('Não foi possível ativar a biometria.')}}
 function bioReset(){if(!confirm('Redefinir apaga neste celular o endereço do script, a chave e as notas ainda não enviadas. Depois é só digitar a configuração de novo. Continuar?'))return;
-  Object.keys(LS).filter(k=>k=='bio'||k=='cfg'||k=='fila'||k.startsWith('c:')).forEach(k=>LS.removeItem(k));location.reload()}
+  Object.keys(LS).filter(k=>k=='bio'||k=='plan'||k=='cfg'||k=='fila'||k.startsWith('c:')).forEach(k=>LS.removeItem(k));location.reload()}
 document.addEventListener('visibilitychange',()=>{if(document.hidden)saiu=Date.now();else if(saiu&&Date.now()-saiu>120000)trava()});
+/* ---------- Lista de opções própria (no lugar da lista nativa do Android) ---------- */
+function melhoraSel(){document.querySelectorAll('#app select').forEach(s=>{if(s.dataset.m)return;s.dataset.m=1;s.style.display='none';
+  const b=document.createElement('button');b.type='button';b.className='sl';
+  const pinta=()=>{const o=s.options[s.selectedIndex];b.innerHTML='<span>'+esc(o?o.text:'')+'</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'};
+  pinta();b.onclick=()=>abreSel(s,pinta);s.after(b)})}
+function abreSel(s,pinta){const ov=document.createElement('div'),sh=document.createElement('div');ov.className='ov';sh.className='sh';
+  ov.onclick=e=>{if(e.target==ov)ov.remove()};
+  [...s.options].forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='op'+(i==s.selectedIndex?' on':'');b.textContent=o.text;
+    b.onclick=()=>{s.selectedIndex=i;s.dispatchEvent(new Event('change'));pinta();ov.remove()};sh.appendChild(b)});
+  ov.appendChild(sh);document.body.appendChild(ov)}
+/* ---------- Atalho para a planilha ---------- */
+async function planTela(){h('<h1>Planilha</h1><p>Carregando…</p>','ajustes');let j;
+  try{j=await api('planilha')}catch(e){if(LS.plan)j={url:LS.plan};else return ajustes()}
+  LS.plan=j.url;
+  h(`<h1>Planilha</h1><small style="margin:-8px 0 8px">${esc(j.nome||'')}</small><a class=btn href="${esc(j.url)}" target=_blank rel=noopener>Abrir no Google Planilhas</a><button class=g onclick=planCopia()>Copiar link</button>
+  <small>Os dados do Syntese ficam nessa planilha. Evite renomear as abas e os cabeçalhos.</small><button class=g onclick=ajustes()>Voltar</button>`,'ajustes')}
+function planCopia(){navigator.clipboard.writeText(LS.plan).then(()=>msg('Link copiado.'),()=>msg('Não consegui copiar o link.'))}
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 addEventListener('online',()=>sincroniza());
 let spOk=false;function fimSp(){if(spOk)return;spOk=true;const e=$('#sp');if(!e)return;setTimeout(()=>{e.classList.add('x');setTimeout(()=>e.remove(),450)},Math.max(0,1700-(Date.now()-T0)))}
