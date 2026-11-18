@@ -7,7 +7,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
 #app{max-width:520px;margin:auto;padding:58px 18px 28px}
-h1{font:600 23px/1.2 "Lora","Iowan Old Style",Georgia,serif;letter-spacing:-.01em;margin:0 0 16px}.ti{display:flex;align-items:center;gap:11px}.ti svg{flex:none}.q button.an{font-size:13px}textarea{font:inherit;width:100%;padding:13px 14px;margin:5px 0;border-radius:12px;border:1px solid var(--bd);background:var(--ca);color:var(--tx);outline:0}.tr{height:6px;border-radius:3px;background:var(--bd);margin:8px 0 2px;overflow:hidden}.fl{height:100%;background:var(--pr)}.bar small{margin-top:4px}
+h1{font:600 23px/1.2 "Lora","Iowan Old Style",Georgia,serif;letter-spacing:-.01em;margin:0 0 16px}.ti{display:flex;align-items:center;gap:11px}.ti svg{flex:none}.q button.an{font-size:13px}textarea{font:inherit;width:100%;padding:13px 14px;margin:5px 0;border-radius:12px;border:1px solid var(--bd);background:var(--ca);color:var(--tx);outline:0}.lr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 4px;border-bottom:1px solid var(--bd)}.lr.no{color:var(--mu)}.tr{height:6px;border-radius:3px;background:var(--bd);margin:8px 0 2px;overflow:hidden}.fl{height:100%;background:var(--pr)}.bar small{margin-top:4px}
 #nv{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;gap:4px;background:var(--bg);border-top:1px solid var(--bd);padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:8}
 .sn #nv{display:flex}.sn #app{padding-bottom:98px}.sn #t{bottom:86px}
 #nv button{position:relative;flex:1;max-width:170px;margin:0;padding:7px 0 5px;border:0;border-radius:10px;background:transparent;color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:500}
@@ -216,15 +216,15 @@ function irCorrigir(){if(NAVA!='corrigir'&&S.gab&&S.gab.length&&S.sim)leitura();
 function irGab(){if(NAVA=='gab')return;cfg.url?gabNovo():conf()}
 function irAjustes(){cfg.url?ajustes():conf()}
 /* ---------- Resultados ---------- */
-let REL={turma:'',sim:'',ord:'erro'};
+let REL={turma:'',sim:'',ord:'erro',vis:'aluno',oa:'nome'};
 function irRes(){if(NAVA!='res')cfg.url?relTela():conf()}
 async function relTela(){
   if(!S.turmas||!S.sims){try{const[t,s]=await Promise.all([lerC('turmas'),lerC('simulados')]);S.turmas=t.turmas;S.sims=s.simulados}catch{return}}
   if(!S.sims.length)return h('<h1>Resultados</h1><p>Cadastre um gabarito e corrija algumas provas para ver os resultados.</p>','res');
   if(!S.sims.some(x=>x.simulado==REL.sim))REL.sim=S.sims[0].simulado;
-  h(`<h1>Resultados</h1><label>Turma</label><select onchange="REL.turma=this.value;relCarrega()"><option value="">Todas as turmas</option>${S.turmas.map(x=>`<option ${x==REL.turma?'selected':''}>${esc(x)}</option>`).join('')}</select>
+  h(`<h1>Resultados</h1><div>${[['aluno','Por aluno'],['questao','Por questão']].map(([k,t])=>`<button class="s ${REL.vis==k?'on':''}" onclick="REL.vis='${k}';relTela()">${t}</button>`).join('')}</div><label>Turma</label><select onchange="REL.turma=this.value;relCarrega()"><option value="">Todas as turmas</option>${S.turmas.map(x=>`<option ${x==REL.turma?'selected':''}>${esc(x)}</option>`).join('')}</select>
   <label>Simulado</label><select onchange="REL.sim=this.value;relCarrega()">${S.sims.map(x=>`<option ${x.simulado==REL.sim?'selected':''}>${esc(x.simulado)}</option>`).join('')}</select><div id=rr><p>Carregando…</p></div>`,'res');relCarrega()}
-async function relCarrega(){let j;
+async function relCarrega(){if(REL.vis=='aluno')return relAlunos();let j;
   try{j=await lerC('relatorio',{simulado:REL.sim,turma:REL.turma})}catch{const e=$('#rr');if(e)e.innerHTML='<p>Não foi possível carregar os resultados.</p>';return}
   REL.d=j;relDesenha()}
 function relErros(q){return Object.keys(q.tipos).sort().map(t=>{const x=q.tipos[t];let m='',n=0;
@@ -286,6 +286,19 @@ function neEd(k,x){NE.resp[k]=x;$('#nq'+k).outerHTML=neLinha(k)}
 async function neSalva(){const n=NE.n;let j;try{j=await api('salvarNota',{simulado:NT.sim,tipo:NE.tipo,id:n.id,respostas:NE.resp.join(''),substituir:true},true)}catch{return}
   msg(`${j.aluno}: ${j.acertos} acertos · nota ${j.nota}`);notasTela()}
 async function neApaga(){const n=NE.n;if(!confirm(`Apagar a nota de ${n.nome}?`))return;try{await api('excluirNota',{simulado:NT.sim,id:n.id},true)}catch{return}msg('Nota apagada');notasTela()}
+async function relAlunos(){let j;
+  try{j=await lerC('alunos',{turma:REL.turma,simulado:REL.sim})}catch{const e=$('#rr');if(e)e.innerHTML='<p>Não foi possível carregar as notas.</p>';return}
+  const L=j.alunos.map(a=>({...a}));
+  FILA.forEach(q=>{if(q.sim==REL.sim){const a=L.find(x=>x.id==q.id);if(a){a.jaTem=true;a.nota='na fila'}}});
+  REL.A=L;relDesenhaA()}
+function relDesenhaA(){const e=$('#rr'),L=REL.A;if(!e||!L)return;
+  if(!L.length){e.innerHTML='<p>Nenhum aluno cadastrado nesta seleção.</p>';return}
+  const num=a=>typeof a.nota=='number',ns=L.filter(num).map(a=>a.nota),med=ns.length?Math.round(ns.reduce((x,y)=>x+y,0)/ns.length*100)/100:null;
+  const R=[...L].sort((a,b)=>{if(REL.oa=='nota'&&num(a)!=num(b))return num(a)?-1:1;if(REL.oa=='nota'&&num(a)&&a.nota!=b.nota)return b.nota-a.nota;return a.nome.localeCompare(b.nome)});
+  e.innerHTML=`<div class=bar><b>${ns.length} de ${L.length} com nota</b>${ns.length?` · média ${med} · maior ${Math.max(...ns)} · menor ${Math.min(...ns)}`:''}</div>
+  <div>${[['nome','Por nome'],['nota','Por nota']].map(([k,t])=>`<button class="s ${REL.oa==k?'on':''}" onclick="REL.oa='${k}';relDesenhaA()">${t}</button>`).join('')}</div>
+  ${R.map(a=>`<div class="lr ${a.jaTem?'':'no'}"><span>${esc(a.nome)}<small style="display:inline;margin:0 0 0 8px">${[!REL.turma&&a.turma,a.jaTem&&a.tipo&&'tipo '+a.tipo].filter(Boolean).map(esc).join(' · ')}</small></span>${a.jaTem?`<b>${a.nota}</b>`:'<span>sem nota</span>'}</div>`).join('')}
+  <small>Para corrigir ou apagar uma nota, use Ajustes → Notas lançadas.</small>`}
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 addEventListener('online',()=>sincroniza());
 home().then(()=>sincroniza());
