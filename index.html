@@ -23,6 +23,7 @@ h1{font:600 23px/1.2 "Poppins",system-ui,sans-serif;letter-spacing:-.01em;margin
 .op{display:flex;align-items:center;justify-content:space-between;width:100%;margin:2px 0;padding:14px;background:transparent;color:var(--tx);border:0;font-weight:400;text-align:left}.op.on{color:var(--pr);font-weight:600;background:var(--bg)}.op.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--pr)}
 @media(min-width:900px){.ov{align-items:center}.sh{border-radius:16px;max-width:420px}}
 a.btn{display:block;text-align:center;text-decoration:none;padding:13px 14px;margin:5px 0;border-radius:12px;background:var(--pr);color:var(--pt);font-weight:500}
+.q2{display:block}@media(min-width:900px){.q2{display:grid;grid-template-columns:1fr 1fr;gap:24px}.sn #app.wide{max-width:1100px}}
 .lr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 4px;border-bottom:1px solid var(--bd)}.lr.no{color:var(--mu)}.tr{height:6px;border-radius:3px;background:var(--bd);margin:8px 0 2px;overflow:hidden}.fl{height:100%;background:var(--pr)}.bar small{margin-top:4px}
 #nv{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;gap:2px;background:var(--bg);border-top:1px solid var(--bd);padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:8}
 .sn #nv{display:flex}.sn #app{padding-bottom:98px}.sn #t{bottom:86px}
@@ -48,7 +49,7 @@ small{color:var(--mu);display:block;margin-top:12px;font-size:13px}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
-const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').innerHTML=s;if(n!==undefined)navAtivo(n);melhoraSel()};
+const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').classList.remove('wide');$('#app').innerHTML=s;if(n!==undefined)navAtivo(n);melhoraSel()};
 const IC={
  sol:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>',
  lua:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
@@ -229,8 +230,9 @@ const NI={corrigir:NS('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d=
  ajustes:NS('<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>')};
 let NAVA=null;
 function navAtivo(a){NAVA=a;document.body.classList.toggle('sn',!!a);if(!a)return;
-  $('#nv').innerHTML='<div class=nl>'+IC.logo+'</div>'+[['corrigir','Corrigir','irCorrigir()'],['notas','Notas','irNotas()'],['res','Resultados','irRes()'],['gab','Gabaritos','irGab()'],['ajustes','Ajustes','irAjustes()']].map(([k,t,f])=>`<button class="${a==k?'on':''}" onclick="${f}">${NI[k]}${t}${k=='corrigir'&&FILA.length?`<span class=bd>${FILA.length}</span>`:''}</button>`).join('')}
+  $('#nv').innerHTML='<div class=nl>'+IC.logo+'</div>'+[['corrigir','Corrigir','irCorrigir()'],['notas','Notas','irNotas()'],['res','Resultados','irRes()'],['gab','Provas','irProvas()'],['ajustes','Ajustes','irAjustes()']].map(([k,t,f])=>`<button class="${a==k?'on':''}" onclick="${f}">${NI[k]}${t}${k=='corrigir'&&FILA.length?`<span class=bd>${FILA.length}</span>`:''}</button>`).join('')}
 function irCorrigir(){if(NAVA!='corrigir'&&S.gab&&S.gab.length&&S.sim)leitura();else home()}
+function irProvas(){cfg.url?provasTela():conf()}
 function irGab(){if(NAVA=='gab')return;cfg.url?gabNovo():conf()}
 function irAjustes(){cfg.url?ajustes():conf()}
 /* ---------- Resultados ---------- */
@@ -396,6 +398,56 @@ async function planTela(){h('<h1>Planilha</h1><p>Carregando…</p>','ajustes');l
   h(`<h1>Planilha</h1><small style="margin:-8px 0 8px">${esc(j.nome||'')}</small><a class=btn href="${esc(j.url)}" target=_blank rel=noopener>Abrir no Google Planilhas</a><button class=g onclick=planCopia()>Copiar link</button>
   <small>Os dados do Syntese ficam nessa planilha. Evite renomear as abas e os cabeçalhos.</small><button class=g onclick=ajustes()>Voltar</button>`,'ajustes')}
 function planCopia(){navigator.clipboard.writeText(LS.plan).then(()=>msg('Link copiado.'),()=>msg('Não consegui copiar o link.'))}
+/* ---------- Provas: banco de questões e catálogo de habilidades ---------- */
+const KV='0.18.11';let KT=null;
+function katex(){return KT||(KT=new Promise((ok,no)=>{const B='https://cdn.jsdelivr.net/npm/katex@'+KV+'/dist/',c=document.createElement('link');c.rel='stylesheet';c.href=B+'katex.min.css';document.head.appendChild(c);
+  const L=u=>new Promise((r,j)=>{const t=document.createElement('script');t.src=u;t.onload=r;t.onerror=j;document.head.appendChild(t)});
+  L(B+'katex.min.js').then(()=>L(B+'contrib/auto-render.min.js')).then(ok,e=>{KT=null;no(e)})}))}
+async function mat(el){try{await katex();renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})}catch(e){}}
+const tx=t=>esc(t).replace(/\n/g,'<br>');
+let Q={L:[],H:[],f:{b:'',s:'',st:'ativa'},e:null};
+function provasTela(){h(`<h1>Provas</h1>${AJ('qBanco()','Banco de questões')}${AJ('gabNovo()','Cadastrar gabarito')}${AJ('habTela()','Habilidades (BNCC e Saeb)')}`,'gab')}
+async function qBanco(){try{const[a,b]=await Promise.all([api('questoes'),api('habilidades')]);Q.L=a.questoes;Q.H=b.habilidades}catch{return}qTela()}
+function qTela(){h(`<h1>Banco de questões</h1><input placeholder="Buscar no enunciado, assunto ou habilidade" value="${esc(Q.f.b)}" oninput="Q.f.b=this.value;qLista()">
+  <select onchange="Q.f.s=this.value;qLista()"><option value="">Todas as séries</option>${[1,2,3,4,5,6,7,8,9].map(n=>`<option value="${n}" ${Q.f.s==n?'selected':''}>${n}º ano</option>`).join('')}</select>
+  <div><button class="s ${Q.f.st=='arquivada'?'on':''}" onclick="Q.f.st=Q.f.st=='ativa'?'arquivada':'ativa';qTela()">${Q.f.st=='ativa'?'Ver arquivadas':'Voltar às ativas'}</button></div>
+  <div id=ql></div><button onclick=qEd()>Nova questão</button><button class=g onclick=provasTela()>Voltar</button>`,'gab');qLista()}
+function qLista(){const f=Q.f,b=f.b.toLowerCase().trim(),L=Q.L.filter(q=>q.status==f.st&&(!f.s||q.serie==f.s)&&(!b||[q.enunciado,q.assunto,q.bncc,q.saeb,q.id].join(' ').toLowerCase().includes(b)));
+  $('#ql').innerHTML=L.length?L.slice().reverse().map(q=>`<button class="g al" data-i="${esc(q.id)}" onclick="qEd(this.dataset.i)"><span>${esc(q.enunciado.replace(/\$/g,'').slice(0,90))}${q.enunciado.length>90?'…':''}<small>${[q.id,q.serie&&q.serie+'º ano',q.bncc,q.saeb,q.nivel&&'nível '+q.nivel].filter(Boolean).map(esc).join(' · ')}</small></span><span>›</span></button>`).join(''):'<p>Nenhuma questão encontrada.</p>'}
+function qEd(id){const q=id&&Q.L.find(x=>x.id==id);Q.e=q?{...q,alts:[...q.alts]}:{id:'',serie:Q.f.s||'9',bncc:'',saeb:'',nivel:'',assunto:'',enunciado:'',alts:['','','',''],correta:'',obs:''};qEdDes()}
+function qEdDes(){const e=Q.e,op=r=>Q.H.filter(x=>x.ref==r).map(x=>`<option value="${esc(x.codigo)}">${esc(x.descricao.slice(0,70))}</option>`).join('');
+  h(`<h1>${e.id?'Editar '+esc(e.id):'Nova questão'}</h1><div class=q2><div>
+  <label>Série</label><select onchange="Q.e.serie=this.value">${[1,2,3,4,5,6,7,8,9].map(n=>`<option value="${n}" ${e.serie==n?'selected':''}>${n}º ano</option>`).join('')}</select>
+  <label>Enunciado (fórmulas entre $ e $)</label><textarea rows=7 oninput="Q.e.enunciado=this.value;qPrev()">${esc(e.enunciado)}</textarea>
+  ${'ABCD'.split('').map((l,i)=>`<label>Alternativa ${l}</label><input value="${esc(e.alts[i])}" oninput="Q.e.alts[${i}]=this.value;qPrev()">`).join('')}
+  <label>Alternativa correta</label><div>${'ABCD'.split('').map(l=>`<button class="s ${e.correta==l?'on':''}" onclick="Q.e.correta='${l}';qEdDes()">${l}</button>`).join('')}</div>
+  <label>Nível</label><div>${[['1','Fácil'],['2','Média'],['3','Difícil']].map(([k,t])=>`<button class="s ${e.nivel==k?'on':''}" onclick="Q.e.nivel=Q.e.nivel=='${k}'?'':'${k}';qEdDes()">${t}</button>`).join('')}</div>
+  <label>Assunto</label><input value="${esc(e.assunto)}" oninput="Q.e.assunto=this.value">
+  <label>Habilidade da BNCC (código)</label><input list=hb value="${esc(e.bncc)}" oninput="Q.e.bncc=this.value" autocapitalize=characters><datalist id=hb>${op('BNCC')}</datalist>
+  <label>Matriz do Saeb 2025, 9º ano (código)</label><input list=hs value="${esc(e.saeb)}" oninput="Q.e.saeb=this.value" autocapitalize=characters><datalist id=hs>${op('SAEB9')}</datalist>
+  <label>Observações</label><input value="${esc(e.obs)}" oninput="Q.e.obs=this.value">
+  </div><div><label>Pré-visualização</label><div class=bar id=qp></div></div></div>
+  <button onclick=qSalva()>Salvar questão</button>${e.id?`<button class=g onclick=qDup()>Duplicar</button><button class=g onclick="qStatus('${e.id}','${(Q.L.find(x=>x.id==e.id)||{}).status=='arquivada'?'ativa':'arquivada'}')">${(Q.L.find(x=>x.id==e.id)||{}).status=='arquivada'?'Restaurar':'Arquivar'}</button>`:''}<button class=g onclick=qTela()>Voltar</button>`,'gab');
+  $('#app').classList.add('wide');qPrev(1)}
+let qt=0;function qPrev(já){clearTimeout(qt);qt=setTimeout(()=>{const e=Q.e,p=$('#qp');if(!p)return;
+  p.innerHTML=`<div>${tx(e.enunciado)||'<span style="color:var(--mu)">O enunciado aparece aqui.</span>'}</div>`+e.alts.map((a,i)=>`<div style="margin-top:8px"><b>${'ABCD'[i]})</b> ${tx(a)}</div>`).join('');mat(p)},já?0:250)}
+function qDup(){Q.e.id='';qEdDes();msg('Cópia criada. Salve para registrar a nova questão.')}
+async function qSalva(){const e=Q.e;let j;try{j=await api('salvarQuestao',{id:e.id,serie:e.serie,bncc:e.bncc,saeb:e.saeb,nivel:e.nivel,assunto:e.assunto,enunciado:e.enunciado,alts:e.alts,correta:e.correta,obs:e.obs},true)}catch{return}
+  msg(j.nova?'Questão '+j.id+' criada':'Questão salva');qBanco()}
+async function qStatus(id,st){try{await api('statusQuestao',{id,status:st},true)}catch{return}msg(st=='arquivada'?'Questão arquivada':'Questão restaurada');qBanco()}
+async function habTela(){let j;try{j=(await api('habilidades')).habilidades}catch{return}Q.H=j;const n=r=>j.filter(x=>x.ref==r).length;
+  h(`<h1>Habilidades</h1><p>Cadastradas: BNCC ${n('BNCC')} · Saeb 2025 (9º ano) ${n('SAEB9')}</p><label>Tipo de lista</label><select id=hr><option value="BNCC">BNCC</option><option value="SAEB9">Matriz do Saeb 2025 (9º ano)</option></select>
+  <label>Lista: uma habilidade por linha, com o código e depois a descrição</label><textarea id=hl rows=10></textarea><input type=file accept=".txt,.csv,.tsv" onchange="habArq(this)">
+  <button onclick=habImp()>Importar</button><button class=g onclick=provasTela()>Voltar</button>
+  <small>Cole a lista copiada do documento oficial (BNCC do MEC ou Matriz do Saeb do Inep), ou escolha um arquivo .txt, .csv ou .tsv. Também vale código, tabulação (ou ponto e vírgula) e descrição, ou código, eixo e descrição. Importar de novo atualiza as que já existem.</small>`,'gab')}
+async function habArq(i){const f=i.files[0];if(f)$('#hl').value=await f.text()}
+function habParse(t,ref){return t.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>{let c,d,eixo='';const sep=l.includes('\t')?'\t':l.includes(';')?';':null;
+  if(sep){const p=l.split(sep).map(x=>x.trim().replace(/^"|"$/g,''));c=p[0];d=p[p.length-1];if(p.length>2)eixo=p[1]}
+  else{const m=l.match(/^[\(\[]?([^\s\)\]]+)[\)\]]?\s*[-–:.]?\s*(.+)$/);if(!m)return null;c=m[1];d=m[2]}
+  c=(c||'').replace(/[\(\)\[\]:;,]+$/,'');return c&&d&&c!=d&&/\d/.test(c)?{ref,codigo:c,eixo,descricao:d}:null}).filter(Boolean)}
+async function habImp(){const it=habParse($('#hl').value,$('#hr').value);if(!it.length)return msg('Não encontrei habilidades no texto.');
+  if(!confirm(`Importar ${it.length} habilidade(s)?\nExemplo: ${it[0].codigo} — ${it[0].descricao.slice(0,60)}`))return;let j;
+  try{j=await api('importarHabilidades',{itens:it},true)}catch{return}msg(`${j.adicionadas} adicionada(s), ${j.atualizadas} atualizada(s)`);habTela()}
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 addEventListener('online',()=>sincroniza());
 let spOk=false;function fimSp(){if(spOk)return;spOk=true;const e=$('#sp');if(!e)return;setTimeout(()=>{e.classList.add('x');setTimeout(()=>e.remove(),450)},Math.max(0,1700-(Date.now()-T0)))}
