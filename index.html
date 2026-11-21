@@ -117,14 +117,14 @@ function lerImagem(im){const k=Math.min(1,1600/Math.max(im.width,im.height)),w=M
   c.width=w;c.height=H;const x=c.getContext('2d');x.drawImage(im,0,0,w,H);return lerRGBA(x.getImageData(0,0,w,H).data,w,H)}
 
 /* ---------- Telas ---------- */
-function conf(){const novo=!cfg.url;h(`${novo?`<div class=hero>${IC.logo}<div class=wm>syntese</div><small style="margin:6px 0 0">Correção de gabaritos</small></div>`:'<h1>Conexão</h1>'}<label>Endereço do script (termina em /exec)</label><input id=u value="${cfg.url||''}" autocapitalize=off>
+function conf(){const novo=!cfg.url;h(`${novo?`<div class=hero>${IC.logo}<div class=wm>syntese</div><small style="margin:6px 0 0">Soluções para docentes</small></div>`:'<h1>Conexão</h1>'}<label>Endereço do script (termina em /exec)</label><input id=u value="${cfg.url||''}" autocapitalize=off>
 <label>Chave</label><input id=k type=password value="${cfg.chave||''}"><button onclick=salvaCfg()>${novo?'Entrar':'Testar e salvar'}</button>${cfg.url?'<button class=g onclick=ajustes()>Voltar</button>':''}`,'ajustes')}
 async function salvaCfg(){const o=cfg;cfg={url:$('#u').value.trim(),chave:$('#k').value.trim()};
   try{const j=await api('ping');LS.cfg=JSON.stringify(cfg);msg('Conectado: '+j.planilha);home()}catch{cfg=o}}
 async function home(){if(!cfg.url)return conf();h('<p>Carregando…</p>');
   try{const[t,s]=await Promise.all([lerC('turmas'),lerC('simulados')]);S.turmas=t.turmas;S.sims=s.simulados;if(t.cache||s.cache)msg('Sem internet: usando dados guardados.')}catch{return conf()}
   if(!S.turmas.length||!S.sims.length)return h(`<h1>Vamos começar</h1><p>Para corrigir, o Syntese precisa de ${!S.turmas.length?'uma turma com alunos':''}${!S.turmas.length&&!S.sims.length?' e ':''}${!S.sims.length?'um gabarito':''}.</p>${!S.turmas.length?'<button onclick=turmasTela()>Cadastrar turma e alunos</button>':''}${!S.sims.length?`<button class="${S.turmas.length?'':'g'}" onclick=gabNovo()>Cadastrar gabarito</button>`:''}<button class=g onclick=home()>Tentar de novo</button>`,'corrigir');
-  h(`<h1 class=ti>${IC.logo}<span>syntese</span></h1><small style="margin:-8px 0 6px">Correção de gabaritos</small><div id=pb>${pend()}</div><label>Turma</label><select id=tu>${S.turmas.map(x=>`<option>${x}</option>`).join('')}</select>
+  h(`<h1 class=ti>${IC.logo}<span>syntese</span></h1><small style="margin:-8px 0 6px">Soluções para docentes</small><div id=pb>${pend()}</div><label>Turma</label><select id=tu>${S.turmas.map(x=>`<option>${x}</option>`).join('')}</select>
   <label>Simulado</label><select id=si onchange=tipos()>${S.sims.map(x=>`<option>${x.simulado}</option>`).join('')}</select>
   <label>Tipo da prova</label><div id=tp></div><button onclick=ini()>Iniciar leitura</button><button class=g onclick=turmasTela()>Turmas e alunos</button>`,'corrigir');tipos()}
 function tipos(){const s=S.sims.find(x=>x.simulado==$('#si').value);if(!s.tipos.includes(S.tipo))S.tipo=s.tipos[0];
@@ -350,9 +350,9 @@ const expTxt=(sep,tit)=>{const d=expDados();return(tit?d.tit+'\n':'')+d.linhas.s
 function expTela(){const d=expDados();
   h(`<h1>Exportar notas</h1><small style="margin:-8px 0 8px">${esc(d.tit)} · ${d.linhas.length-1} aluno(s)</small>
   <button onclick=expCopia()>Copiar lista (nome e nota)</button><button class=g onclick=expTexto()>Compartilhar lista</button>
-  <button class=g onclick=expXlsx()>Planilha (.xlsx)</button><button class=g onclick=expCsv()>Arquivo .csv</button><button class=g onclick=expPdf()>PDF / imprimir</button>
+  <button class=g onclick=expXlsx()>Planilha (.xlsx)</button><button class=g onclick=expCsv()>Arquivo .csv</button><button class=g onclick=expPdf()>PDF / imprimir</button><button class=g id=exn onclick=expExt()>Enviar ao Lançador de Notas</button><small id=exs></small>
   <small>A cópia usa nome e nota separados por tabulação: cole direto em uma planilha ou leia para digitar no sistema da escola. Alunos sem nota aparecem como "sem nota".</small>
-  <button class=g onclick=notasTela()>Voltar</button>`,'notas')}
+  <button class=g onclick=notasTela()>Voltar</button>`,'notas');pingExt();setTimeout(expMarca,300)}
 async function expCopia(){try{await navigator.clipboard.writeText(expTxt('\t'));msg('Lista copiada.')}catch(e){msg('Não consegui copiar. Use "Compartilhar lista".')}}
 async function expTexto(){try{if(navigator.share){await navigator.share({title:expDados().tit,text:expTxt(' - ',1)});return}}catch(e){if(e.name=='AbortError')return}expCopia()}
 async function expArq(blob,nome){const f=new File([blob],nome,{type:blob.type});
@@ -448,6 +448,16 @@ function habParse(t,ref){return t.split(/\r?\n/).map(l=>l.trim()).filter(Boolean
 async function habImp(){const it=habParse($('#hl').value,$('#hr').value);if(!it.length)return msg('Não encontrei habilidades no texto.');
   if(!confirm(`Importar ${it.length} habilidade(s)?\nExemplo: ${it[0].codigo} — ${it[0].descricao.slice(0,60)}`))return;let j;
   try{j=await api('importarHabilidades',{itens:it},true)}catch{return}msg(`${j.adicionadas} adicionada(s), ${j.atualizadas} atualizada(s)`);habTela()}
+/* ---------- Ponte com as extensões do Chrome (Lançador de Notas e, depois, de Aulas) ---------- */
+let EXT={};
+addEventListener('message',e=>{const m=e.data;if(e.source!==window||e.origin!==location.origin||!m||typeof m!='object')return;
+  if(m.tipo=='syntese-pong'){EXT[m.extensao]=m.versao;expMarca()}
+  else if(m.tipo=='syntese-notas-resultado')msg(m.ok?m.recebidas+' nota(s) enviada(s). Abra a extensão na página de notas da plataforma e clique em Carregar notas.':'Erro no envio: '+m.erro)});
+const pingExt=()=>postMessage({tipo:'syntese-ping'},location.origin);
+function expMarca(){const e=$('#exs');if(e)e.textContent=EXT.notas?'Lançador de Notas detectado (versão '+EXT.notas+').':'Lançador de Notas não detectado. Ele funciona no Chrome do computador, com a extensão instalada.'}
+function expExt(){if(!EXT.notas)return msg('Não encontrei o Lançador de Notas neste navegador.');const d=expDados();
+  postMessage({tipo:'syntese-notas',versao:1,simulado:NT.sim,turma:NT.turma,notas:d.linhas.slice(1).map(r=>({nome:r[0],nota:r[2]===''?null:r[2]}))},location.origin)}
+pingExt();
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 addEventListener('online',()=>sincroniza());
 let spOk=false;function fimSp(){if(spOk)return;spOk=true;const e=$('#sp');if(!e)return;setTimeout(()=>{e.classList.add('x');setTimeout(()=>e.remove(),450)},Math.max(0,1700-(Date.now()-T0)))}
