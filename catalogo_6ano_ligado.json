@@ -1,0 +1,1075 @@
+{
+ "serie": "6",
+ "fonte": "Planilha da plataforma (Objetos_e_Habilidades.xlsx, aba 6º Ano); palavras-chave em rascunho para validação",
+ "configuracoes": {
+  "minimoPalavras": 1,
+  "proporcaoMinima": 0.6,
+  "maxObjetos": 3,
+  "maxHabilidades": 3
+ },
+ "objetos": [
+  {
+   "n": 1,
+   "texto": "Diferentes tipos de representação de informações: gráficos e fluxogramas",
+   "palavras": [
+    "fluxograma",
+    "fluxogramas",
+    "tipos de graficos",
+    "representacao de informacoes",
+    "informacoes em graficos"
+   ]
+  },
+  {
+   "n": 2,
+   "texto": "Coleta de dados, organização, registro e construção de diferentes tipos de gráficos para representá-los e interpretação das informações",
+   "palavras": [
+    "coleta de dados",
+    "pesquisa",
+    "planilha eletronica",
+    "planilhas",
+    "construcao de graficos",
+    "grafico de barras",
+    "grafico de colunas",
+    "grafico de linhas",
+    "grafico de setores",
+    "tabela de frequencia",
+    "graficos de barras",
+    "graficos de colunas",
+    "graficos de linhas",
+    "graficos de setores",
+    "graficos"
+   ]
+  },
+  {
+   "n": 3,
+   "texto": "Leitura e interpretação de tabelas e gráficos (de colunas ou barras simples ou múltiplas) referentes a variáveis categóricas e variáveis numéricas",
+   "palavras": [
+    "leitura e interpretacao",
+    "leitura de graficos",
+    "interpretacao de graficos",
+    "interpretacao de tabelas",
+    "leitura de tabelas",
+    "tabelas e graficos",
+    "graficos de colunas",
+    "graficos de barras",
+    "grafico de colunas",
+    "grafico de barras",
+    "variavel categorica",
+    "variavel numerica",
+    "frequencia",
+    "tabela",
+    "tabelas"
+   ]
+  },
+  {
+   "n": 4,
+   "texto": "Cálculo de probabilidade como a razão entre o número de resultados favoráveis e o total de resultados possíveis em um espaço amostral equiprovável e por meio de muitas repetições de um experimento (frequências de ocorrências e probabilidade frequentista)",
+   "palavras": [
+    "probabilidade",
+    "evento aleatorio",
+    "espaco amostral",
+    "equiprovavel",
+    "resultados favoraveis",
+    "resultados possiveis",
+    "chance"
+   ]
+  },
+  {
+   "n": 5,
+   "texto": "Perímetro de um quadrado como grandeza proporcional à medida do lado",
+   "palavras": [
+    "perimetro do quadrado",
+    "perimetro de um quadrado",
+    "perimetro",
+    "lado do quadrado",
+    "ampliacao do lado",
+    "reducao do lado"
+   ]
+  },
+  {
+   "n": 6,
+   "texto": "Plantas baixas e vistas aéreas",
+   "palavras": [
+    "planta baixa",
+    "plantas baixas",
+    "vista aerea",
+    "vistas aereas",
+    "croqui",
+    "escala",
+    "maquete"
+   ]
+  },
+  {
+   "n": 7,
+   "texto": "Ângulos: noção, usos e medida",
+   "palavras": [
+    "transferidor",
+    "medida de angulo",
+    "medidas de angulos",
+    "abertura do angulo",
+    "angulo reto",
+    "angulo agudo",
+    "angulo obtuso",
+    "angulo raso",
+    "angulos",
+    "grau",
+    "graus",
+    "angulo de visao",
+    "medindo angulos",
+    "medir angulos",
+    "uso do transferidor"
+   ]
+  },
+  {
+   "n": 8,
+   "texto": "Problemas sobre medidas envolvendo grandezas como comprimento, massa, tempo, temperatura, área, capacidade e volume",
+   "palavras": [
+    "comprimento",
+    "massa",
+    "tempo",
+    "temperatura",
+    "capacidade",
+    "volume",
+    "unidades de medida",
+    "medidas de comprimento",
+    "medidas de grandezas",
+    "area de retangulo",
+    "area do retangulo",
+    "area de triangulo",
+    "area do triangulo",
+    "calculo de area",
+    "area de figuras",
+    "litro",
+    "quilograma"
+   ]
+  },
+  {
+   "n": 9,
+   "texto": "Construção de retas paralelas e perpendiculares, fazendo uso de réguas, esquadros e softwares",
+   "palavras": [
+    "retas paralelas",
+    "retas perpendiculares",
+    "paralelas",
+    "perpendiculares",
+    "esquadro",
+    "regua",
+    "paralelismo",
+    "perpendicularismo",
+    "dobradura",
+    "algoritmo",
+    "construcao de quadrados",
+    "construcao de retangulos"
+   ]
+  },
+  {
+   "n": 10,
+   "texto": "Construção de figuras semelhantes: ampliação e redução de figuras planas em malhas quadriculadas",
+   "palavras": [
+    "figuras semelhantes",
+    "semelhanca",
+    "ampliacao",
+    "reducao",
+    "malha quadriculada",
+    "malhas quadriculadas",
+    "ampliar",
+    "reduzir"
+   ]
+  },
+  {
+   "n": 11,
+   "texto": "Polígonos: classificações quanto ao número de vértices, às medidas de lados e ângulos e ao paralelismo e perpendicularismo dos lados",
+   "palavras": [
+    "poligono",
+    "poligonos",
+    "triangulo",
+    "triangulos",
+    "quadrilatero",
+    "quadrilateros",
+    "poligono regular",
+    "poligonos regulares",
+    "lados e angulos",
+    "paralelogramo",
+    "trapezio",
+    "losango",
+    "retangulo",
+    "quadrado"
+   ]
+  },
+  {
+   "n": 12,
+   "texto": "Prismas e pirâmides: planificações e relações entre seus elementos (vértices, faces e arestas)",
+   "palavras": [
+    "prisma",
+    "prismas",
+    "piramide",
+    "piramides",
+    "planificacao",
+    "planificacoes",
+    "vertices faces e arestas",
+    "faces",
+    "arestas",
+    "poliedro",
+    "poliedros"
+   ]
+  },
+  {
+   "n": 13,
+   "texto": "Plano cartesiano: associação dos vértices de um polígono a pares ordenados",
+   "palavras": [
+    "plano cartesiano",
+    "par ordenado",
+    "pares ordenados",
+    "coordenadas",
+    "1º quadrante",
+    "primeiro quadrante",
+    "eixo x",
+    "eixo y"
+   ]
+  },
+  {
+   "n": 14,
+   "texto": "Problemas que tratam da partição de um todo em duas partes desiguais, envolvendo razões entre as partes e entre uma das partes e o todo",
+   "palavras": [
+    "particao",
+    "partilha",
+    "partes desiguais",
+    "razao entre as partes",
+    "razao entre partes",
+    "dividir em duas partes",
+    "dividir uma quantidade",
+    "razao"
+   ]
+  },
+  {
+   "n": 15,
+   "texto": "Propriedades da igualdade",
+   "palavras": [
+    "propriedades da igualdade",
+    "propriedade da igualdade",
+    "igualdade",
+    "equacao",
+    "equacoes",
+    "balanca",
+    "equilibrio",
+    "termo desconhecido",
+    "incognita",
+    "membros"
+   ]
+  },
+  {
+   "n": 16,
+   "texto": "Cálculo de porcentagens por meio de estratégias diversas, sem fazer uso da “regra de três”",
+   "palavras": [
+    "porcentagem",
+    "porcentagens",
+    "percentual",
+    "por cento",
+    "desconto",
+    "acrescimo",
+    "10%",
+    "25%",
+    "50%",
+    "%"
+   ]
+  },
+  {
+   "n": 17,
+   "texto": "Aproximação de números para múltiplos de potências de 10",
+   "palavras": [
+    "estimativa",
+    "estimativas",
+    "aproximacao",
+    "aproximar",
+    "arredondamento",
+    "arredondar",
+    "potencia de 10",
+    "multiplos de 10"
+   ]
+  },
+  {
+   "n": 18,
+   "texto": "Operações (adição, subtração, multiplicação, divisão e potenciação, raiz quadrada e raiz cúbica exata) com números racionais",
+   "palavras": [
+    "numeros racionais",
+    "racionais",
+    "decimais",
+    "numeros decimais",
+    "operacoes com decimais",
+    "raiz quadrada",
+    "raiz cubica",
+    "potenciacao",
+    "operacoes com racionais",
+    "adicao de decimais",
+    "multiplicacao de decimais",
+    "divisao de decimais"
+   ]
+  },
+  {
+   "n": 19,
+   "texto": "Frações: significados (parte/todo, quociente), equivalência, comparação, adição e subtração; cálculo da fração de um número natural; adição e subtração de frações",
+   "palavras": [
+    "fracao",
+    "fracoes",
+    "fracao equivalente",
+    "fracoes equivalentes",
+    "comparacao de fracoes",
+    "adicao de fracoes",
+    "subtracao de fracoes",
+    "fracao de um numero",
+    "fracao de uma quantidade",
+    "numero misto",
+    "fracao decimal",
+    "numeros fracionarios",
+    "forma fracionaria",
+    "e subtracao de fracoes",
+    "operacoes com fracoes"
+   ]
+  },
+  {
+   "n": 20,
+   "texto": "Múltiplos e divisores de um número natural, números primos e compostos",
+   "palavras": [
+    "multiplo",
+    "multiplos",
+    "divisor",
+    "divisores",
+    "numeros primos",
+    "numero primo",
+    "compostos",
+    "mmc",
+    "mdc",
+    "criterios de divisibilidade",
+    "divisibilidade",
+    "fatoracao",
+    "decomposicao em fatores"
+   ]
+  },
+  {
+   "n": 21,
+   "texto": "Leitura e interpretação de situações-problema e utilização da linguagem matemática",
+   "palavras": [
+    "situacao-problema",
+    "situacoes-problema",
+    "situacao problema",
+    "linguagem matematica",
+    "interpretacao de problemas",
+    "problemas simples",
+    "algoritmo",
+    "resolucao de problemas",
+    "fluxograma"
+   ]
+  },
+  {
+   "n": 22,
+   "texto": "Operações (adição, subtração, multiplicação, divisão e potenciação) com números naturais, divisão euclidiana",
+   "palavras": [
+    "numeros naturais",
+    "operacoes com naturais",
+    "adicao e subtracao",
+    "multiplicacao e divisao",
+    "divisao euclidiana",
+    "divisao com resto",
+    "algoritmo da divisao",
+    "tabuada",
+    "calculo mental",
+    "expressoes numericas",
+    "multiplicacao de naturais",
+    "divisao de naturais",
+    "adicao de naturais",
+    "subtracao de naturais"
+   ]
+  },
+  {
+   "n": 23,
+   "texto": "História e formação dos números naturais",
+   "palavras": [
+    "historia dos numeros",
+    "origem dos numeros",
+    "formacao dos numeros",
+    "numeros naturais",
+    "sistemas de numeracao antigos",
+    "contagem",
+    "egipcio",
+    "romano",
+    "romanos"
+   ]
+  },
+  {
+   "n": 24,
+   "texto": "Sistema de numeração decimal: características, leitura, escrita e comparação de números naturais e de números racionais representados na forma decimal",
+   "palavras": [
+    "sistema de numeracao decimal",
+    "sistema decimal",
+    "valor posicional",
+    "ordens e classes",
+    "leitura de numeros",
+    "escrita de numeros",
+    "ordenacao",
+    "comparacao de numeros",
+    "reta numerica",
+    "numeros racionais decimais",
+    "sistema de numeracao",
+    "ordem",
+    "classe"
+   ]
+  },
+  {
+   "n": 25,
+   "texto": "Atividade Integradora",
+   "palavras": [
+    "atividade integradora"
+   ]
+  }
+ ],
+ "habilidades": [
+  {
+   "codigo": "EF06MA34",
+   "texto": "EF06MA34 - Interpretar e desenvolver fluxogramas simples, identificando as relações entre os objetos representados (por exemplo, posição de cidades considerando as estradas que as unem, hierarquia dos funcionários de uma empresa etc.).",
+   "objetos": [
+    1
+   ],
+   "palavras": [
+    "fluxograma",
+    "fluxogramas",
+    "tipos de graficos",
+    "representacao de informacoes",
+    "graficos"
+   ]
+  },
+  {
+   "codigo": "EF06MA33",
+   "texto": "EF06MA33 - Planejar e coletar dados de pesquisa referente a práticas sociais escolhidas pelos alunos e fazer uso de planilhas eletrônicas para registro, representação e interpretação das informações, em tabelas, vários tipos de gráficos e textos.",
+   "objetos": [
+    2
+   ],
+   "palavras": [
+    "coleta de dados",
+    "planejar pesquisa",
+    "pesquisa",
+    "planilha eletronica",
+    "planilhas",
+    "construcao de graficos",
+    "grafico de barras",
+    "grafico de colunas",
+    "grafico de linhas",
+    "grafico de setores",
+    "graficos de barras",
+    "graficos de colunas",
+    "graficos de linhas",
+    "graficos de setores",
+    "graficos"
+   ]
+  },
+  {
+   "codigo": "EF06MA31",
+   "texto": "EF06MA31 - Identificar as variáveis e suas frequências e os elementos constitutivos (título, eixos, legendas, fontes e datas) em diferentes tipos de gráficos.",
+   "objetos": [
+    3
+   ],
+   "palavras": [
+    "leitura e interpretacao",
+    "elementos de um grafico",
+    "elementos constitutivos",
+    "titulo eixos legendas",
+    "variavel categorica",
+    "variavel numerica",
+    "frequencia",
+    "leitura de graficos",
+    "interpretacao de graficos",
+    "leitura de tabelas",
+    "tabelas e graficos",
+    "tabelas",
+    "graficos de colunas",
+    "graficos de barras"
+   ]
+  },
+  {
+   "codigo": "EF06MA32",
+   "texto": "EF06MA32 - Interpretar e resolver situações que envolvam dados de pesquisas sobre contextos ambientais, sustentabilidade, trânsito, consumo responsável, entre outros, apresentadas pela mídia em tabelas e em diferentes tipos de gráficos e redigir textos escritos com o objetivo de sintetizar conclusões.",
+   "objetos": [
+    3
+   ],
+   "palavras": [
+    "pesquisa",
+    "sustentabilidade",
+    "transito",
+    "consumo responsavel",
+    "meio ambiente",
+    "dados de pesquisas",
+    "contextos ambientais"
+   ]
+  },
+  {
+   "codigo": "EF06MA30",
+   "texto": "EF06MA30 - Calcular a probabilidade de um evento aleatório, expressando-a por número racionais (forma fracionária, decimal e percentual) e comparar esse número com a probabilidade obtida por meio de experimentos sucessivos.",
+   "objetos": [
+    4
+   ],
+   "palavras": [
+    "probabilidade",
+    "evento aleatorio",
+    "espaco amostral",
+    "equiprovavel",
+    "resultados favoraveis",
+    "chance"
+   ]
+  },
+  {
+   "codigo": "EF06MA29",
+   "texto": "EF06MA29 - Analisar e descrever mudanças que ocorrem no perímetro e na área de um quadrado ao se ampliarem ou reduzirem, igualmente, as medidas de seus lados, para compreender que o perímetro é proporcional à medida do lado, o que não ocorre com a área.",
+   "objetos": [
+    5
+   ],
+   "palavras": [
+    "perimetro",
+    "area do quadrado",
+    "perimetro do quadrado",
+    "lado do quadrado",
+    "ampliacao",
+    "reducao"
+   ]
+  },
+  {
+   "codigo": "EF06MA28",
+   "texto": "EF06MA28 - Interpretar, descrever e desenhar plantas baixas simples de residências e vistas aéreas.",
+   "objetos": [
+    6
+   ],
+   "palavras": [
+    "planta baixa",
+    "plantas baixas",
+    "vista aerea",
+    "vistas aereas",
+    "croqui",
+    "escala",
+    "maquete"
+   ]
+  },
+  {
+   "codigo": "EF06MA25",
+   "texto": "EF06MA25 - Reconhecer a abertura do ângulo como grandeza associada às figuras geométricas.",
+   "objetos": [
+    7
+   ],
+   "palavras": [
+    "abertura do angulo",
+    "angulo reto",
+    "angulo agudo",
+    "angulo obtuso",
+    "angulo raso",
+    "tipos de angulos",
+    "nocao de angulo",
+    "angulos"
+   ]
+  },
+  {
+   "codigo": "EF06MA26",
+   "texto": "EF06MA26 - Resolver problemas que envolvam a noção de ângulo em diferentes contextos e em situações reais, como ângulo de visão.",
+   "objetos": [
+    7
+   ],
+   "palavras": [
+    "angulo de visao",
+    "problemas com angulos",
+    "problemas de angulos",
+    "angulos em situacoes",
+    "angulos"
+   ]
+  },
+  {
+   "codigo": "EF06MA27",
+   "texto": "EF06MA27 - Determinar medidas da abertura de ângulos, por meio de transferidor e/ou tecnologias digitais.",
+   "objetos": [
+    7
+   ],
+   "palavras": [
+    "transferidor",
+    "medir angulos",
+    "medida de angulo",
+    "medidas de angulos",
+    "medida dos angulos",
+    "abertura de angulos",
+    "graus",
+    "medindo angulos",
+    "uso do transferidor"
+   ]
+  },
+  {
+   "codigo": "EF06MA24aJP",
+   "texto": "EF06MA24aJP - Compreender, resolver e elaborar problemas que envolvam as grandezas comprimento, massa, tempo, temperatura, área (triângulos e retângulos), capacidade e volume (sólidos formados por blocos retangulares), sem uso de fórmulas, inseridos, sempre que possível, em contextos oriundos de situações reais e/ou relacionadas às outras áreas do conhecimento.",
+   "objetos": [
+    8
+   ],
+   "palavras": [
+    "comprimento",
+    "massa",
+    "tempo",
+    "temperatura",
+    "capacidade",
+    "volume",
+    "unidades de medida",
+    "medidas de comprimento",
+    "medidas de grandezas",
+    "area de retangulo",
+    "area do retangulo",
+    "area de triangulo",
+    "area do triangulo",
+    "calculo de area",
+    "area de figuras",
+    "litro",
+    "quilograma"
+   ]
+  },
+  {
+   "codigo": "EF06MA22",
+   "texto": "EF06MA22 - Utilizar instrumentos, como réguas e esquadros, ou softwares para representações de retas paralelas e perpendiculares e construção de quadriláteros, entre outros.",
+   "objetos": [
+    9
+   ],
+   "palavras": [
+    "retas paralelas",
+    "retas perpendiculares",
+    "paralelas",
+    "perpendiculares",
+    "esquadro",
+    "regua",
+    "construcao de quadrados",
+    "construcao de retangulos"
+   ]
+  },
+  {
+   "codigo": "EF06MA23",
+   "texto": "EF06MA23 - Construir algoritmos para resolver situações passo a passo (como na construção de dobraduras ou na indicação de deslocamento de um objeto no plano segundo pontos de referência e distâncias fornecidas etc.).",
+   "objetos": [
+    9
+   ],
+   "palavras": [
+    "algoritmo",
+    "algoritmos",
+    "dobradura",
+    "dobraduras",
+    "passo a passo",
+    "deslocamento",
+    "fluxograma"
+   ]
+  },
+  {
+   "codigo": "EF06MA21",
+   "texto": "EF06MA21 - Construir figuras planas semelhantes em situações de ampliação e de redução, com o uso de malhas quadriculadas, plano cartesiano ou tecnologias digitais.",
+   "objetos": [
+    10
+   ],
+   "palavras": [
+    "figuras semelhantes",
+    "semelhanca",
+    "ampliacao",
+    "reducao",
+    "malha quadriculada",
+    "malhas quadriculadas",
+    "ampliar",
+    "reduzir"
+   ]
+  },
+  {
+   "codigo": "EF06MA18",
+   "texto": "EF06MA18 - Reconhecer, nomear e comparar polígonos, considerando lados, vértices e ângulos, e classificá-los em regulares e não regulares, tanto em suas representações no plano como em faces de poliedros.",
+   "objetos": [
+    11
+   ],
+   "palavras": [
+    "poligono",
+    "poligonos",
+    "poligono regular",
+    "poligonos regulares",
+    "vertices",
+    "lados e angulos",
+    "classificacao de poligonos",
+    "nomear poligonos"
+   ]
+  },
+  {
+   "codigo": "EF06MA19",
+   "texto": "EF06MA19 - Identificar características dos triângulos e classificá-los em relação às medidas dos lados e dos ângulos.",
+   "objetos": [
+    11
+   ],
+   "palavras": [
+    "triangulo",
+    "triangulos",
+    "triangulo equilatero",
+    "triangulo isosceles",
+    "triangulo escaleno",
+    "classificacao dos triangulos",
+    "classificacao de triangulos"
+   ]
+  },
+  {
+   "codigo": "EF06MA20",
+   "texto": "EF06MA20 - Identificar características dos quadriláteros, classificá-los em relação aos lados e a ângulos e reconhecer a inclusão e a intersecção de classes entre eles.",
+   "objetos": [
+    11
+   ],
+   "palavras": [
+    "quadrilatero",
+    "quadrilateros",
+    "paralelogramo",
+    "trapezio",
+    "losango",
+    "retangulo",
+    "quadrado",
+    "classificacao dos quadrilateros",
+    "classificacao de quadrilateros"
+   ]
+  },
+  {
+   "codigo": "EF06MA17",
+   "texto": "EF06MA17 - Quantificar e estabelecer relações entre o número de vértices, faces e arestas de prismas e pirâmides, em função do seu polígono da base, para resolver problemas e desenvolver a percepção espacial.",
+   "objetos": [
+    12
+   ],
+   "palavras": [
+    "prisma",
+    "prismas",
+    "piramide",
+    "piramides",
+    "planificacao",
+    "planificacoes",
+    "vertices faces e arestas",
+    "faces",
+    "arestas",
+    "poliedro",
+    "poliedros"
+   ]
+  },
+  {
+   "codigo": "EF06MA16",
+   "texto": "EF06MA16 - Associar pares ordenados de números a pontos do plano cartesiano do 1º quadrante, em situações como a localização dos vértices de um polígono.",
+   "objetos": [
+    13
+   ],
+   "palavras": [
+    "plano cartesiano",
+    "par ordenado",
+    "pares ordenados",
+    "coordenadas",
+    "1º quadrante",
+    "primeiro quadrante",
+    "eixo x",
+    "eixo y"
+   ]
+  },
+  {
+   "codigo": "EF06MA15aJP",
+   "texto": "EF06MA15aJP - Compreender, resolver e elaborar problemas que envolvam a partilha de uma quantidade em duas partes desiguais, envolvendo relações aditivas e multiplicativas, bem como a razão entre as partes e entre uma das partes e o todo.",
+   "objetos": [
+    14
+   ],
+   "palavras": [
+    "partilha",
+    "partes desiguais",
+    "partilhar",
+    "razao entre as partes",
+    "razao entre partes",
+    "duas partes",
+    "dividir uma quantidade",
+    "dividir em duas partes",
+    "particao"
+   ]
+  },
+  {
+   "codigo": "EF06MA14",
+   "texto": "EF06MA14 - Reconhecer que a relação de igualdade matemática não se altera ao adicionar, subtrair, multiplicar ou dividir os seus dois membros por um mesmo número e utilizar essa noção para determinar valores desconhecidos na resolução de problemas.",
+   "objetos": [
+    15
+   ],
+   "palavras": [
+    "propriedades da igualdade",
+    "propriedade da igualdade",
+    "igualdade",
+    "equacao",
+    "equacoes",
+    "balanca",
+    "equilibrio",
+    "termo desconhecido",
+    "incognita",
+    "membros da igualdade"
+   ]
+  },
+  {
+   "codigo": "EF06MA13aJP",
+   "texto": "EF06MA13aJP - Compreender, resolver e elaborar problemas que envolvam porcentagens, com base na ideia de proporcionalidade, sem fazer uso da “regra de três”, utilizando estratégias pessoais, cálculo mental e calculadora, em contextos de educação financeira, entre outros.",
+   "objetos": [
+    16
+   ],
+   "palavras": [
+    "porcentagem",
+    "porcentagens",
+    "percentual",
+    "por cento",
+    "desconto",
+    "acrescimo",
+    "10%",
+    "25%",
+    "50%",
+    "%"
+   ]
+  },
+  {
+   "codigo": "EF06MA12",
+   "texto": "EF06MA12 - Fazer estimativas de quantidades e aproximar números para múltiplos da potência de 10, mais próxima.",
+   "objetos": [
+    17
+   ],
+   "palavras": [
+    "estimativa",
+    "estimativas",
+    "aproximacao",
+    "aproximar",
+    "arredondamento",
+    "arredondar",
+    "potencia de 10",
+    "multiplos de 10"
+   ]
+  },
+  {
+   "codigo": "EF06MA11aJP",
+   "texto": "EF06MA11aJP - Compreender, resolver e elaborar problemas com números racionais positivos na representação decimal, envolvendo as quatro operações fundamentais, potenciação e a radiciação, por meio de estratégias diversas, utilizando estimativas e arredondamentos para verificar a razoabilidade de respostas, com e sem uso de calculadora.",
+   "objetos": [
+    18
+   ],
+   "palavras": [
+    "numeros racionais",
+    "racionais",
+    "decimais",
+    "numeros decimais",
+    "operacoes com decimais",
+    "adicao de decimais",
+    "subtracao de decimais",
+    "multiplicacao de decimais",
+    "divisao de decimais",
+    "representacao decimal"
+   ]
+  },
+  {
+   "codigo": "EF06MA07",
+   "texto": "EF06MA07 - Compreender, comparar e ordenar frações associadas às ideias de partes de inteiros e resultado de divisão, identificando frações equivalentes.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "fracao",
+    "fracoes",
+    "fracao equivalente",
+    "fracoes equivalentes",
+    "comparacao de fracoes",
+    "comparar fracoes",
+    "ordenar fracoes",
+    "partes de inteiros",
+    "parte todo",
+    "quociente"
+   ]
+  },
+  {
+   "codigo": "EF06MA08",
+   "texto": "EF06MA08 - Reconhecer que os números racionais positivos podem ser expressos nas formas fracionária e decimal, estabelecer relações entre essas representações, passando de uma representação para outra, e relacioná-los a pontos na reta numérica.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "forma fracionaria",
+    "forma decimal",
+    "fracao decimal",
+    "fracao e decimal",
+    "numeros racionais",
+    "decimal e fracao",
+    "representacao fracionaria",
+    "reta numerica",
+    "percentual"
+   ]
+  },
+  {
+   "codigo": "EF06MA09aJP",
+   "texto": "EF06MA09aJP - Compreender, resolver e elaborar problemas que envolvam o cálculo da fração de uma quantidade e cujo resultado seja um número natural e números racionais cuja representação decimal é finita, com e sem uso de calculadora.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "fracao de um numero",
+    "fracao de uma quantidade",
+    "fracao de quantidade",
+    "calculo de fracao",
+    "fracao de um numero natural"
+   ]
+  },
+  {
+   "codigo": "EF06MA10",
+   "texto": "EF06MA10 - Resolver e elaborar problemas que envolvam adição ou subtração com números racionais positivos na representação fracionária.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "adicao de fracoes",
+    "subtracao de fracoes",
+    "soma de fracoes",
+    "adicao e subtracao de fracoes",
+    "fracoes com denominadores diferentes",
+    "fracoes com denominadores iguais",
+    "operacoes com fracoes",
+    "e subtracao de fracoes"
+   ]
+  },
+  {
+   "codigo": "EF06MA05",
+   "texto": "EF06MA05 - Classificar números naturais em primos e compostos, estabelecer relações entre números, expressas pelos termos “é múltiplo de”, “é divisor de”, “é fator de”, e estabelecer, por meio de investigações, critérios de divisibilidade por 2, 3, 4, 5, 6, 8, 9, 10, 100 e 1000.",
+   "objetos": [
+    20
+   ],
+   "palavras": [
+    "numeros primos",
+    "numero primo",
+    "compostos",
+    "numeros compostos",
+    "criterios de divisibilidade",
+    "divisibilidade",
+    "e multiplo de",
+    "e divisor de",
+    "decomposicao em fatores",
+    "fatoracao"
+   ]
+  },
+  {
+   "codigo": "EF06MA06aJP",
+   "texto": "EF06MA06aJP - Compreender, resolver e elaborar problemas que envolvam as ideias de múltiplo e de divisor.",
+   "objetos": [
+    20
+   ],
+   "palavras": [
+    "multiplo",
+    "multiplos",
+    "divisor",
+    "divisores",
+    "mmc",
+    "mdc",
+    "problemas de multiplos",
+    "problemas de divisores"
+   ]
+  },
+  {
+   "codigo": "EF06MA04",
+   "texto": "EF06MA04 - Construir algoritmo em linguagem natural e representá-lo por fluxograma que indique a resolução de um problema simples (por exemplo, se um número natural qualquer é par).",
+   "objetos": [
+    21
+   ],
+   "palavras": [
+    "algoritmo",
+    "algoritmos",
+    "fluxograma",
+    "linguagem natural",
+    "resolucao de problemas simples",
+    "problema simples"
+   ]
+  },
+  {
+   "codigo": "EF06MA36nJP",
+   "texto": "EF06MA36nJP - Ler e interpretar situações-problemas utilizando linguagem matemática.",
+   "objetos": [
+    21
+   ],
+   "palavras": [
+    "linguagem matematica",
+    "situacao-problema",
+    "situacoes-problema",
+    "situacao problema",
+    "interpretacao de problemas",
+    "interpretar problemas",
+    "ler e interpretar"
+   ]
+  },
+  {
+   "codigo": "EF06MA03aJP",
+   "texto": "EF06MA03aJP - Compreender, resolver e elaborar problemas que envolvam cálculos (mentais ou escritos, exatos ou aproximados) com números naturais, por meio de estratégias variadas, com compreensão dos processos neles envolvidos com e sem uso de calculadora.",
+   "objetos": [
+    22
+   ],
+   "palavras": [
+    "numeros naturais",
+    "operacoes com naturais",
+    "adicao e subtracao",
+    "multiplicacao e divisao",
+    "divisao euclidiana",
+    "divisao com resto",
+    "algoritmo da divisao",
+    "tabuada",
+    "calculo mental",
+    "expressoes numericas",
+    "multiplicacao de naturais",
+    "divisao de naturais",
+    "adicao de naturais",
+    "subtracao de naturais"
+   ]
+  },
+  {
+   "codigo": "EF06MA35nJP",
+   "texto": "EF06MA35nJP - Reconhecer e compreender como originaram as ideias que deram forma aos números naturais e observar os aspectos para o seu desenvolvimento.",
+   "objetos": [
+    23
+   ],
+   "palavras": [
+    "historia dos numeros",
+    "origem dos numeros",
+    "formacao dos numeros",
+    "sistemas de numeracao antigos",
+    "egipcio",
+    "romano",
+    "romanos",
+    "contagem"
+   ]
+  },
+  {
+   "codigo": "EF06MA01",
+   "texto": "EF06MA01 - Comparar, ordenar, ler e escrever números naturais e números racionais cuja representação decimal é finita, fazendo uso da reta numérica.",
+   "objetos": [
+    24
+   ],
+   "palavras": [
+    "comparar numeros",
+    "ordenar numeros",
+    "ler numeros",
+    "escrever numeros",
+    "reta numerica",
+    "numeros racionais decimais",
+    "numeros naturais",
+    "comparacao de numeros",
+    "ordenacao",
+    "sistema de numeracao decimal"
+   ]
+  },
+  {
+   "codigo": "EF06MA02",
+   "texto": "EF06MA02 - Reconhecer o sistema de numeração decimal, como o que prevaleceu no mundo ocidental, e destacar semelhanças e diferenças com outros sistemas, de modo a sistematizar suas principais características (base, valor posicional e função do zero), utilizando, inclusive, a composição e decomposição de números naturais e números racionais em sua representação decimal.",
+   "objetos": [
+    24
+   ],
+   "palavras": [
+    "sistema de numeracao decimal",
+    "sistema decimal",
+    "valor posicional",
+    "sistema de numeracao",
+    "base 10",
+    "ordens e classes",
+    "numeracao indo-arabico",
+    "sistemas de numeracao"
+   ]
+  },
+  {
+   "codigo": "EF02PJ",
+   "texto": "EF02PJ - Atividade Integradora",
+   "objetos": [
+    25
+   ],
+   "palavras": [
+    "atividade integradora"
+   ]
+  }
+ ]
+}

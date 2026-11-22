@@ -46,6 +46,8 @@ small{color:var(--mu);display:block;margin-top:12px;font-size:13px}
 #t{position:fixed;left:14px;right:14px;bottom:16px;background:var(--to);color:var(--tt);padding:12px 14px;border-radius:12px;display:none;z-index:9}
 .w{background:var(--am);padding:10px 12px;border-radius:10px;margin:8px 0}
 #th{position:absolute;top:12px;right:14px;width:40px;height:40px;padding:0;margin:0;border-radius:50%;background:transparent;color:var(--mu);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center}
+.au{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left}.au>span:first-child{min-width:0;flex:1}.au .c{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--mu);font-size:13px}.au .e{flex:none;white-space:nowrap;font-size:12px;color:var(--mu)}.au .e.p{color:var(--pr);font-weight:600}.au .e.x{color:var(--lo)}
+.rm{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.rm>span{min-width:0}.rm button{flex:none}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
@@ -126,7 +128,7 @@ async function home(){if(!cfg.url)return conf();h('<p>Carregando…</p>');
   if(!S.turmas.length||!S.sims.length)return h(`<h1>Vamos começar</h1><p>Para corrigir, o Syntese precisa de ${!S.turmas.length?'uma turma com alunos':''}${!S.turmas.length&&!S.sims.length?' e ':''}${!S.sims.length?'um gabarito':''}.</p>${!S.turmas.length?'<button onclick=turmasTela()>Cadastrar turma e alunos</button>':''}${!S.sims.length?`<button class="${S.turmas.length?'':'g'}" onclick=gabNovo()>Cadastrar gabarito</button>`:''}<button class=g onclick=home()>Tentar de novo</button>`,'corrigir');
   h(`<h1 class=ti>${IC.logo}<span>syntese</span></h1><small style="margin:-8px 0 6px">Soluções para docentes</small><div id=pb>${pend()}</div><label>Turma</label><select id=tu>${S.turmas.map(x=>`<option>${x}</option>`).join('')}</select>
   <label>Simulado</label><select id=si onchange=tipos()>${S.sims.map(x=>`<option>${x.simulado}</option>`).join('')}</select>
-  <label>Tipo da prova</label><div id=tp></div><button onclick=ini()>Iniciar leitura</button><button class=g onclick=turmasTela()>Turmas e alunos</button>`,'corrigir');tipos()}
+  <label>Tipo da prova</label><div id=tp></div><button onclick=ini()>Iniciar leitura</button><button class=g onclick=turmasTela()>Turmas e alunos</button><button class=g onclick=aulasTela()>Registro de aulas</button>`,'corrigir');tipos()}
 function tipos(){const s=S.sims.find(x=>x.simulado==$('#si').value);if(!s.tipos.includes(S.tipo))S.tipo=s.tipos[0];
   $('#tp').innerHTML=s.tipos.map(t=>`<button class="s ${t==S.tipo?'on':''}" onclick="S.tipo='${t}';tipos()">Tipo ${t}</button>`).join('')}
 async function ini(){S.turma=$('#tu').value;S.sim=$('#si').value;S.cont=0;try{S.gab=(await lerC('gabarito',{simulado:S.sim})).tipos}catch{return}lerC('alunos',{turma:S.turma,simulado:S.sim}).catch(()=>{});leitura()}
@@ -266,7 +268,7 @@ function relDesenha(){const e=$('#rr'),d=REL.d;if(!e||!d)return;
   <small>Os tipos A e B são somados por número de questão. Questão anulada conta como acerto para todos.</small>`}
 /* ---------- Ajustes: turmas, alunos e notas ---------- */
 const AJ=(a,t,r)=>`<button class="g al" onclick="${a}"><span>${t}</span><span>${r||'›'}</span></button>`;
-function ajustes(){h(`<h1>Ajustes</h1>${AJ('turmasTela()','Turmas e alunos')}${AJ('planTela()','Abrir planilha')}${AJ('conf()','Conexão com a planilha')}${AJ('bioAlterna()','Bloqueio por biometria',LS.bio?'Ativado':'Desativado')}`,'ajustes')}
+function ajustes(){h(`<h1>Ajustes</h1>${AJ('turmasTela()','Turmas e alunos')}${AJ('aulasTela()','Registro de aulas')}${AJ('planTela()','Abrir planilha')}${AJ('conf()','Conexão com a planilha')}${AJ('bioAlterna()','Bloqueio por biometria',LS.bio?'Ativado':'Desativado')}`,'ajustes')}
 async function turmasTela(){let t,a;
   try{[t,a]=await Promise.all([api('turmas'),api('alunos',{turma:'',simulado:''})])}catch{return}
   S.turmas=t.turmas;S.todos=a.alunos;
@@ -449,9 +451,83 @@ async function habImp(){const it=habParse($('#hl').value,$('#hr').value);if(!it.
   if(!confirm(`Importar ${it.length} habilidade(s)?\nExemplo: ${it[0].codigo} — ${it[0].descricao.slice(0,60)}`))return;let j;
   try{j=await api('importarHabilidades',{itens:it},true)}catch{return}msg(`${j.adicionadas} adicionada(s), ${j.atualizadas} atualizada(s)`);habTela()}
 /* ---------- Ponte com as extensões do Chrome (Lançador de Notas e, depois, de Aulas) ---------- */
+
+/* ---------- Aulas (registro de aulas e envio ao Lançador de Aulas) ---------- */
+let AU={turma:LS.turmaAulas||'',L:[],f:'todas',e:null,cat:null,cats:{},pend:[]};
+const AUC='MATEMÁTICA',AUE=[['Expositiva','Aula expositiva dialogada'],['Fixação','Exercício de Fixação'],['Correção','Correção do Exercício']];
+const nrm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const hoje=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const dBR=d=>d.split('-').reverse().join('/');
+const dSem=d=>['dom','seg','ter','qua','qui','sex','sáb'][new Date(d+'T12:00:00').getDay()];
+function serieDe(t){const m=String(t||'').match(/(\d)\s*[ºo°ª]/i)||String(t||'').match(/(\d)/);return m?m[1]:''}
+async function aulaCat(s){if(AU.cats[s])return AU.cats[s];const r=await fetch('catalogo_'+s+'ano_ligado.json');if(!r.ok)throw new Error('sem catálogo');return AU.cats[s]=await r.json()}
+/* Regra da planilha: pontua por palavras-chave; vale quem tem ao menos o mínimo e 60% da melhor pontuação */
+function aulaEsc(L,t,c,ok){const P=L.filter(x=>!ok||ok(x)).map((x,i)=>({x,i,s:x.palavras.filter(p=>t.includes(p)).length}));
+  const mx=Math.max(0,...P.map(p=>p.s));if(mx<c.minimoPalavras)return[];const lim=Math.max(c.minimoPalavras,mx*c.proporcaoMinima);
+  return P.filter(p=>p.s>=lim).sort((a,b)=>b.s-a.s||a.i-b.i)}
+function aulaSug(cat,cont){const c=cat.configuracoes,O=[],H=[];
+  String(cont).split('|').forEach(par=>{const t=nrm(par);if(!t.trim())return;
+    const os=aulaEsc(cat.objetos,t,c).slice(0,c.maxObjetos),ns=os.map(p=>p.x.n);
+    let hs=aulaEsc(cat.habilidades,t,c,k=>k.objetos.some(n=>ns.includes(n))).slice(0,c.maxHabilidades);
+    if(!hs.length&&os.length){const u=cat.habilidades.filter(k=>k.objetos.includes(ns[0]));if(u.length==1)hs=[{x:u[0]}]}
+    os.forEach(p=>{if(!O.includes(p.x.texto))O.push(p.x.texto)});hs.forEach(p=>{if(!H.includes(p.x.codigo))H.push(p.x.codigo)})});
+  return{O,H}}
+function aulaSit(a){if(!a.data)return'Falta a data';if(!(a.conteudo||'').trim())return'Falta o conteúdo';if(!(a.estrategias||'').trim())return'Faltam as estratégias';
+  if(!a.objetos.length)return'Sem objeto correspondente';if(!a.habilidades.length)return'Sem habilidade correspondente';return'Pronto'}
+const aulaEst=a=>a.lancada?'Lançada':(aulaSit(a)=='Pronto'&&a.data<=hoje()?'Pronta':'Planejada');
+async function aulasTela(){if(!cfg.url)return conf();h('<p>Carregando…</p>','aulas');
+  try{const t=await lerC('turmas');S.turmas=t.turmas;if(!S.turmas.includes(AU.turma))AU.turma=S.turmas[0]||'';
+    AU.L=AU.turma?(await lerC('aulas',{turma:AU.turma})).aulas:[]}catch{return home()}
+  aulasDes()}
+function aulasDes(){if(!S.turmas.length)return h('<h1>Aulas</h1><p>Cadastre uma turma para registrar aulas.</p><button onclick=turmasTela()>Cadastrar turma</button>','aulas');
+  const F=[['todas','Todas'],['Planejada','Planejadas'],['Pronta','Prontas'],['Lançada','Lançadas']],np=AU.L.filter(a=>aulaEst(a)=='Pronta').length;
+  h(`<h1>Aulas</h1><select onchange="AU.turma=this.value;LS.turmaAulas=this.value;aulasTela()">${S.turmas.map(t=>`<option ${t==AU.turma?'selected':''}>${esc(t)}</option>`).join('')}</select>
+  ${AU.pend.length?`<div class=w>${AU.pend.length} aula(s) enviada(s) ao Lançador. Depois de lançar na plataforma, marque como lançadas.<button onclick=aulaMarca()>Marcar como lançadas</button></div>`:''}
+  <div>${F.map(([k,t])=>`<button class="s ${AU.f==k?'on':''}" onclick="AU.f='${k}';aulasDes()">${t}</button>`).join('')}</div><div id=al></div>
+  <button onclick=aulaEd()>Nova aula</button>${np?`<button class=g onclick=aulasLanca()>Lançar prontas (${np})</button>`:''}<button class=g onclick=home()>Voltar</button>`,'aulas');
+  const L=AU.L.filter(a=>AU.f=='todas'||aulaEst(a)==AU.f).sort((a,b)=>b.data.localeCompare(a.data));
+  $('#al').innerHTML=L.length?L.map(a=>{const e=aulaEst(a);return `<button class="g al au" data-i="${esc(a.id)}" onclick="aulaEd(this.dataset.i)"><span>${dBR(a.data).slice(0,5)} · ${dSem(a.data)}<span class=c>${esc(a.conteudo)||'Sem conteúdo'}</span></span><span class="e ${e=='Pronta'?'p':e=='Planejada'?'x':''}">${e}</span></button>`}).join(''):'<p>Nenhuma aula neste filtro.</p>'}
+async function aulaEd(id){const a=id&&AU.L.find(x=>x.id==id);
+  AU.e=a?{...a,objetos:[...a.objetos],habilidades:[...a.habilidades],man:true}:{id:'',turma:AU.turma,data:hoje(),multiturma:'',conteudo:'',estrategias:'',objetos:[],habilidades:[],man:false,lancada:false};
+  AU.cat=null;try{AU.cat=await aulaCat(serieDe(AU.e.turma))}catch(e){}
+  aulaEdDes()}
+function aulaEdDes(){const e=AU.e;
+  h(`<h1>${e.id?'Editar aula':'Nova aula'}</h1><small style="margin:-8px 0 8px">${esc(e.turma)}</small><div class=q2><div>
+  <label>Data da aula</label><input type=date value="${e.data}" onchange="AU.e.data=this.value;aulaSgDes()">
+  <label>Multiturma (opcional)</label><input value="${esc(e.multiturma)}" placeholder="ex.: 8º ANO B; 8º ANO C" oninput="AU.e.multiturma=this.value">
+  <label>Conteúdo (vários assuntos separados por | )</label><textarea rows=3 oninput="AU.e.conteudo=this.value;aulaSugere()">${esc(e.conteudo)}</textarea>
+  <label>Estratégias metodológicas</label><textarea id=ae rows=2 oninput="AU.e.estrategias=this.value;aulaSgDes()">${esc(e.estrategias)}</textarea>
+  <div>${AUE.map(([t],i)=>`<button class=s onclick="aulaEstr(${i})">${t}</button>`).join('')}</div></div><div id=asg></div></div>
+  <button onclick=aulaSalva()>Salvar aula</button>${e.id?`<button class=g onclick="aulaLanc('${e.id}',${!e.lancada})">${e.lancada?'Voltar a pronta':'Marcar como lançada'}</button><button class=g onclick=aulaExclui()>Excluir aula</button>`:''}<button class=g onclick=aulasTela()>Voltar</button>`,'aulas');
+  $('#app').classList.add('wide');aulaSgDes()}
+function aulaEstr(i){const e=AU.e,t=AUE[i][1];e.estrategias=e.estrategias.trim()?(e.estrategias.includes(t)?e.estrategias:e.estrategias.trim()+', '+t):t;$('#ae').value=e.estrategias;aulaSgDes()}
+let aut=0;function aulaSugere(já){clearTimeout(aut);aut=setTimeout(()=>{const e=AU.e;if(!e)return;if(!e.man&&AU.cat){const s=aulaSug(AU.cat,e.conteudo);e.objetos=s.O;e.habilidades=s.H}aulaSgDes()},já?0:300)}
+function aulaSgDes(){const e=AU.e,c=AU.cat,p=$('#asg');if(!p)return;
+  if(!c){p.innerHTML=`<label>Objeto de conhecimento e habilidades</label><div class=w>Não encontrei o catálogo do ${esc(serieDe(e.turma)||'?')}º ano. Publique o arquivo catalogo_${esc(serieDe(e.turma)||'N')}ano_ligado.json junto do app.</div>`;return}
+  const sit=aulaSit(e),hd=k=>{const x=c.habilidades.find(y=>y.codigo==k);return x?x.texto.split(' - ').slice(1).join(' - '):''};
+  p.innerHTML=`<label>Situação</label><div class=bar>${sit=='Pronto'?'Pronta para lançar':sit}</div>
+  <label>Objetos de conhecimento</label>${e.objetos.map((o,i)=>`<div class="bar rm"><span>${esc(o)}</span><button class=s onclick="aulaRem('objetos',${i})">Tirar</button></div>`).join('')||'<small>Nenhum objeto ainda.</small>'}
+  <select onchange="aulaAdd('objetos',this.value)"><option value="">Adicionar objeto</option>${c.objetos.filter(o=>!e.objetos.includes(o.texto)).map(o=>`<option value="${esc(o.texto)}">${esc(o.texto)}</option>`).join('')}</select>
+  <label>Habilidades</label>${e.habilidades.map((k,i)=>`<div class="bar rm"><span><b>${esc(k)}</b><small style="margin:2px 0 0">${esc(hd(k))}</small></span><button class=s onclick="aulaRem('habilidades',${i})">Tirar</button></div>`).join('')||'<small>Nenhuma habilidade ainda.</small>'}
+  <select onchange="aulaAdd('habilidades',this.value)"><option value="">Adicionar habilidade</option>${c.habilidades.filter(k=>!e.habilidades.includes(k.codigo)).map(k=>`<option value="${esc(k.codigo)}">${esc(k.texto.slice(0,90))}</option>`).join('')}</select>
+  <button class=g onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo pelo conteúdo</button>`;melhoraSel()}
+function aulaRem(k,i){AU.e[k].splice(i,1);AU.e.man=true;aulaSgDes()}
+function aulaAdd(k,v){if(!v)return;AU.e[k].push(v);AU.e.man=true;aulaSgDes()}
+async function aulaSalva(){const e=AU.e;if(!e.data)return msg('Escolha a data.');
+  try{await api('salvarAula',{id:e.id,turma:e.turma,data:e.data,multiturma:e.multiturma,conteudo:e.conteudo,estrategias:e.estrategias,objetos:e.objetos,habilidades:e.habilidades},true)}catch{return}
+  msg(e.id?'Aula atualizada.':'Aula salva.');aulasTela()}
+async function aulaExclui(){if(!confirm('Excluir esta aula?'))return;try{await api('excluirAula',{id:AU.e.id},true)}catch{return}msg('Aula excluída.');aulasTela()}
+async function aulaLanc(id,v){try{await api('lancarAulas',{ids:[id],lancada:v},true)}catch{return}msg(v?'Marcada como lançada.':'Voltou a pronta.');aulasTela()}
+async function aulaMarca(){try{await api('lancarAulas',{ids:AU.pend,lancada:true},true)}catch{return}AU.pend=[];msg('Aulas marcadas como lançadas.');aulasTela()}
+function aulasLanca(){const L=AU.L.filter(a=>aulaEst(a)=='Pronta').sort((a,b)=>a.data.localeCompare(b.data));
+  if(!L.length)return msg('Não há aulas prontas.');if(!EXT.aulas)return msg('Não encontrei o Lançador de Aulas neste navegador. Ele funciona no Chrome do computador.');
+  AU.env=L.map(a=>a.id);
+  postMessage({tipo:'syntese-aulas',versao:1,turma:AU.turma,componente:AUC,aulas:L.map(a=>({data:dBR(a.data),multiturma:a.multiturma,objetos:a.objetos,habilidades:a.habilidades,conteudo:a.conteudo,estrategias:a.estrategias}))},location.origin)}
+function aulaEnviada(m){if(!m.ok)return msg('Erro no envio: '+m.erro);AU.pend=AU.env||[];msg(m.recebidas+' aula(s) enviada(s). Abra a plataforma e clique em Carregar no Lançador de Aulas.');if(NAVA=='aulas'&&$('#al'))aulasDes()}
 let EXT={};
 addEventListener('message',e=>{const m=e.data;if(e.source!==window||e.origin!==location.origin||!m||typeof m!='object')return;
   if(m.tipo=='syntese-pong'){EXT[m.extensao]=m.versao;expMarca()}
+  else if(m.tipo=='syntese-aulas-resultado')aulaEnviada(m);
   else if(m.tipo=='syntese-notas-resultado')msg(m.ok?m.recebidas+' nota(s) enviada(s). Abra a extensão na página de notas da plataforma e clique em Carregar notas.':'Erro no envio: '+m.erro)});
 const pingExt=()=>postMessage({tipo:'syntese-ping'},location.origin);
 function expMarca(){const e=$('#exs');if(e)e.textContent=EXT.notas?'Lançador de Notas detectado (versão '+EXT.notas+').':'Lançador de Notas não detectado. Ele funciona no Chrome do computador, com a extensão instalada.'}

@@ -1,0 +1,831 @@
+{
+ "serie": "8",
+ "fonte": "Planilha \"Registro de Aulas - 8º ano A\" (abas Objetos, Habilidades e Configurações)",
+ "configuracoes": {
+  "minimoPalavras": 1,
+  "proporcaoMinima": 0.6,
+  "maxObjetos": 3,
+  "maxHabilidades": 3
+ },
+ "objetos": [
+  {
+   "n": 1,
+   "texto": "Planejamento e execução de pesquisa amostral",
+   "palavras": [
+    "planejamento",
+    "planejar",
+    "execucao de pesquisa",
+    "pesquisa amostral",
+    "amostragem",
+    "questionario",
+    "coleta de dados",
+    "relatorio de pesquisa"
+   ]
+  },
+  {
+   "n": 2,
+   "texto": "Pesquisa censitária ou amostral",
+   "palavras": [
+    "censitaria",
+    "censo",
+    "pesquisa amostral",
+    "amostra casual",
+    "amostra sistematica",
+    "amostra estratificada",
+    "populacao e amostra"
+   ]
+  },
+  {
+   "n": 3,
+   "texto": "Medidas de tendência central e de dispersão",
+   "palavras": [
+    "tendencia central",
+    "mediana",
+    "moda",
+    "amplitude",
+    "dispersao",
+    "media aritmetica"
+   ]
+  },
+  {
+   "n": 4,
+   "texto": "Organização dos dados de uma variável contínua em classes",
+   "palavras": [
+    "variavel continua",
+    "dados em classes",
+    "intervalo de classe",
+    "intervalos de classe",
+    "frequencia",
+    "organizacao dos dados"
+   ]
+  },
+  {
+   "n": 5,
+   "texto": "Gráficos de barras, colunas, linhas ou setores e seus elementos constitutivos e adequação para determinado conjunto de dados",
+   "palavras": [
+    "grafico de",
+    "graficos de",
+    "barras",
+    "setores",
+    "histograma",
+    "tipos de grafico",
+    "elementos do grafico",
+    "pizza"
+   ]
+  },
+  {
+   "n": 6,
+   "texto": "Princípio multiplicativo da contagem e soma das probabilidades de todos os elementos de um espaço amostral",
+   "palavras": [
+    "probabilidade",
+    "espaco amostral",
+    "evento",
+    "principio multiplicativo"
+   ]
+  },
+  {
+   "n": 7,
+   "texto": "Volume de bloco retangular e medidas de capacidade",
+   "palavras": [
+    "volume",
+    "capacidade",
+    "litro",
+    "decimetro cubico",
+    "metro cubico",
+    "bloco retangular",
+    "paralelepipedo"
+   ]
+  },
+  {
+   "n": 8,
+   "texto": "Área de figuras planas, área do círculo e comprimento de sua circunferência",
+   "palavras": [
+    "area",
+    "circulo",
+    "circunferencia",
+    "figuras planas"
+   ]
+  },
+  {
+   "n": 9,
+   "texto": "Transformações geométricas: simetrias de translação, reflexão e rotação",
+   "palavras": [
+    "transformacoes geometricas",
+    "simetria",
+    "translacao",
+    "reflexao",
+    "rotacao"
+   ]
+  },
+  {
+   "n": 10,
+   "texto": "Mediatriz e bissetriz como lugares geométricos: construção e problemas",
+   "palavras": [
+    "mediatriz",
+    "bissetriz",
+    "lugar geometrico",
+    "lugares geometricos"
+   ]
+  },
+  {
+   "n": 11,
+   "texto": "Construções geométricas: ângulos de 90°, 60°, 45° e 30° e polígonos regulares",
+   "palavras": [
+    "construcoes geometricas",
+    "construcao geometrica",
+    "compasso",
+    "esquadro",
+    "poligonos regulares",
+    "poligono regular",
+    "hexagono",
+    "geogebra",
+    "geometria dinamica",
+    "angulo de 90",
+    "angulos de 90",
+    "angulo de 60",
+    "angulos de 60",
+    "angulo de 45",
+    "angulos de 45",
+    "angulo de 30",
+    "angulos de 30"
+   ]
+  },
+  {
+   "n": 12,
+   "texto": "Congruência de triângulos e demonstrações de propriedades de quadriláteros",
+   "palavras": [
+    "congruencia",
+    "triangulos congruentes",
+    "quadrilatero",
+    "paralelogramo",
+    "losango",
+    "demonstracao"
+   ]
+  },
+  {
+   "n": 13,
+   "texto": "Variação de grandezas: diretamente proporcionais, inversamente proporcionais ou não proporcionais",
+   "palavras": [
+    "grandezas",
+    "diretamente proporcionais",
+    "diretamente proporcional",
+    "inversamente proporcionais",
+    "inversamente proporcional",
+    "proporcionalidade",
+    "proporcao",
+    "regra de tres"
+   ]
+  },
+  {
+   "n": 14,
+   "texto": "Sequências recursivas e não recursivas",
+   "palavras": [
+    "sequencia",
+    "recursiva",
+    "regularidade",
+    "fluxograma",
+    "algoritmo",
+    "lei de formacao"
+   ]
+  },
+  {
+   "n": 15,
+   "texto": "Equação polinomial de 2º grau do tipo ax² = b",
+   "palavras": [
+    "2º grau",
+    "segundo grau",
+    "ax²",
+    "ax2",
+    "equacao polinomial",
+    "equacoes polinomiais",
+    "raiz da equacao"
+   ]
+  },
+  {
+   "n": 16,
+   "texto": "Sistema de equações polinomiais de 1º grau: resolução algébrica e representação no plano cartesiano",
+   "palavras": [
+    "sistema de equacoes",
+    "sistemas de equacoes",
+    "sistema linear",
+    "sistemas lineares",
+    "duas incognitas",
+    "metodo da substituicao",
+    "metodo da adicao",
+    "plano cartesiano",
+    "par ordenado"
+   ]
+  },
+  {
+   "n": 17,
+   "texto": "Associação de uma equação linear de 1º grau a uma reta no plano cartesiano",
+   "palavras": [
+    "equacao linear",
+    "equacao da reta",
+    "uma reta",
+    "retas",
+    "reta no plano"
+   ]
+  },
+  {
+   "n": 18,
+   "texto": "Polinômios",
+   "palavras": [
+    "polinomio",
+    "monomio",
+    "binomio",
+    "trinomio",
+    "termos semelhantes",
+    "coeficiente"
+   ]
+  },
+  {
+   "n": 19,
+   "texto": "Valor numérico de expressões algébricas",
+   "palavras": [
+    "valor numerico",
+    "expressao algebrica",
+    "expressoes algebricas",
+    "sentenca algebrica",
+    "sentencas algebricas",
+    "imposto de renda",
+    "conta de luz",
+    "contas de luz"
+   ]
+  },
+  {
+   "n": 20,
+   "texto": "Dízimas periódicas: fração geratriz",
+   "palavras": [
+    "dizima",
+    "geratriz",
+    "decimal periodico",
+    "decimal periodica",
+    "decimais periodicos",
+    "decimais periodicas"
+   ]
+  },
+  {
+   "n": 21,
+   "texto": "Porcentagens e juros simples",
+   "palavras": [
+    "porcentagem",
+    "porcentagens",
+    "percentual",
+    "por cento",
+    "desconto",
+    "acrescimo",
+    "juros",
+    "montante",
+    "educacao financeira",
+    "%"
+   ]
+  },
+  {
+   "n": 22,
+   "texto": "O princípio multiplicativo da contagem",
+   "palavras": [
+    "principio multiplicativo",
+    "contagem",
+    "possibilidades",
+    "combinacoes",
+    "agrupamentos",
+    "quantas maneiras"
+   ]
+  },
+  {
+   "n": 23,
+   "texto": "Potenciação e radiciação",
+   "palavras": [
+    "potencia",
+    "radiciacao",
+    "raiz",
+    "radical",
+    "radicais",
+    "expoente"
+   ]
+  },
+  {
+   "n": 24,
+   "texto": "Notação científica",
+   "palavras": [
+    "notacao cientifica",
+    "potencias de 10",
+    "potencia de 10",
+    "ordem de grandeza"
+   ]
+  },
+  {
+   "n": 25,
+   "texto": "Atividade Integrada",
+   "palavras": [
+    "atividade integrada"
+   ]
+  }
+ ],
+ "habilidades": [
+  {
+   "codigo": "EF08MA01",
+   "texto": "EF08MA01 - Efetuar cálculos com potências de expoentes inteiros e aplicar esse conhecimento na representação de números em notação científica.",
+   "objetos": [
+    23,
+    24
+   ],
+   "palavras": [
+    "potencias de expoentes inteiros",
+    "expoente inteiro",
+    "expoentes inteiros",
+    "expoente negativo",
+    "propriedades das potencias",
+    "notacao cientifica",
+    "potencia"
+   ]
+  },
+  {
+   "codigo": "EF08MA02aJP",
+   "texto": "EF08MA02aJP - Compreender, resolver e elaborar problemas usando a relação entre potenciação e radiciação, para representar uma raiz como potência de expoente fracionário.",
+   "objetos": [
+    23
+   ],
+   "palavras": [
+    "radiciacao",
+    "raiz",
+    "expoente fracionario",
+    "radical",
+    "radicais",
+    "potenciacao e radiciacao"
+   ]
+  },
+  {
+   "codigo": "EF08MA03aJP",
+   "texto": "EF08MA03aJP - Compreender, resolver e elaborar problemas de contagem cuja resolução envolve a aplicação do princípio multiplicativo.",
+   "objetos": [
+    22,
+    6
+   ],
+   "palavras": [
+    "principio multiplicativo",
+    "contagem",
+    "possibilidades",
+    "quantas maneiras",
+    "agrupamentos"
+   ]
+  },
+  {
+   "codigo": "EF08MA04aJP",
+   "texto": "EF08MA04aJP - Compreender, resolver e elaborar problemas, envolvendo cálculo de porcentagens, incluindo o uso de tecnologias digitais.",
+   "objetos": [
+    21
+   ],
+   "palavras": [
+    "porcentagem",
+    "porcentagens",
+    "percentual",
+    "por cento",
+    "desconto",
+    "acrescimo",
+    "tecnologias digitais",
+    "calculadora"
+   ]
+  },
+  {
+   "codigo": "EF08MA28nJP",
+   "texto": "EF08MA28nJP - Interpretar e comparar situações que envolvam juros simples, por meio de representações gráficas ou análise de planilhas.",
+   "objetos": [
+    21
+   ],
+   "palavras": [
+    "juros simples",
+    "juros",
+    "montante",
+    "taxa de juros",
+    "planilha",
+    "representacoes graficas"
+   ]
+  },
+  {
+   "codigo": "EF08MA05aJP",
+   "texto": "EF08MA05aJP - Compreender, reconhecer e utilizar procedimentos para a obtenção de uma fração geratriz para uma dízima periódica.",
+   "objetos": [
+    20
+   ],
+   "palavras": [
+    "fracao geratriz",
+    "dizima",
+    "geratriz",
+    "decimal periodica",
+    "decimal periodico"
+   ]
+  },
+  {
+   "codigo": "EF08MA06aJP",
+   "texto": "EF08MA06aJP - Compreender, resolver e elaborar problemas que envolvam cálculo do valor numérico de expressões algébricas, utilizando as propriedades das operações.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "valor numerico",
+    "expressao algebrica",
+    "expressoes algebricas",
+    "propriedades das operacoes"
+   ]
+  },
+  {
+   "codigo": "EF08MA29nJP",
+   "texto": "EF08MA29nJP - Analisar sentenças (tabela do Imposto de Renda, contas de luz, água, gás etc.), em suas representações algébricas.",
+   "objetos": [
+    19
+   ],
+   "palavras": [
+    "sentenca algebrica",
+    "sentencas algebricas",
+    "imposto de renda",
+    "conta de luz",
+    "contas de luz",
+    "conta de agua",
+    "conta de gas",
+    "representacoes algebricas"
+   ]
+  },
+  {
+   "codigo": "EF08MA30nJP",
+   "texto": "EF08MA30nJP - Identificar e classificar polinômios.",
+   "objetos": [
+    18
+   ],
+   "palavras": [
+    "classificacao de polinomios",
+    "classificar polinomios",
+    "identificar polinomios",
+    "polinomio",
+    "monomio",
+    "binomio",
+    "trinomio",
+    "termos semelhantes"
+   ]
+  },
+  {
+   "codigo": "EF08MA31nJP",
+   "texto": "EF08MA31nJP - Compreender, resolver e elaborar problemas que envolvam polinômios e suas operações.",
+   "objetos": [
+    18
+   ],
+   "palavras": [
+    "operacoes com polinomios",
+    "adicao de polinomios",
+    "subtracao de polinomios",
+    "multiplicacao de polinomios",
+    "divisao de polinomios",
+    "problemas com polinomios",
+    "polinomios"
+   ]
+  },
+  {
+   "codigo": "EF08MA07",
+   "texto": "EF08MA07 - Associar uma equação linear de 1º grau com duas incógnitas a uma reta no plano cartesiano.",
+   "objetos": [
+    17,
+    16
+   ],
+   "palavras": [
+    "equacao linear",
+    "equacao da reta",
+    "uma reta",
+    "retas",
+    "reta no plano",
+    "plano cartesiano",
+    "duas incognitas"
+   ]
+  },
+  {
+   "codigo": "EF08MA08aJP",
+   "texto": "EF08MA08aJP - Compreender, resolver e elaborar problemas relacionados ao seu contexto próximo, que possam ser representados por sistemas de equações de 1º grau com duas incógnitas e interpretá-los, utilizando, inclusive, o plano cartesiano como recurso.",
+   "objetos": [
+    16
+   ],
+   "palavras": [
+    "sistema de equacoes",
+    "sistemas de equacoes",
+    "sistema linear",
+    "sistemas lineares",
+    "metodo da substituicao",
+    "metodo da adicao",
+    "par ordenado",
+    "duas incognitas",
+    "plano cartesiano"
+   ]
+  },
+  {
+   "codigo": "EF08MA09aJP",
+   "texto": "EF08MA09aJP - Compreender, resolver e elaborar, com e sem uso de tecnologias, problemas que possam ser representados por equações polinomiais de 2º grau do tipo ax² = b.",
+   "objetos": [
+    15
+   ],
+   "palavras": [
+    "2º grau",
+    "segundo grau",
+    "ax²",
+    "ax2",
+    "equacao polinomial",
+    "equacoes polinomiais"
+   ]
+  },
+  {
+   "codigo": "EF08MA10",
+   "texto": "EF08MA10 - Identificar a regularidade de uma sequência numérica ou figura não recursiva e construir um algoritmo por meio de um fluxograma que permita indicar os números ou as figuras seguintes.",
+   "objetos": [
+    14
+   ],
+   "palavras": [
+    "sequencia nao recursiva",
+    "sequencias nao recursivas",
+    "nao recursiva",
+    "nao recursivas",
+    "regularidade",
+    "fluxograma",
+    "algoritmo"
+   ]
+  },
+  {
+   "codigo": "EF08MA11",
+   "texto": "EF08MA11 - Identificar a regularidade de uma sequência numérica recursiva e construir um algoritmo por meio de um fluxograma que permita indicar os números seguintes.",
+   "objetos": [
+    14
+   ],
+   "palavras": [
+    "sequencia recursiva",
+    "sequencias recursivas",
+    "termo anterior",
+    "regularidade",
+    "fluxograma",
+    "algoritmo"
+   ]
+  },
+  {
+   "codigo": "EF08MA12",
+   "texto": "EF08MA12 - Identificar a natureza da variação de duas grandezas, diretamente, inversamente proporcionais ou não proporcionais, expressando a relação existente por meio de sentença algébrica e representá-la no plano cartesiano.",
+   "objetos": [
+    13
+   ],
+   "palavras": [
+    "variacao",
+    "natureza da variacao",
+    "nao proporcionais",
+    "sentenca algebrica",
+    "plano cartesiano",
+    "grandezas"
+   ]
+  },
+  {
+   "codigo": "EF08MA13",
+   "texto": "EF08MA13 - Resolver e elaborar problemas que envolvam grandezas diretamente ou inversamente proporcionais, por meio de estratégias variadas.",
+   "objetos": [
+    13
+   ],
+   "palavras": [
+    "regra de tres",
+    "proporcao",
+    "proporcionalidade",
+    "diretamente proporcionais",
+    "inversamente proporcionais",
+    "diretamente proporcional",
+    "inversamente proporcional"
+   ]
+  },
+  {
+   "codigo": "EF08MA14",
+   "texto": "EF08MA14 - Demonstrar propriedades de quadriláteros por meio da identificação da congruência de triângulos.",
+   "objetos": [
+    12
+   ],
+   "palavras": [
+    "propriedades de quadrilateros",
+    "quadrilatero",
+    "congruencia",
+    "paralelogramo",
+    "losango",
+    "demonstracao",
+    "demonstrar"
+   ]
+  },
+  {
+   "codigo": "EF08MA15",
+   "texto": "EF08MA15 - Construir, utilizando instrumentos de desenho ou softwares de geometria dinâmica, mediatriz, bissetriz, ângulos de 90°, 60°, 45° e 30° e polígonos regulares.",
+   "objetos": [
+    10,
+    11
+   ],
+   "palavras": [
+    "construir mediatriz",
+    "construir bissetriz",
+    "construcao da mediatriz",
+    "construcao da bissetriz",
+    "angulo de 90",
+    "angulos de 90",
+    "angulo de 60",
+    "angulos de 60",
+    "angulo de 45",
+    "angulos de 45",
+    "angulo de 30",
+    "angulos de 30",
+    "poligonos regulares",
+    "poligono regular",
+    "geometria dinamica",
+    "geogebra",
+    "compasso",
+    "esquadro"
+   ]
+  },
+  {
+   "codigo": "EF08MA16",
+   "texto": "EF08MA16 - Descrever, por escrito e por meio de um fluxograma, um algoritmo para a construção de um hexágono regular de qualquer área, a partir da medida do ângulo central e da utilização de esquadros e compassos.",
+   "objetos": [
+    11
+   ],
+   "palavras": [
+    "hexagono",
+    "angulo central",
+    "fluxograma",
+    "algoritmo",
+    "compasso",
+    "esquadro"
+   ]
+  },
+  {
+   "codigo": "EF08MA17",
+   "texto": "EF08MA17 - Aplicar os conceitos de mediatriz e bissetriz como lugares geométricos na resolução de problemas.",
+   "objetos": [
+    10
+   ],
+   "palavras": [
+    "mediatriz",
+    "bissetriz",
+    "lugar geometrico",
+    "lugares geometricos"
+   ]
+  },
+  {
+   "codigo": "EF08MA18",
+   "texto": "EF08MA18 - Reconhecer e construir figuras obtidas por composições de transformações geométricas (translação, reflexão e rotação), com o uso de instrumentos de desenho ou de softwares de geometria dinâmica.",
+   "objetos": [
+    9
+   ],
+   "palavras": [
+    "transformacoes geometricas",
+    "composicoes de transformacoes",
+    "translacao",
+    "reflexao",
+    "rotacao",
+    "simetria"
+   ]
+  },
+  {
+   "codigo": "EF08MA19aJP",
+   "texto": "EF08MA19aJP - Compreender, resolver e elaborar problemas que envolvam medidas de área de figuras geométricas, utilizando expressões de cálculo de área (quadriláteros, triângulos e círculos), em situações como determinar medida de terrenos.",
+   "objetos": [
+    8
+   ],
+   "palavras": [
+    "area",
+    "circulo",
+    "circunferencia",
+    "terreno",
+    "figuras planas"
+   ]
+  },
+  {
+   "codigo": "EF08MA20",
+   "texto": "EF08MA20 - Reconhecer a relação entre um litro e um decímetro cúbico e a relação entre litro e metro cúbico, para resolver problemas de cálculo de capacidade de recipientes.",
+   "objetos": [
+    7
+   ],
+   "palavras": [
+    "litro",
+    "decimetro cubico",
+    "metro cubico",
+    "capacidade"
+   ]
+  },
+  {
+   "codigo": "EF08MA21aJP",
+   "texto": "EF08MA21aJP - Compreender, resolver e elaborar problemas que envolvam o cálculo do volume de recipiente cujo formato é o de um bloco retangular.",
+   "objetos": [
+    7
+   ],
+   "palavras": [
+    "volume",
+    "bloco retangular",
+    "paralelepipedo",
+    "volume de recipiente"
+   ]
+  },
+  {
+   "codigo": "EF08MA22",
+   "texto": "EF08MA22 - Calcular a probabilidade de eventos, com base na construção do espaço amostral, utilizando o princípio multiplicativo, e reconhecer que a soma das probabilidades de todos os elementos do espaço amostral é igual a 1.",
+   "objetos": [
+    6,
+    22
+   ],
+   "palavras": [
+    "probabilidade",
+    "espaco amostral",
+    "evento",
+    "soma das probabilidades",
+    "principio multiplicativo"
+   ]
+  },
+  {
+   "codigo": "EF08MA23",
+   "texto": "EF08MA23 - Avaliar a adequação de diferentes tipos de gráficos para representar um conjunto de dados de uma pesquisa.",
+   "objetos": [
+    5
+   ],
+   "palavras": [
+    "grafico de",
+    "graficos de",
+    "barras",
+    "setores",
+    "histograma",
+    "tipos de grafico",
+    "adequacao",
+    "pizza"
+   ]
+  },
+  {
+   "codigo": "EF08MA24",
+   "texto": "EF08MA24 - Classificar as frequências de uma variável contínua de uma pesquisa em classes, de modo que resumam os dados de maneira adequada para a tomada de decisões.",
+   "objetos": [
+    4
+   ],
+   "palavras": [
+    "frequencia",
+    "variavel continua",
+    "dados em classes",
+    "intervalo de classe",
+    "intervalos de classe",
+    "tomada de decisoes"
+   ]
+  },
+  {
+   "codigo": "EF08MA25",
+   "texto": "EF08MA25 - Obter os valores de medidas de tendência central de uma pesquisa estatística (média, moda e mediana) com a compreensão de seus significados e relacioná-los com a dispersão de dados, indicada pela amplitude.",
+   "objetos": [
+    3
+   ],
+   "palavras": [
+    "tendencia central",
+    "mediana",
+    "moda",
+    "amplitude",
+    "dispersao",
+    "media aritmetica"
+   ]
+  },
+  {
+   "codigo": "EF08MA26",
+   "texto": "EF08MA26 - Selecionar razões, de diferentes naturezas (física, ética ou econômica), que justificam a realização de pesquisas amostrais e não censitárias, e reconhecer que a seleção da amostra pode ser feita de diferentes maneiras (amostra casual simples, sistemática e estratificada).",
+   "objetos": [
+    2,
+    1
+   ],
+   "palavras": [
+    "pesquisa amostral",
+    "censitaria",
+    "amostra casual",
+    "amostra sistematica",
+    "amostra estratificada",
+    "amostragem",
+    "populacao e amostra"
+   ]
+  },
+  {
+   "codigo": "EF08MA27",
+   "texto": "EF08MA27 - Planejar e executar pesquisa amostral, selecionando uma técnica de amostragem adequada, e escrever relatório que contenha os gráficos apropriados para representar os conjuntos de dados, destacando aspectos como as medidas de tendência central, a amplitude e as conclusões.",
+   "objetos": [
+    1,
+    5,
+    3
+   ],
+   "palavras": [
+    "planejamento",
+    "planejar",
+    "execucao",
+    "executar",
+    "relatorio",
+    "questionario",
+    "coleta de dados",
+    "graficos apropriados"
+   ]
+  },
+  {
+   "codigo": "EF02JP",
+   "texto": "EF02JP - Atividade Integrada",
+   "objetos": [
+    25
+   ],
+   "palavras": [
+    "atividade integrada"
+   ]
+  }
+ ]
+}
