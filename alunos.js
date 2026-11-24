@@ -19,7 +19,9 @@ async function alunosAddSalva(){const nomes=$('#nn').value.split('\n').map(x=>x.
 /* Lista de frequência para dias de avaliação (impressa pelo navegador, "Salvar como PDF") */
 async function alunosPdf(){const at=AL.L.filter(a=>!a.arq).sort(alNome);if(!at.length)return msg('Não há alunos ativos nesta turma.');
   const av=prompt('Nome da avaliação (aparece na lista):',S.sims&&S.sims.length?S.sims[S.sims.length-1].simulado:'');if(av===null)return;
-  await carrega('escola');const e=(await escolaDados())||{};
+  await carrega('escola');const e={...((await escolaDados())||{})};
+  if(!e.professor){const pn=prompt('Nome do(a) professor(a) para o rodapé da lista (fica guardado em Ajustes, Escola):','');
+    if(pn&&pn.trim()){e.professor=pn.trim();try{await api('salvarEscola',{professor:e.professor},true);S.esc={...S.esc,professor:e.professor}}catch{}}}
   const n=at.length,rh=Math.max(16,Math.min(24,560/(n+1))),fsz=rh<22?10:11.5,tc='border:.7pt solid #888;';
   const lin=(a,i)=>{const len=Math.max(a.nome.length,1);let f=Math.min(fsz,270/(len*.53)),q='nowrap';if(f<7.5){f=7.5;q='normal'}
     return `<tr style="height:${rh}pt;page-break-inside:avoid"><td style="${tc}padding:0 6pt;text-align:center;width:34pt">${i+1}</td><td style="${tc}padding:0 8pt;text-align:left;white-space:${q};font-size:${f.toFixed(1)}pt">${esc(a.nome)}</td><td style="${tc}width:210pt"></td></tr>`};

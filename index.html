@@ -105,6 +105,16 @@ label.tg{display:inline-block;margin:0;padding:4px 10px;border-radius:8px;font-s
 #app.ced{padding-top:44px}.sn #app.ced{padding-bottom:84px}.au2.ed textarea{height:46px}.au2 .er{margin-bottom:2px}.sb{margin-bottom:4px}
 @media(min-width:900px){.sn #app,.sn #app.ced{padding-bottom:20px}#app.ced{padding-top:58px}}
 @media(min-width:900px){.mn,.ih,.sl2{display:none}.dh{display:flex}}
+
+.kal{max-width:340px}.kch{display:flex;align-items:center;justify-content:space-between;padding:2px 2px 8px;font-size:14px;font-weight:500}
+.kcn{width:36px;margin:0;padding:6px 0;background:transparent;color:var(--tx);border:1px solid var(--bd);border-radius:8px;font-size:17px;line-height:1}
+.kcw,.kcg{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}.kcw span{font-size:11px;color:var(--mu);padding:4px 0}
+.kcd{width:auto;margin:0;padding:9px 0;background:transparent;color:var(--tx);border:0;border-radius:8px;font-weight:400;font-size:13px}.kcd.khj{box-shadow:inset 0 0 0 1px var(--pr)}.kcd.on{background:var(--pr);color:var(--pt);font-weight:600}
+.kcf{display:flex;justify-content:flex-end;gap:6px;margin-top:8px}
+.dtb{flex:1;min-width:0;margin:0;padding:7px 8px;border-radius:8px;font-size:12px;background:var(--ca);color:var(--tx);border:1px solid var(--bd);font-weight:400;text-align:left}
+.sb.o{border-left:3px solid var(--pr);background:color-mix(in srgb,var(--pr) 14%,var(--ca))}.sb.hh{border-left:3px solid var(--lo);background:color-mix(in srgb,var(--lo) 15%,var(--ca))}.sb.hh b{color:var(--lo)}
+.f1.lo{color:var(--pr);font-weight:600}.f1.lh{color:var(--lo);font-weight:600}
+.ean{display:flex;gap:6px;width:100%;align-items:center}.ean input{flex:1;min-width:0;margin:0}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
@@ -323,6 +333,19 @@ function bimSel(){if(S.bim)return S.bim;const e=S.esc||{},t=hoje();let b=bimIdx(
 const bimDentro=(d,b)=>!bimTem()||b==5||bimIdx(d)==b;
 const bimRot=b=>b==5?'Final':b+'º bimestre';
 const bimAbas=cb=>[1,2,3,4,5].map(i=>`<button class="tg ${bimSel()==i?'on':''}" type=button onclick="S.bim=${i};${cb}">${i==5?'Final':i+'º'}</button>`).join('');
+/* calendário no padrão do app (substitui o seletor de data do navegador) */
+function pickData(v,cb,limpa){const ov=document.createElement('div'),sh=document.createElement('div');ov.className='ov';sh.className='sh kal';ov.onclick=e=>{if(e.target==ov)ov.remove()};
+  const ini=/^\d{4}-\d{2}-\d{2}$/.test(v||'')?v:hoje();let A=+ini.slice(0,4),M=+ini.slice(5,7)-1;
+  const MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'],pad=n=>String(n).padStart(2,'0');
+  const des=()=>{const p1=new Date(A,M,1).getDay(),nd=new Date(A,M+1,0).getDate(),t=hoje();
+    let h=`<div class=kch><button type=button class=kcn data-d="-1" aria-label="Mês anterior">‹</button><span>${MES[M][0].toUpperCase()+MES[M].slice(1)} de ${A}</span><button type=button class=kcn data-d="1" aria-label="Próximo mês">›</button></div><div class=kcw>${['D','S','T','Q','Q','S','S'].map(x=>`<span>${x}</span>`).join('')}</div><div class=kcg>`;
+    for(let i=0;i<p1;i++)h+='<span></span>';
+    for(let d=1;d<=nd;d++){const iso=A+'-'+pad(M+1)+'-'+pad(d);h+=`<button type=button class="kcd${iso==v?' on':''}${iso==t?' khj':''}" data-i="${iso}">${d}</button>`}
+    h+=`</div><div class=kcf>${limpa?'<button type=button class=tg data-a=l>Limpar</button>':''}<button type=button class=tg data-a=h>Hoje</button><button type=button class=tg data-a=f>Fechar</button></div>`;sh.innerHTML=h;
+    sh.querySelectorAll('.kcn').forEach(b=>b.onclick=()=>{M+=+b.dataset.d;if(M<0){M=11;A--}if(M>11){M=0;A++}des()});
+    sh.querySelectorAll('.kcd').forEach(b=>b.onclick=()=>{ov.remove();cb(b.dataset.i)});
+    sh.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const a=b.dataset.a;ov.remove();if(a=='h')cb(hoje());if(a=='l')cb('')})};
+  des();ov.appendChild(sh);document.body.appendChild(ov)}
 /* telas em arquivos separados, carregados só quando usadas */
 const MODS={aulas:['js/aulas.js','aulas.js'],alunos:['js/alunos.js','alunos.js'],escola:['js/escola.js','escola.js']},MOD={};
 function carrega(m,quieto){return MOD[m]||(MOD[m]=new Promise((ok,no)=>{const C=MODS[m],t=i=>{const sc=document.createElement('script');sc.src=C[i];sc.onload=ok;

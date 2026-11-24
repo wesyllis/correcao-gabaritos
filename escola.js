@@ -10,8 +10,10 @@ function escolaDes(){
   <div class=br><button class=ob type=button onclick="$('#lf').click()">${TI('upload',14)}Enviar logo</button>${EL.logo?'<button class=ob type=button onclick="EL.logo=\'\';escolaDes()">Remover</button>':''}</div></div></div>
   <input id=lf type=file accept="image/*" hidden onchange="escolaLogo(this)">
   ${ESC_CAMPOS.map(([k,t])=>`<label class=f1>${t}</label><input class=fi value="${esc(EL[k]||'')}" oninput="EL.${k}=this.value">`).join('')}
-  <label class=f1>Bimestres (início e fim)</label>${[1,2,3,4].map(i=>`<div class=bq><span>${i}º bimestre</span><input type=date value="${EL['b'+i+'i']||''}" onchange="EL.b${i}i=this.value"><input type=date value="${EL['b'+i+'f']||''}" onchange="EL.b${i}f=this.value"></div>`).join('')}
+  <label class=f1>Bimestres (início e fim)</label>${[1,2,3,4].map(i=>`<div class=bq><span>${i}º bimestre</span><button class=dtb type=button data-k="b${i}i" onclick="escData(this.dataset.k)">${fmtD(EL['b'+i+'i'])}</button><button class=dtb type=button data-k="b${i}f" onclick="escData(this.dataset.k)">${fmtD(EL['b'+i+'f'])}</button></div>`).join('')}
   <button onclick=escolaSalva()>Salvar</button><small class=f11>Aparece no cabeçalho das listas de frequência e das avaliações impressas.</small>`,'ajustes')}
+const fmtD=v=>v?v.split('-').reverse().join('/'):'Escolher data';
+function escData(k){pickData(EL[k]||'',v=>{EL[k]=v;escolaDes()},true)}
 /* Reduz a logo e a guarda como texto (a planilha aceita até 50 mil caracteres por célula) */
 async function escolaLogo(inp){const f=inp.files[0];inp.value='';if(!f)return;
   let url;try{url=await new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(f)})}catch{return msg('Não consegui ler a imagem.')}

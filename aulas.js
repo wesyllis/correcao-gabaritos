@@ -1,6 +1,6 @@
 /* Aulas: lista, editor e envio ao Lançador de Aulas (layout aprovado) */
 let AU={f:'todas',L:[],e:null,cat:null,cats:{},pend:[],env:[],turma:'',objL:[],habL:[]};
-const AUC='MATEMÁTICA';
+const aulaComp=()=>((S.esc&&S.esc.disciplina)||'Matemática').toUpperCase();
 const nrm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const dBR=d=>d.split('-').reverse().join('/');
 const dSem=d=>['dom','seg','ter','qua','qui','sex','sáb'][new Date(d+'T12:00:00').getDay()];
@@ -28,7 +28,7 @@ const aulaEst=a=>a.estado=='Lançada'?'Lançada':(a.estado=='Pronta'&&aulaSit(a)
 
 async function aulasTela(){if(!cfg.url)return conf();h('<p>Carregando…</p>','aulas');
   try{const t=await lerC('turmas');S.turmas=t.turmas;AU.turma=turmaAtiva();AU.L=AU.turma?(await lerC('aulas',{turma:AU.turma})).aulas:[]}catch{return inicio()}
-  AU.e=null;aulasDes()}
+  await escCarrega();AU.e=null;aulasDes()}
 function aulasDes(){
   if(!S.turmas.length)return h(cabec('Aulas','','inicio()')+'<p>Cadastre uma turma para registrar aulas.</p><button onclick=turmasTela()>Cadastrar turma</button>','aulas');
   const F=[['todas','Todas'],['Planejada','Planejadas'],['Pronta','Prontas'],['Lançada','Lançadas']],np=AU.L.filter(a=>aulaEst(a)=='Pronta').length;
@@ -52,12 +52,13 @@ function aulaPainel(){const w=$('.au2'),p=$('#aue');if(!w||!p)return;w.classList
   if(!AU.e){p.innerHTML='<small class=f11>Escolha uma aula ou toque em Nova aula.</small>';return}
   const e=AU.e,outras=S.turmas.filter(t=>t!=e.turma),est=e.estado;
   p.innerHTML=`<div class=eh-m>${cabec(e.id?'Editar aula':'Nova aula','','aulaFecha()')}</div><div class=eh-d>${e.id?'Editar aula':'Nova aula'}</div>
-  <div class=er><label class="tg on dt"><span id=adl>${aulaRot(e.data)}</span><input type=date value="${e.data}" onchange="aulaData(this.value)"></label>
+  <div class=er><button class="tg on" type=button onclick=aulaCal()><span id=adl>${aulaRot(e.data)}</span></button>
   ${outras.length?`<span class=f1i>Turmas</span><button class="tg on" type=button disabled>${esc(e.turma)}</button>${outras.map(t=>`<button class="tg ${e.multi.includes(t)?'on':''}" type=button data-t="${esc(t)}" onclick="aulaMulti(this.dataset.t)">${esc(t)}</button>`).join('')}`:''}</div>
   <div class=ec><div class=ec1><label class=f1>Conteúdo (assuntos separados por | )</label><textarea oninput="AU.e.conteudo=this.value;aulaSugere()">${esc(e.conteudo)}</textarea>
   <label class=f1>Estratégias</label><input id=aei class=fi value="${esc(e.estrategias)}" oninput="AU.e.estrategias=this.value;aulaSgDes();aulaEstDes()"><div id=aet class=afg></div></div><div class=ec2 id=asg></div></div>
   <div class=ebt><button class=g type=button onclick="aulaSalva()">Salvar</button><button type=button onclick="aulaSalva('${est=='Pronta'?'':'Pronta'}')">${est==''?'Marcar como pronta':est=='Pronta'?'Voltar a planejada':'Voltar a pronta'}</button>${e.id?'<button class=g type=button onclick=aulaExclui()>Excluir</button>':''}</div>`;
   aulaSgDes();aulaEstDes()}
+function aulaCal(){pickData(AU.e.data,v=>{if(v)aulaData(v)})}
 function aulaData(v){if(!v)return;AU.e.data=v;$('#adl').textContent=aulaRot(v);aulaSgDes()}
 function aulaMulti(t){const m=AU.e.multi,k=m.indexOf(t);k<0?m.push(t):m.splice(k,1);aulaPainel()}
 let aut=0;function aulaSugere(já){clearTimeout(aut);aut=setTimeout(()=>{const e=AU.e,c=AU.cat;if(!e)return;if(!c)return aulaSgDes();
@@ -70,9 +71,9 @@ function aulaSgDes(){const e=AU.e,c=AU.cat,p=$('#asg');if(!e||!p)return;
     oOp=[...e.cand.filter(o=>!e.objetos.includes(o)).map(o=>['Sugerido · '+o,o]),...c.objetos.filter(o=>!e.objetos.includes(o.texto)&&!e.cand.includes(o.texto)).map(o=>[o.texto,o.texto])],
     hl=c.habilidades.filter(k=>!e.habilidades.includes(k.codigo)),hc=hl.filter(k=>k.objetos.some(n=>ns.includes(n))),hr=hl.filter(k=>!hc.includes(k)),
     hOp=[...hc,...hr].map(k=>[k.texto.slice(0,110),k.codigo]);
-  p.innerHTML=`<label class=f1>Objeto de conhecimento</label>${e.objetos.map((o,i)=>`<div class=sb><span>${esc(o)}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemO(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhum objeto marcado.</small>'}
+  p.innerHTML=`<label class="f1 lo">Objeto de conhecimento</label>${e.objetos.map((o,i)=>`<div class="sb o"><span>${esc(o)}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemO(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhum objeto marcado.</small>'}
   <select onchange="aulaOutro(this.value)"><option value="">Adicionar objeto</option>${oOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
-  <label class=f1>Habilidades</label>${e.habilidades.map((k,i)=>`<div class=sb><span><b>${esc(k)}</b> ${esc(hd(k))}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemH(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhuma habilidade marcada.</small>'}
+  <label class="f1 lh">Habilidades</label>${e.habilidades.map((k,i)=>`<div class="sb hh"><span><b>${esc(k)}</b> ${esc(hd(k))}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemH(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhuma habilidade marcada.</small>'}
   <select onchange="aulaAddH(this.value)"><option value="">Adicionar habilidade</option>${hOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
   ${sit=='Pronto'?'':`<div class=w>${sit}.</div>`}<div class=afg><button class=tg type=button onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo pelo conteúdo</button></div>`;melhoraSel()}
 function aulaRemO(i){const e=AU.e;e.objetos.splice(i,1);e.man=true;aulaHabAuto();aulaSgDes()}
@@ -95,7 +96,7 @@ async function aulaMarca(){try{await api('marcarAulas',{ids:AU.pend,estado:'Lan�
 function aulasLanca(){const L=AU.L.filter(a=>aulaEst(a)=='Pronta').sort((a,b)=>a.data.localeCompare(b.data));
   if(!L.length)return msg('Não há aulas prontas.');if(!EXT.aulas)return msg('Não encontrei o Lançador de Aulas neste navegador. Ele funciona no Chrome do computador.');
   AU.env=L.map(a=>a.id);
-  postMessage({tipo:'syntese-aulas',versao:1,turma:AU.turma,componente:AUC,aulas:L.map(a=>({data:dBR(a.data),multiturma:a.multiturma,objetos:a.objetos,habilidades:a.habilidades,conteudo:a.conteudo,estrategias:a.estrategias}))},location.origin)}
+  postMessage({tipo:'syntese-aulas',versao:1,turma:AU.turma,componente:aulaComp(),aulas:L.map(a=>({data:dBR(a.data),multiturma:a.multiturma,objetos:a.objetos,habilidades:a.habilidades,conteudo:a.conteudo,estrategias:a.estrategias}))},location.origin)}
 function aulaEnviada(m){if(!m.ok)return msg('Erro no envio: '+m.erro);AU.pend=AU.env||[];msg(m.recebidas+' aula(s) enviada(s). Abra a plataforma e clique em Carregar no Lançador de Aulas.');if($('.au2'))aulasDes()}
 
 /* Atalhos de estratégia: os três de sempre, mais os que você guardar (ficam na planilha, valem em qualquer aparelho) */
@@ -105,7 +106,10 @@ async function estSalva(L){try{await api('salvarEscola',{estrategias:JSON.string
 function aulaEstDes(){const e=AU.e,p=$('#aet');if(!e||!p)return;const L=estLista(),ed=AU.estEd,t=(e.estrategias||'').trim();
   p.innerHTML=L.map((x,i)=>`<button class=tg type=button onclick="${ed?`estRem(${i})`:`aulaEstAdd(${i})`}">${esc(x)}${ed?' ✕':''}</button>`).join('')
    +(t&&!ed&&!L.includes(t)?'<button class=tg type=button onclick=estGuarda()>+ Guardar este texto</button>':'')
+   +(ed?'<div class=ean><input id=aen class=fi placeholder="Novo atalho" onkeydown="if(event.key==\'Enter\')estNovo()"><button class=tg type=button onclick=estNovo()>Adicionar</button></div>':'')
    +`<button class=tg type=button onclick="AU.estEd=!AU.estEd;aulaEstDes()">${ed?'Concluir':'Editar atalhos'}</button>`}
+async function estNovo(){const i=$('#aen'),t=(i&&i.value||'').trim(),L=estLista();if(!t)return msg('Digite o texto do atalho.');if(L.includes(t))return msg('Esse atalho já existe.');
+  L.push(t);if(await estSalva(L)){aulaEstDes();const n=$('#aen');if(n)n.focus()}}
 function aulaEstAdd(i){const e=AU.e,x=estLista()[i];if(x===undefined)return;const t=(e.estrategias||'').trim();if(t.split(/\s*,\s*/).includes(x))return;
   e.estrategias=t?t+', '+x:x;$('#aei').value=e.estrategias;aulaSgDes();aulaEstDes()}
 async function estGuarda(){const L=estLista(),t=AU.e.estrategias.trim();if(!t||L.includes(t))return;L.push(t);if(await estSalva(L)){msg('Atalho guardado.');aulaEstDes()}}
