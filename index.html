@@ -306,10 +306,10 @@ const bimDentro=(d,b)=>!bimTem()||b==5||bimIdx(d)==b;
 const bimRot=b=>b==5?'Final':b+'º bimestre';
 const bimAbas=cb=>[1,2,3,4,5].map(i=>`<button class="tg ${bimSel()==i?'on':''}" type=button onclick="S.bim=${i};${cb}">${i==5?'Final':i+'º'}</button>`).join('');
 /* telas em arquivos separados, carregados só quando usadas */
-const MODS={aulas:'js/aulas.js',alunos:'js/alunos.js',escola:'js/escola.js'},MOD={};
-function carrega(m,quieto){return MOD[m]||(MOD[m]=new Promise((ok,no)=>{const sc=document.createElement('script');sc.src=MODS[m];sc.onload=ok;
-  sc.onerror=()=>{delete MOD[m];if(!quieto)msg('Não consegui abrir esta tela. Verifique a internet.');no(new Error('módulo '+m))};document.head.appendChild(sc)}))}
-function lazy(m,fns){fns.forEach(f=>{const st=function(...a){return carrega(m).then(()=>{if(window[f]===st)throw new Error('falta '+f);return window[f](...a)},()=>{})};window[f]=st})}
+const MODS={aulas:['js/aulas.js','aulas.js'],alunos:['js/alunos.js','alunos.js'],escola:['js/escola.js','escola.js']},MOD={};
+function carrega(m,quieto){return MOD[m]||(MOD[m]=new Promise((ok,no)=>{const C=MODS[m],t=i=>{const sc=document.createElement('script');sc.src=C[i];sc.onload=ok;
+  sc.onerror=()=>{sc.remove();if(i+1<C.length)return t(i+1);delete MOD[m];if(!quieto)msg('Não encontrei o arquivo '+C[0]+' no site. Confira se ele foi enviado ao GitHub, na pasta js.');no(new Error('módulo '+m))};document.head.appendChild(sc)};t(0)}))}
+function lazy(m,fns){fns.forEach(f=>{const st=function(...a){return carrega(m).then(()=>{if(window[f]===st){msg('A tela não carregou direito. Atualize a página.');return}return window[f](...a)},()=>{})};window[f]=st})}
 lazy('aulas',['aulasTela','aulaEnviada']);lazy('alunos',['alunosTela']);lazy('escola',['escolaTela']);
 /* Início: painel da turma */
 async function inicio(){if(!cfg.url)return conf();h('<p>Carregando…</p>','inicio');
