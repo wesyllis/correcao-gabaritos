@@ -34,11 +34,11 @@ function aulasDes(){
   const F=[['todas','Todas'],['Planejada','Planejadas'],['Pronta','Prontas'],['Lançada','Lançadas']],np=AU.L.filter(a=>aulaEst(a)=='Pronta').length;
   h(`<div class=au2><div id=aul>${cabec('Aulas',`<button class=hsb onclick="escolheTurma(aulasTela)">${esc(AU.turma)}${bimTem()?', '+bimRot(bimSel()):''}${S.turmas.length>1?TI('chevron-down',12):''}</button>`,'inicio()')}
   ${bimTem()?`<div class=fg>${bimAbas('aulasDes()')}</div>`:''}${AU.pend.length?`<div class=w>${AU.pend.length} aula(s) enviada(s) ao Lançador. Depois de lançar na plataforma, marque como lançadas.<button onclick=aulaMarca()>Marcar como lançadas</button></div>`:''}
-  <div class="fg fl">${F.map(([k,t])=>`<button class="tg ${AU.f==k?'on':''}" onclick="AU.f='${k}';aulaLista()">${t}</button>`).join('')}</div><div id=al></div>
+  <div class="fg afl">${F.map(([k,t])=>`<button class="tg ${AU.f==k?'on':''}" onclick="AU.f='${k}';aulaLista()">${t}</button>`).join('')}</div><div id=al></div>
   <div class=br2><button onclick=aulaEd()>Nova aula</button>${np?`<button class=g onclick=aulasLanca()>Lançar ${np} ${np>1?'prontas':'pronta'}</button>`:''}</div></div><div id=aue></div></div>`,'aulas');
-  $('#app').classList.add('wide');aulaLista();aulaPainel()}
+  $('#app').classList.add('wide','xw');aulaLista();aulaPainel()}
 function aulaLista(){const e=$('#al');if(!e)return;
-  document.querySelectorAll('#aul .fg.fl .tg').forEach((b,i)=>b.classList.toggle('on',['todas','Planejada','Pronta','Lançada'][i]==AU.f));
+  document.querySelectorAll('#aul .afg2 .tg').forEach((b,i)=>b.classList.toggle('on',['todas','Planejada','Pronta','Lançada'][i]==AU.f));
   const L=AU.L.filter(a=>bimDentro(a.data,bimSel())&&(AU.f=='todas'||aulaEst(a)==AU.f)).sort((a,b)=>b.data.localeCompare(a.data));
   e.innerHTML=L.length?L.map(a=>{const s=aulaEst(a);return `<button class=ar type=button data-i="${esc(a.id)}" onclick="aulaEd(this.dataset.i)"><span class=d>${dCurta(a.data)}</span><span class=c>${esc(a.conteudo)||'Sem conteúdo'}</span><span class="e ${s=='Pronta'?'p':s=='Lançada'?'l':''}">${s=='Lançada'?TI('check',12):''}${s}</span></button>`}).join(''):'<p>Nenhuma aula neste filtro.</p>'}
 async function aulaEd(id){const a=id&&AU.L.find(x=>x.id==id);
@@ -48,34 +48,37 @@ async function aulaEd(id){const a=id&&AU.L.find(x=>x.id==id);
   if(AU.cat&&AU.e.id){AU.e.cand=aulaSug(AU.cat,AU.e.conteudo).cand}
   aulaPainel()}
 function aulaFecha(){AU.e=null;aulaPainel()}
-function aulaPainel(){const w=$('.au2'),p=$('#aue');if(!w||!p)return;w.classList.toggle('ed',!!AU.e);
+function aulaPainel(){const w=$('.au2'),p=$('#aue');if(!w||!p)return;w.classList.toggle('ed',!!AU.e);$('#app').classList.toggle('ced',!!AU.e);
   if(!AU.e){p.innerHTML='<small class=f11>Escolha uma aula ou toque em Nova aula.</small>';return}
   const e=AU.e,outras=S.turmas.filter(t=>t!=e.turma),est=e.estado;
   p.innerHTML=`<div class=eh-m>${cabec(e.id?'Editar aula':'Nova aula','','aulaFecha()')}</div><div class=eh-d>${e.id?'Editar aula':'Nova aula'}</div>
-  <div class=fr><label class="tg on dt"><span id=adl>${aulaRot(e.data)}</span><input type=date value="${e.data}" onchange="aulaData(this.value)"></label></div>
-  ${outras.length?`<div class=fr><span class=f1i>Turmas</span><button class="tg on" type=button disabled>${esc(e.turma)}</button>${outras.map(t=>`<button class="tg ${e.multi.includes(t)?'on':''}" type=button data-t="${esc(t)}" onclick="aulaMulti(this.dataset.t)">${esc(t)}</button>`).join('')}</div>`:''}
-  <label class=f1>Conteúdo (vários assuntos separados por | )</label><textarea rows=3 oninput="AU.e.conteudo=this.value;aulaSugere()">${esc(e.conteudo)}</textarea>
-  <label class=f1>Estratégias</label><input id=aei class=fi value="${esc(e.estrategias)}" oninput="AU.e.estrategias=this.value;aulaSgDes();aulaEstDes()"><div id=aet class=fg></div>
-  <div id=asg></div>
-  <div class=br2><button class=g type=button onclick="aulaSalva()">Salvar</button><button type=button onclick="aulaSalva('${est=='Pronta'?'':'Pronta'}')">${est==''?'Marcar como pronta':est=='Pronta'?'Voltar a planejada':'Voltar a pronta'}</button></div>
-  ${e.id?'<button class=g type=button onclick=aulaExclui()>Excluir aula</button>':''}`;
+  <div class=er><label class="tg on dt"><span id=adl>${aulaRot(e.data)}</span><input type=date value="${e.data}" onchange="aulaData(this.value)"></label>
+  ${outras.length?`<span class=f1i>Turmas</span><button class="tg on" type=button disabled>${esc(e.turma)}</button>${outras.map(t=>`<button class="tg ${e.multi.includes(t)?'on':''}" type=button data-t="${esc(t)}" onclick="aulaMulti(this.dataset.t)">${esc(t)}</button>`).join('')}`:''}</div>
+  <div class=ec><div class=ec1><label class=f1>Conteúdo (assuntos separados por | )</label><textarea oninput="AU.e.conteudo=this.value;aulaSugere()">${esc(e.conteudo)}</textarea>
+  <label class=f1>Estratégias</label><input id=aei class=fi value="${esc(e.estrategias)}" oninput="AU.e.estrategias=this.value;aulaSgDes();aulaEstDes()"><div id=aet class=afg></div></div><div class=ec2 id=asg></div></div>
+  <div class=ebt><button class=g type=button onclick="aulaSalva()">Salvar</button><button type=button onclick="aulaSalva('${est=='Pronta'?'':'Pronta'}')">${est==''?'Marcar como pronta':est=='Pronta'?'Voltar a planejada':'Voltar a pronta'}</button>${e.id?'<button class=g type=button onclick=aulaExclui()>Excluir</button>':''}</div>`;
   aulaSgDes();aulaEstDes()}
 function aulaData(v){if(!v)return;AU.e.data=v;$('#adl').textContent=aulaRot(v);aulaSgDes()}
 function aulaMulti(t){const m=AU.e.multi,k=m.indexOf(t);k<0?m.push(t):m.splice(k,1);aulaPainel()}
 let aut=0;function aulaSugere(já){clearTimeout(aut);aut=setTimeout(()=>{const e=AU.e,c=AU.cat;if(!e)return;if(!c)return aulaSgDes();
   const s=aulaSug(c,e.conteudo);e.cand=s.cand;if(!e.man){e.objetos=s.sel;e.habilidades=s.hab}aulaSgDes()},já?0:300)}
+const IX='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>';
 function aulaSgDes(){const e=AU.e,c=AU.cat,p=$('#asg');if(!e||!p)return;
   if(!c){p.innerHTML=`<div class=w>Não encontrei o catálogo do ${esc(serieDe(e.turma)||'?')}º ano. Publique o arquivo catalogo_${esc(serieDe(e.turma)||'N')}ano_ligado.json junto do app.</div>`;return}
-  const objs=[...new Set([...e.cand,...e.objetos])],ns=c.objetos.filter(o=>e.objetos.includes(o.texto)).map(o=>o.n),
-    hs=c.habilidades.filter(k=>k.objetos.some(n=>ns.includes(n))||e.habilidades.includes(k.codigo)),sit=aulaSit(e);
-  AU.objL=objs;AU.habL=hs.map(k=>k.codigo);
-  p.innerHTML=`<label class=f1>Objeto sugerido pelo conteúdo</label><div class=ob2>${objs.length?objs.map((o,i)=>`<button class="oc ${e.objetos.includes(o)?'on':''}" type=button onclick="aulaObj(${i})">${esc(o)}</button>`).join(''):'<small class=f11>Nenhum objeto sugerido ainda. Escreva o conteúdo ou escolha abaixo.</small>'}</div>
-  <select onchange="aulaOutro(this.value)"><option value="">Outro objeto</option>${c.objetos.filter(o=>!objs.includes(o.texto)).map(o=>`<option value="${esc(o.texto)}">${esc(o.texto)}</option>`).join('')}</select>
-  <label class=f1>Habilidades compatíveis</label>${hs.length?hs.map((k,i)=>{const on=e.habilidades.includes(k.codigo);return `<button class=hb type=button onclick="aulaHab(${i})"><span class="bx ${on?'on':''}">${on?TI('check',11):''}</span><b>${esc(k.codigo)}</b><span class=c>${esc(k.texto.split(' - ').slice(1).join(' - '))}</span></button>`}).join(''):'<small class=f11>Marque um objeto para ver as habilidades.</small>'}
-  ${sit=='Pronto'?'':`<div class=w>${sit}.</div>`}<button class=g type=button onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo pelo conteúdo</button>`;melhoraSel()}
-function aulaObj(i){const e=AU.e,o=AU.objL[i],k=e.objetos.indexOf(o);k<0?e.objetos.push(o):e.objetos.splice(k,1);e.man=true;aulaHabAuto();aulaSgDes()}
+  const ns=c.objetos.filter(o=>e.objetos.includes(o.texto)).map(o=>o.n),sit=aulaSit(e),
+    hd=k=>{const x=c.habilidades.find(y=>y.codigo==k);return x?x.texto.split(' - ').slice(1).join(' - '):''},
+    oOp=[...e.cand.filter(o=>!e.objetos.includes(o)).map(o=>['Sugerido · '+o,o]),...c.objetos.filter(o=>!e.objetos.includes(o.texto)&&!e.cand.includes(o.texto)).map(o=>[o.texto,o.texto])],
+    hl=c.habilidades.filter(k=>!e.habilidades.includes(k.codigo)),hc=hl.filter(k=>k.objetos.some(n=>ns.includes(n))),hr=hl.filter(k=>!hc.includes(k)),
+    hOp=[...hc,...hr].map(k=>[k.texto.slice(0,110),k.codigo]);
+  p.innerHTML=`<label class=f1>Objeto de conhecimento</label>${e.objetos.map((o,i)=>`<div class=sb><span>${esc(o)}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemO(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhum objeto marcado.</small>'}
+  <select onchange="aulaOutro(this.value)"><option value="">Adicionar objeto</option>${oOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
+  <label class=f1>Habilidades</label>${e.habilidades.map((k,i)=>`<div class=sb><span><b>${esc(k)}</b> ${esc(hd(k))}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemH(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhuma habilidade marcada.</small>'}
+  <select onchange="aulaAddH(this.value)"><option value="">Adicionar habilidade</option>${hOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
+  ${sit=='Pronto'?'':`<div class=w>${sit}.</div>`}<div class=afg><button class=tg type=button onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo pelo conteúdo</button></div>`;melhoraSel()}
+function aulaRemO(i){const e=AU.e;e.objetos.splice(i,1);e.man=true;aulaHabAuto();aulaSgDes()}
+function aulaRemH(i){AU.e.habilidades.splice(i,1);AU.e.man=true;aulaSgDes()}
+function aulaAddH(v){if(!v)return;const e=AU.e;if(!e.habilidades.includes(v))e.habilidades.push(v);e.man=true;aulaSgDes()}
 function aulaOutro(v){if(!v)return;const e=AU.e;if(!e.objetos.includes(v))e.objetos.push(v);e.man=true;aulaHabAuto();aulaSgDes()}
-function aulaHab(i){const e=AU.e,c=AU.habL[i],k=e.habilidades.indexOf(c);k<0?e.habilidades.push(c):e.habilidades.splice(k,1);e.man=true;aulaSgDes()}
 function aulaHabAuto(){const e=AU.e,c=AU.cat;if(!c)return;const ns=c.objetos.filter(o=>e.objetos.includes(o.texto)).map(o=>o.n),H=[];
   String(e.conteudo).split('|').forEach(par=>{const t=nrm(par);if(!t.trim())return;
     aulaEsc(c.habilidades,t,c.configuracoes,k=>k.objetos.some(n=>ns.includes(n))).slice(0,c.configuracoes.maxHabilidades).forEach(p=>{if(!H.includes(p.x.codigo))H.push(p.x.codigo)})});

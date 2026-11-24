@@ -87,10 +87,28 @@ label.tg{display:inline-block;margin:0;padding:4px 10px;border-radius:8px;font-s
 .bt{display:none;gap:4px;margin:12px 0 0;flex-wrap:wrap;align-items:center}.bt small{margin-left:8px;color:var(--mu);font-size:11px}
 @media(min-width:900px){.bt{display:flex}}
 .bq{display:flex;align-items:center;gap:8px;margin-bottom:6px}.bq>span{width:84px;flex:none;font-size:12px}.bq input{flex:1;min-width:0;margin:0;padding:7px 8px;border-radius:8px;font-size:12px}
+
+/* Aulas: editor que cabe na tela, mostrando o que está marcado */
+.er{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:4px}.afg{display:flex;gap:5px;flex-wrap:wrap;margin:5px 0}.ec{display:block}
+.ebt{display:flex;gap:8px;margin-top:10px}.ebt button{flex:1;margin:0;padding:8px;border-radius:8px;font-size:12px}
+.sb{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;border:1px solid var(--bd);background:var(--hi);border-radius:8px;padding:6px 8px;margin-bottom:5px;font-size:11.5px;line-height:1.35}.sb span{min-width:0}.sb b{font-weight:600;color:var(--pr)}
+.sx{flex:none;width:auto;margin:0;padding:2px;background:none;color:var(--mu);border:0;display:flex}
+.au2 .sl{padding:7px 10px;font-size:12px;margin:0 0 4px;border-radius:8px}.au2 .sl svg{width:16px;height:16px}
+.au2 textarea{height:64px;resize:none;padding:7px 10px;font-size:12px}.au2 .f1{margin:6px 0 2px}.au2 .w{padding:6px 10px;font-size:11.5px;margin:4px 0}.afg .tg{font-size:11px;padding:3px 8px}
+@media(min-width:900px){.sn #app.xw{max-width:1240px}.au2{grid-template-columns:340px 1fr}#aue{max-height:calc(100dvh - 88px);overflow:auto}.ec{display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:start}.au2 textarea{height:104px}.ebt{justify-content:flex-end}.ebt button{flex:none;min-width:150px}}
+
+.sb span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.au2 .ebt{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom));background:var(--bg);padding:8px 0 0}
+.au2.ed textarea{height:50px}
+@media(min-width:900px){.sb span{display:block;-webkit-line-clamp:unset;overflow:visible}.au2 textarea{height:104px}.au2 .ebt{position:static;padding:10px 0 0;background:transparent}.ebt button{flex:none;width:auto;min-width:150px}}
+
+#app.ced{padding-top:44px}.sn #app.ced{padding-bottom:84px}.au2.ed textarea{height:46px}.au2 .er{margin-bottom:2px}.sb{margin-bottom:4px}
+@media(min-width:900px){.sn #app,.sn #app.ced{padding-bottom:20px}#app.ced{padding-top:58px}}
+@media(min-width:900px){.mn,.ih,.sl2{display:none}.dh{display:flex}}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
-const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').classList.remove('wide','ini');$('#app').innerHTML=s;if(n!==undefined)navAtivo(n);melhoraSel()};
+const $=q=>document.querySelector(q),LS=localStorage,h=(s,n)=>{$('#app').classList.remove('wide','ini','xw','ced');$('#app').innerHTML=s;if(n!==undefined)navAtivo(n);melhoraSel()};
 const IC={
  sol:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>',
  lua:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
