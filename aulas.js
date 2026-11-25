@@ -71,11 +71,11 @@ function aulaSgDes(){const e=AU.e,c=AU.cat,p=$('#asg');if(!e||!p)return;
     oOp=[...e.cand.filter(o=>!e.objetos.includes(o)).map(o=>['Sugerido · '+o,o]),...c.objetos.filter(o=>!e.objetos.includes(o.texto)&&!e.cand.includes(o.texto)).map(o=>[o.texto,o.texto])],
     hl=c.habilidades.filter(k=>!e.habilidades.includes(k.codigo)),hc=hl.filter(k=>k.objetos.some(n=>ns.includes(n))),hr=hl.filter(k=>!hc.includes(k)),
     hOp=[...hc,...hr].map(k=>[k.texto.slice(0,110),k.codigo]);
-  p.innerHTML=`<label class="f1 lo">Objeto de conhecimento</label>${e.objetos.map((o,i)=>`<div class="sb o"><span>${esc(o)}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemO(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhum objeto marcado.</small>'}
-  <select onchange="aulaOutro(this.value)"><option value="">Adicionar objeto</option>${oOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
+  p.innerHTML=`<div class=lrow><label class="f1 lo">Objeto de conhecimento</label><button class=tg type=button onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo</button></div>${e.objetos.map((o,i)=>`<div class="sb o"><span>${esc(o)}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemO(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhum objeto marcado.</small>'}
   <label class="f1 lh">Habilidades</label>${e.habilidades.map((k,i)=>`<div class="sb hh"><span><b>${esc(k)}</b> ${esc(hd(k))}</span><button class=sx type=button aria-label="Tirar" onclick="aulaRemH(${i})">${IX}</button></div>`).join('')||'<small class=f11>Nenhuma habilidade marcada.</small>'}
-  <select onchange="aulaAddH(this.value)"><option value="">Adicionar habilidade</option>${hOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
-  ${sit=='Pronto'?'':`<div class=w>${sit}.</div>`}<div class=afg><button class=tg type=button onclick="AU.e.man=false;aulaSugere(1)">Sugerir de novo pelo conteúdo</button></div>`;melhoraSel()}
+  <div class=adrow><select onchange="aulaOutro(this.value)"><option value="">+ Objeto</option>${oOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select>
+  <select onchange="aulaAddH(this.value)"><option value="">+ Habilidade</option>${hOp.map(([t,v])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('')}</select></div>
+  ${sit=='Pronto'?'':`<div class=w>${sit}.</div>`}`;melhoraSel()}
 function aulaRemO(i){const e=AU.e;e.objetos.splice(i,1);e.man=true;aulaHabAuto();aulaSgDes()}
 function aulaRemH(i){AU.e.habilidades.splice(i,1);AU.e.man=true;aulaSgDes()}
 function aulaAddH(v){if(!v)return;const e=AU.e;if(!e.habilidades.includes(v))e.habilidades.push(v);e.man=true;aulaSgDes()}
@@ -104,7 +104,7 @@ const EST_PAD=['Aula expositiva dialogada','Exercício de Fixação','Correção
 function estLista(){const r=S.esc&&S.esc.estrategias;if(r){try{const j=JSON.parse(r);if(Array.isArray(j))return j}catch(x){}}return EST_PAD.slice()}
 async function estSalva(L){try{await api('salvarEscola',{estrategias:JSON.stringify(L)},true)}catch{return false}S.esc={...S.esc,estrategias:JSON.stringify(L)};return true}
 function aulaEstDes(){const e=AU.e,p=$('#aet');if(!e||!p)return;const L=estLista(),ed=AU.estEd,t=(e.estrategias||'').trim();
-  p.innerHTML=L.map((x,i)=>`<button class=tg type=button onclick="${ed?`estRem(${i})`:`aulaEstAdd(${i})`}">${esc(x)}${ed?' ✕':''}</button>`).join('')
+  p.className='afg'+(ed?'':' h1');p.innerHTML=L.map((x,i)=>`<button class=tg type=button onclick="${ed?`estRem(${i})`:`aulaEstAdd(${i})`}">${esc(x)}${ed?' ✕':''}</button>`).join('')
    +(t&&!ed&&!L.includes(t)?'<button class=tg type=button onclick=estGuarda()>+ Guardar este texto</button>':'')
    +(ed?'<div class=ean><input id=aen class=fi placeholder="Novo atalho" onkeydown="if(event.key==\'Enter\')estNovo()"><button class=tg type=button onclick=estNovo()>Adicionar</button></div>':'')
    +`<button class=tg type=button onclick="AU.estEd=!AU.estEd;aulaEstDes()">${ed?'Concluir':'Editar atalhos'}</button>`}

@@ -115,6 +115,41 @@ label.tg{display:inline-block;margin:0;padding:4px 10px;border-radius:8px;font-s
 .sb.o{border-left:3px solid var(--pr);background:color-mix(in srgb,var(--pr) 14%,var(--ca))}.sb.hh{border-left:3px solid var(--lo);background:color-mix(in srgb,var(--lo) 15%,var(--ca))}.sb.hh b{color:var(--lo)}
 .f1.lo{color:var(--pr);font-weight:600}.f1.lh{color:var(--lo);font-weight:600}
 .ean{display:flex;gap:6px;width:100%;align-items:center}.ean input{flex:1;min-width:0;margin:0}
+
+/* celular: textos maiores nas telas novas */
+@media(max-width:899px){
+.hd span{font-size:18px}.hs,.hsb{font-size:13px}
+.au2 textarea,.au2 .fi,.fi,.au2 .sl{font-size:14.5px}.au2 .sl{padding:9px 12px}.au2 .sl svg{width:18px;height:18px}
+.au2 textarea{padding:8px 12px}.au2.ed textarea{height:56px}.au2 .fi{padding:9px 12px}
+.f1,.au2 .f1{font-size:13px;margin:7px 0 3px}.f11{font-size:12.5px}.f1i{font-size:13px}
+button.tg,label.tg{font-size:13px;padding:5px 11px}.afg .tg{font-size:12.5px;padding:4px 10px}
+.sb{font-size:13px;padding:7px 9px}.au2 .w{font-size:13px;padding:7px 10px}
+.ar{font-size:14.5px;padding:11px 0}.ar .d{font-size:13px;width:62px}.ar .e{font-size:12.5px}
+.lr2{font-size:14.5px;padding:10px 0}.lr2 .n{font-size:13px;width:22px}
+.br button{font-size:13px;padding:9px 10px}.br button:first-child{flex:none}.br button.ob:last-child{flex:1}
+.br2 button,.ebt button{font-size:14px;padding:10px}
+.k{font-size:12px}.rs2 b{font-size:13.5px}.ctx b{font-size:15px}.tl b{font-size:14px}.tl span{font-size:12px}
+.bq>span{font-size:13.5px;width:92px}.dtb{font-size:13.5px;padding:9px 10px}
+}
+
+.lrow{display:flex;justify-content:space-between;align-items:center;gap:8px}.lrow .f1{margin-bottom:0}.adrow{display:flex;gap:8px;margin-top:2px}.adrow .sl{flex:1;min-width:0;margin:0}
+@media(max-width:899px){#aet.h1{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}#aet.h1 .tg{flex:none}.sb{padding:6px 9px;line-height:1.3;margin-bottom:4px}.au2.ed textarea{height:50px}.au2 .er{margin-bottom:0}.afg{margin:4px 0}.lrow .tg{padding:3px 10px}}
+@media(max-width:899px){.au2 input.fi,input.fi{font-size:14.5px;padding:9px 12px}}
+@media(max-width:899px){.au2.ed textarea{height:46px}}
+.br button{width:auto}@media(max-width:899px){.br button:first-child{flex:none}.br button.ob:last-child{flex:1;min-width:0;padding:9px 8px}}
+
+/* ===== escala única de letras (ordem: título, corpo, secundário, mínimo) ===== */
+:root{--fs-t:20px;--fs-b:15px;--fs-s:13px;--fs-m:12px}
+@media(min-width:900px){:root{--fs-t:20px;--fs-b:14px;--fs-s:12.5px;--fs-m:11.5px}}
+body{font-size:var(--fs-b)}h1,.hd span,.dh span:first-child{font-size:var(--fs-t)}h2{font-size:calc(var(--fs-t) - 2px)}
+label,small,.hs,.hsb,.f1,.au2 .f1,.f11,.f1i,button.tg,label.tg,.afg .tg,.k,.tl span,.ar .d,.lr2 .n,.bq>span,.au2 .w,.sb .nada{font-size:var(--fs-s)}
+.au2 textarea,.au2 input.fi,input.fi,.fi,.au2 .sl,.ar,.lr2,.sb,.ctx b,.tl b,.br button,.br2 button,.ebt button,.rs2 b,.dtb,.au2 .w{font-size:var(--fs-b)}
+.au2 .w,.au2 .f1,.f1{font-size:var(--fs-s)}
+#nv button,.ar .e,.lrow .tg,.tl span.mn2{font-size:var(--fs-m)}
+.f11{font-size:var(--fs-m)}
+.sb{font-size:var(--fs-s)}@media(max-width:899px){.au2 .sl{padding:7px 12px}.ebt button{padding:9px}.au2 .fi,.au2 input.fi{padding:8px 12px}.au2.ed textarea{height:44px}}
+@media(max-width:899px){.er .f1i{display:none}}
+.sl2{font-size:var(--fs-s)}.wm2{font-size:18px}
 </style><script>try{document.documentElement.dataset.tema=localStorage.tema||(matchMedia("(prefers-color-scheme: dark)").matches?"escuro":"claro")}catch(e){}</script><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101a2c%22/%3E%3Cg%20transform%3D%22translate%2810.4%2010.4%29%20scale%28.9%29%22%20fill%3D%22none%22%20stroke%3D%22%235dcdb0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%204.5L40.5%2014V34L24%2043.5L7.5%2034V14Z%22/%3E%3Cpath%20d%3D%22M14%2031l8-8%205%205%209-10%22/%3E%3Cpath%20d%3D%22M29.5%2018H36v6.5%22/%3E%3C/g%3E%3C/svg%3E"></head><body><div id="sp"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 4.5L40.5 14V34L24 43.5L7.5 34V14Z"/><path class="a2" pathLength="1" d="M14 31l8-8 5 5 9-10"/><path class="a3" pathLength="1" d="M29.5 18H36v6.5"/><circle cx="14" cy="31" r="1.6"/></svg></div><div id="lk"></div><div id="app"></div><div id="t"></div><button id="th" onclick="tema()" aria-label="Alternar tema claro e escuro"></button><nav id="nv"></nav>
 <script>
 const T0=Date.now();
@@ -534,10 +569,17 @@ async function planTela(){h('<h1>Planilha</h1><p>Carregando…</p>','ajustes');l
 function planCopia(){navigator.clipboard.writeText(LS.plan).then(()=>msg('Link copiado.'),()=>msg('Não consegui copiar o link.'))}
 /* ---------- Provas: banco de questões e catálogo de habilidades ---------- */
 const KV='0.18.11';let KT=null;
-function katex(){return KT||(KT=new Promise((ok,no)=>{const B='https://cdn.jsdelivr.net/npm/katex@'+KV+'/dist/',c=document.createElement('link');c.rel='stylesheet';c.href=B+'katex.min.css';document.head.appendChild(c);
-  const L=u=>new Promise((r,j)=>{const t=document.createElement('script');t.src=u;t.onload=r;t.onerror=j;document.head.appendChild(t)});
-  L(B+'katex.min.js').then(()=>L(B+'contrib/auto-render.min.js')).then(ok,e=>{KT=null;no(e)})}))}
-async function mat(el){try{await katex();renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})}catch(e){}}
+/* As fórmulas usam katex.js e katex.css, guardados junto do app (com a nuvem como reserva).
+   O nome da função é outro de propósito: a biblioteca cria um "katex" global e substituía a função antiga. */
+function carregaKatex(){return KT||(KT=new Promise((ok,no)=>{
+  const L=u=>new Promise((r,j)=>{const t=document.createElement('script');t.src=u;t.onload=r;t.onerror=j;document.head.appendChild(t)}),
+    css=u=>{const c=document.createElement('link');c.rel='stylesheet';c.href=u;document.head.appendChild(c)},
+    N='https://cdn.jsdelivr.net/npm/katex@'+KV+'/dist/';
+  css('katex.css');
+  L('katex.js').catch(()=>{css(N+'katex.min.css');return L(N+'katex.min.js').then(()=>L(N+'contrib/auto-render.min.js'))}).then(ok,e=>{KT=null;no(e)})}))}
+let matAviso=0;
+async function mat(el){try{await carregaKatex();window.renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})}
+  catch(e){if(!matAviso){matAviso=1;msg('Não consegui carregar as fórmulas. Verifique a internet.')}}}
 const tx=t=>esc(t).replace(/\n/g,'<br>');
 let Q={L:[],H:[],f:{b:'',s:'',st:'ativa'},e:null};
 function provasTela(){h(`<h1>Avaliações</h1>${AJ('irCorrigir()','Corrigir por foto')}${AJ('irRes()','Resultados')}${AJ('qBanco()','Banco de questões')}${AJ('gabNovo()','Gabaritos')}${AJ('habTela()','Habilidades (BNCC e Saeb)')}`,'gab')}
