@@ -1,40 +1,7 @@
 /* Questões: editor (objetiva e discursiva), figuras geométricas e prévia "como fica na prova" */
-const FG_FONT='Poppins,system-ui,sans-serif';
-const FG_MOD={'Triângulo':{p:[[40,140],[250,140],[130,25]]},'Triângulo retângulo':{p:[[60,140],[250,140],[60,30]]},
-  'Paralelogramo':{p:[[30,140],[205,140],[285,30],[110,30]]},'Retângulo':{p:[[40,140],[260,140],[260,40],[40,40]]},
-  'Quadrado':{p:[[90,145],[210,145],[210,25],[90,25]]},'Losango':{p:[[40,95],[165,150],[290,95],[165,40]]},
-  'Trapézio':{p:[[30,140],[280,140],[215,35],[95,35]]},'Quadrilátero':{p:[[40,135],[250,150],[285,50],[90,25]]}};
-function figNova(m){const md=FG_MOD[m]||FG_MOD['Triângulo'],n=md.p.length;
-  return{t:'poly',m:m in FG_MOD?m:'Triângulo',p:md.p.map(x=>x.slice()),n:'ABCD'.slice(0,n).split(''),nm:true,l:Array(n).fill(''),a:Array.from({length:n},()=>({txt:''})),c:Array(n).fill(0),d:false}}
-const figU=(p,q)=>{const dx=q[0]-p[0],dy=q[1]-p[1],n=Math.hypot(dx,dy)||1;return[dx/n,dy/n]};
-function figArco(p,a1,a2,r){let d=a2-a1;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;
-  const f=n=>n.toFixed(1);return `M${f(p[0]+r*Math.cos(a1))} ${f(p[1]+r*Math.sin(a1))}A${r} ${r} 0 0 ${d>0?1:0} ${f(p[0]+r*Math.cos(a1+d))} ${f(p[1]+r*Math.sin(a1+d))}`}
-/* desenha a figura no padrão do Syntese: traço preto, vértices em negrito, rótulos sem caixa, arcos nos ângulos */
-function figInner(f){const P=f.p,N=P.length,T=`font-family:${FG_FONT};fill:#111`,bb=[1e9,1e9,-1e9,-1e9],
-  ext=(x,y,w,h)=>{bb[0]=Math.min(bb[0],x-w);bb[1]=Math.min(bb[1],y-h);bb[2]=Math.max(bb[2],x+w);bb[3]=Math.max(bb[3],y+h)},
-  c=[P.reduce((s,p)=>s+p[0],0)/N,P.reduce((s,p)=>s+p[1],0)/N],tw=(s,z)=>String(s).length*z*.56,n1=v=>(+v).toFixed(1),
-  txt=(x,y,s,z,w)=>{ext(x,y,tw(s,z)/2,z*.6);return `<text x="${n1(x)}" y="${n1(y+z*.36)}" text-anchor="middle" font-size="${z}" font-weight="${w}" style="${T}">${esc(s)}</text>`};
-  let o='';
-  if(f.d&&N==4)o+=`<line x1="${P[0][0]}" y1="${P[0][1]}" x2="${P[2][0]}" y2="${P[2][1]}" stroke="#111" stroke-width="1.2"/><line x1="${P[1][0]}" y1="${P[1][1]}" x2="${P[3][0]}" y2="${P[3][1]}" stroke="#111" stroke-width="1.2"/>`;
-  o+=`<polygon points="${P.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/>`;
-  P.forEach(p=>{o+=`<circle cx="${p[0]}" cy="${p[1]}" r="2.8" fill="#111"/>`;ext(p[0],p[1],3,3)});
-  if(f.nm)P.forEach((p,i)=>{const dx=p[0]-c[0],dy=p[1]-c[1],n=Math.hypot(dx,dy)||1;o+=txt(p[0]+dx/n*15,p[1]+dy/n*15,f.n[i]||'',15,600)});
-  P.forEach((p,i)=>{const q=P[(i+1)%N],s=f.l[i]||'',mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,L=Math.hypot(q[0]-p[0],q[1]-p[1])||1,dx=(q[0]-p[0])/L,dy=(q[1]-p[1])/L;
-    let nx=dy,ny=-dx;if(nx*(mx-c[0])+ny*(my-c[1])<0){nx=-nx;ny=-ny}
-    const k=f.c[i]||0;for(let j=0;j<k;j++){const t=(j-(k-1)/2)*4,ax=mx+dx*t,ay=my+dy*t;o+=`<line x1="${n1(ax-nx*4.5)}" y1="${n1(ay-ny*4.5)}" x2="${n1(ax+nx*4.5)}" y2="${n1(ay+ny*4.5)}" stroke="#111" stroke-width="1.4"/>`}
-    if(s){const z=12.5,w=tw(s,z),d=(k?13:8)+Math.abs(nx)*w/2+Math.abs(ny)*z*.55;o+=txt(mx+nx*d,my+ny*d,s,z,400)}});
-  P.forEach((p,i)=>{const a=f.a[i]||{},u1=figU(p,P[(i+1)%N]),u2=figU(p,P[(i+N-1)%N]),r=20,desenha=a.arco===true||(a.arco!==false&&a.txt);
-    if(a.reto){const s=11;o+=`<polyline points="${n1(p[0]+u1[0]*s)},${n1(p[1]+u1[1]*s)} ${n1(p[0]+(u1[0]+u2[0])*s)},${n1(p[1]+(u1[1]+u2[1])*s)} ${n1(p[0]+u2[0]*s)},${n1(p[1]+u2[1]*s)}" fill="none" stroke="#111" stroke-width="1.4"/>`}
-    else if(desenha)o+=`<path d="${figArco(p,Math.atan2(u1[1],u1[0]),Math.atan2(u2[1],u2[0]),r)}" fill="none" stroke="#111" stroke-width="1.4"/>`;
-    if(a.txt){const bx=u1[0]+u2[0],by=u1[1]+u2[1],bl=Math.hypot(bx,by)||1,X=bx/bl,Y=by/bl,z=12.5,w=tw(a.txt,z),sg=a.fora?-1:1,d=r+5+Math.abs(X)*w/2+Math.abs(Y)*z*.55;o+=txt(p[0]+X*d*sg,p[1]+Y*d*sg,a.txt,z,400)}});
-  return{o,bb}}
-function figSvg(f,maxW){const{o,bb}=figInner(f),m=6,x=bb[0]-m,y=bb[1]-m,w=bb[2]-bb[0]+2*m,h=bb[3]-bb[1]+2*m;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}" width="${Math.round(w)}" height="${Math.round(h)}" style="max-width:${maxW?maxW+'px':'100%'};width:100%;height:auto;display:block;background:#fff" role="img" aria-label="Figura geométrica">${o}</svg>`}
-function figHtml(f,maxW){if(typeof f=='string'){try{f=JSON.parse(f)}catch(e){return ''}}return f&&f.t=='poly'?figSvg(f,maxW):''}
-
 /* ---------- Editor da questão ---------- */
 const QK=[['x²','$x^{2}$','2'],['a/b','$\\frac{a}{b}$','a'],['√','$\\sqrt{x}$','x'],['π','$\\pi$',''],['°','°',''],['≤','$\\leq$',''],['≥','$\\geq$',''],['≠','$\\neq$','']];
-function qEd(id){const q=id&&Q.L.find(x=>x.id==id);
+async function qEd(id){await carrega('figuras');const q=id&&Q.L.find(x=>x.id==id);
   Q.e=q?{...q,alts:[...q.alts],itens:[...(q.itens||[])],figura:q.figura||'',tipo:q.tipo||'objetiva'}:{id:'',tipo:'objetiva',serie:Q.f.s||'8',bncc:'',saeb:'',nivel:'',assunto:'',enunciado:'',alts:['','','',''],correta:'',itens:[''],figura:'',obs:''};
   if(!Q.e.itens.length)Q.e.itens=[''];qEdDes()}
 function qEdDes(){const e=Q.e,d=e.tipo=='discursiva';
@@ -92,41 +59,85 @@ async function qSalva(){const e=Q.e;
   let j;try{j=await api('salvarQuestao',{id:e.id,tipo:e.tipo,serie:e.serie,bncc:e.bncc,saeb:e.saeb,nivel:e.nivel,assunto:e.assunto,enunciado:e.enunciado,alts:e.alts,correta:e.correta,itens:e.itens,figura:e.figura,obs:e.obs},true)}catch{return}
   msg(j.nova?'Questão '+j.id+' criada':'Questão salva');qBanco()}
 
-/* ---------- Figuras: tipo e editor de polígonos ---------- */
+/* ---------- Figuras: escolha do tipo e editores ---------- */
 let FG={f:null,aba:'lados',grade:true,fundo:null};
-function fgTipos(){const T=[['polygon','Polígono','Triângulos e quadriláteros',1],['circle','Circunferência','Raio, cordas, ângulos',0],['cart','Plano cartesiano','Pontos, retas, funções',0],['chart-bar','Gráfico','Colunas, linhas, setores',0],['table','Tabela','Dados em linhas e colunas',0],['cube','Sólido','Prismas, pirâmides, cilindro',0]];
-  h(`${cabec('Figura','Escolha o tipo','qEdDes()')}<div class=ig2>${T.map(([i,n,l,on])=>`<button class="tl ${on?'':'off'}" type=button ${on?'onclick=fgNovo()':'disabled'}>${TI2(i,20)}<b>${n}</b><span>${on?l:'Em breve'}</span></button>`).join('')}</div><small class=f11>Imagem pronta (casos pontuais) também entra numa próxima etapa.</small>`,'gab')}
+const FG_TIT={poly:'Polígono',circ:'Circunferência',cart:'Plano cartesiano'};
+const FG_ABAS={poly:[['forma','Forma'],['lados','Lados'],['angs','Ângulos'],['marcas','Marcas']],circ:[['pts','Pontos'],['segs','Segmentos'],['angs','Ângulos'],['forma','Forma']],cart:[['plano','Plano'],['pontos','Pontos'],['ligar','Ligar'],['funcoes','Funções']]};
+function fgTipos(){const T=[['polygon','Polígono','Triângulos e quadriláteros','poly'],['circle','Circunferência','Raio, cordas, ângulos','circ'],['cart','Plano cartesiano','Pontos, retas, funções','cart'],['chart-bar','Gráfico','Colunas, linhas, setores',0],['table','Tabela','Dados em linhas e colunas',0],['cube','Sólido','Prismas, pirâmides, cilindro',0]];
+  h(`${cabec('Figura','Escolha o tipo','qEdDes()')}<div class=ig2>${T.map(([i,n,l,k])=>`<button class="tl ${k?'':'off'}" type=button ${k?`onclick="fgNovo('${k}')"`:'disabled'}>${TI2(i,20)}<b>${n}</b><span>${k?l:'Em breve'}</span></button>`).join('')}</div><small class=f11>Imagem pronta (casos pontuais) também entra numa próxima etapa.</small>`,'gab')}
 const TI2=(n,z)=>{const X={polygon:'<path d="M12 3l8 6-3 11H7L4 9z"/>',circle:'<circle cx="12" cy="12" r="8"/><path d="M12 12h8"/>',cart:'<path d="M12 3v18M3 12h18"/><path d="M15 9l3-3"/>',cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/>'};
   return X[n]?`<svg width="${z}" height="${z}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none">${X[n]}</svg>`:TI(n,z)};
-function fgNovo(){FG={f:figNova('Triângulo'),aba:'forma',grade:true,fundo:null};fgDes()}
-function fgAbrir(){let f=null;try{f=JSON.parse(Q.e.figura)}catch(x){}if(!f||f.t!='poly')return msg('Não consegui abrir esta figura.');FG={f,aba:'lados',grade:true,fundo:null};fgDes()}
+function fgNovo(t){FG={f:t=='circ'?figNovaCirc():t=='cart'?figNovaCart():figNova('Triângulo'),aba:FG_ABAS[t||'poly'][0][0],grade:true,fundo:null};fgDes()}
+function fgAbrir(){let f=null;try{f=JSON.parse(Q.e.figura)}catch(x){}if(!f||!FG_TIT[f.t])return msg('Não consegui abrir esta figura.');FG={f,aba:f.t=='poly'?'lados':FG_ABAS[f.t][0][0],grade:true,fundo:null};fgDes()}
 const fgNomes=f=>f.p.map((p,i)=>(f.n[i]||'?')+(f.n[(i+1)%f.p.length]||'?'));
-function fgDes(){const f=FG.f;
-  h(`${cabec('Figura','Polígono','qEdDes()')}
-  <div class=fgx><div class=fgc><div class=fr><span class=f1i>Modelo</span><button class="tg on" type=button onclick=fgModelo()>${esc(f.m)}</button><label class=tg style="margin-left:auto"><input type=file accept="image/*" hidden onchange="fgFundo(this)">${FG.fundo?'Trocar decalque':'Decalcar imagem'}</label>${FG.fundo?'<button class=tg type=button onclick="FG.fundo=null;fgCanvas()">Tirar decalque</button>':''}</div>
-  <div class=fgcv><svg id=fgs viewBox="-12 -8 354 186"></svg></div><small class=f11>Arraste os pontos verdes para moldar a figura.</small></div>
-  <div class=fgp><div class=fg>${[['forma','Forma'],['lados','Lados'],['angs','Ângulos'],['marcas','Marcas']].map(([k,t])=>`<button class="tg ${FG.aba==k?'on':''}" type=button onclick="FG.aba='${k}';fgPainel()">${t}</button>`).join('')}</div><div id=fgpn></div></div></div>
+function fgDes(){const f=FG.f,t=f.t;
+  h(`${cabec('Figura',FG_TIT[t],'qEdDes()')}
+  <div class=fgx><div class=fgc><div class=fr>${t=='poly'?`<span class=f1i>Modelo</span><button class="tg on" type=button onclick=fgModelo()>${esc(f.m)}</button>`:''}<label class=tg style="margin-left:auto"><input type=file accept="image/*" hidden onchange="fgFundo(this)">${FG.fundo?'Trocar decalque':'Decalcar imagem'}</label>${FG.fundo?'<button class=tg type=button onclick="FG.fundo=null;fgCanvas()">Tirar decalque</button>':''}</div>
+  <div class=fgcv><svg id=fgs viewBox="-12 -8 354 186"></svg></div><small class=f11>${t=='cart'?'Arraste os pontos verdes: eles encaixam nas posições inteiras.':t=='circ'?'Arraste os pontos verdes ao longo da circunferência.':'Arraste os pontos verdes para moldar a figura.'}</small></div>
+  <div class=fgp><div class=fg id=fgtabs>${FG_ABAS[t].map(([k,x])=>`<button class="tg ${FG.aba==k?'on':''}" type=button onclick="FG.aba='${k}';fgPainel()">${x}</button>`).join('')}</div><div id=fgpn></div></div></div>
   <div class=ebt><button type=button onclick=fgUsar()>Usar figura</button><button class=g type=button onclick=qEdDes()>Cancelar</button></div>`,'gab');
   $('#app').classList.add('wide');fgCanvas();fgPainel();fgBind()}
-function fgCanvas(){const s=$('#fgs');if(!s)return;const{o}=figInner(FG.f);
-  s.innerHTML=(FG.fundo?`<image href="${FG.fundo}" x="0" y="0" width="330" height="170" opacity=".35" preserveAspectRatio="xMidYMid meet"/>`:'')+o+FG.f.p.map((p,i)=>`<circle class=fgh data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="10" fill="rgba(93,205,176,.28)" stroke="#2a9d84" stroke-width="1.5"/>`).join('')}
+/* geometria do plano na área de edição */
+function fgCartEsc(f){const xr=f.x[1]-f.x[0],yr=f.y[1]-f.y[0],s=Math.min(300/xr,150/yr);return{s,ox:(330-xr*s)/2,oy:(170-yr*s)/2+2}}
+function fgCanvas(){const s=$('#fgs');if(!s)return;const f=FG.f;let o,h='';
+  const fundo=FG.fundo?`<image href="${FG.fundo}" x="0" y="0" width="330" height="170" opacity=".35" preserveAspectRatio="xMidYMid meet"/>`:'';
+  if(f.t=='cart'){const g=fgCartEsc(f);o=figInnerCart(f,g.s,g.ox,g.oy).o;h=f.pts.map((p,i)=>`<circle class=fgh data-i="${i}" cx="${(g.ox+(p.x-f.x[0])*g.s).toFixed(1)}" cy="${(g.oy+(f.y[1]-p.y)*g.s).toFixed(1)}" r="10" fill="rgba(93,205,176,.28)" stroke="#2a9d84" stroke-width="1.5"/>`).join('')}
+  else if(f.t=='circ'){o=figInnerCirc(f).o;h=f.pts.map((p,i)=>{const q=figPc(f,i);return `<circle class=fgh data-i="${i}" cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="10" fill="rgba(93,205,176,.28)" stroke="#2a9d84" stroke-width="1.5"/>`}).join('')}
+  else{o=figInnerPoly(f).o;h=f.p.map((p,i)=>`<circle class=fgh data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="10" fill="rgba(93,205,176,.28)" stroke="#2a9d84" stroke-width="1.5"/>`).join('')}
+  s.innerHTML=fundo+o+h}
 function fgBind(){const s=$('#fgs');if(!s)return;let dr=-1;
   const pos=e=>{const pt=s.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const q=pt.matrixTransform(s.getScreenCTM().inverse());return[q.x,q.y]};
   s.onpointerdown=e=>{const t=e.target.closest&&e.target.closest('.fgh');if(!t)return;dr=+t.dataset.i;try{s.setPointerCapture(e.pointerId)}catch(x){}e.preventDefault()};
-  s.onpointermove=e=>{if(dr<0)return;let[x,y]=pos(e);const g=FG.grade?5:1;x=Math.min(322,Math.max(8,Math.round(x/g)*g));y=Math.min(160,Math.max(14,Math.round(y/g)*g));FG.f.p[dr]=[x,y];fgCanvas()};
+  s.onpointermove=e=>{if(dr<0)return;let[x,y]=pos(e);const f=FG.f;
+    if(f.t=='circ'){const a=Math.atan2(-(y-FG_C0[1]),x-FG_C0[0])*180/Math.PI,st=FG.grade?5:1;f.pts[dr].a=((Math.round(a/st)*st)%360+360)%360;fgCanvas();if(FG.aba=='pts')fgPainel(1);return}
+    if(f.t=='cart'){const g=fgCartEsc(f),cx=Math.round((x-g.ox)/g.s+f.x[0]),cy=Math.round(f.y[1]-(y-g.oy)/g.s);f.pts[dr].x=Math.min(f.x[1],Math.max(f.x[0],cx));f.pts[dr].y=Math.min(f.y[1],Math.max(f.y[0],cy));fgCanvas();if(FG.aba=='pontos')fgPainel(1);return}
+    const g=FG.grade?5:1;x=Math.min(322,Math.max(8,Math.round(x/g)*g));y=Math.min(160,Math.max(14,Math.round(y/g)*g));f.p[dr]=[x,y];fgCanvas()};
   s.onpointerup=s.onpointercancel=()=>{dr=-1}}
 function fgModelo(){const f=FG.f,s=document.createElement('select');Object.keys(FG_MOD).forEach(m=>{const o=document.createElement('option');o.textContent=m;o.selected=m==f.m;s.appendChild(o)});
   s.onchange=()=>{const v=figNova(s.value);v.nm=f.nm;v.l=v.p.map((_,i)=>f.l[i]||'');v.a=v.p.map((_,i)=>f.a[i]||{txt:''});v.c=v.p.map((_,i)=>f.c[i]||0);v.n=v.p.map((_,i)=>f.n[i]||'ABCD'[i]);FG.f=v;fgDes()};abreSel(s,()=>{})}
 function fgFundo(i){const fl=i.files[0];i.value='';if(!fl)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,700/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);FG.fundo=c.toDataURL('image/jpeg',.7);fgDes()};im.onerror=()=>msg('Não consegui abrir esta imagem.');im.src=r.result};r.readAsDataURL(fl)}
-function fgPainel(){const f=FG.f,p=$('#fgpn'),N=f.p.length,nm=fgNomes(f);document.querySelectorAll('.fgp .fg .tg').forEach((b,i)=>b.classList.toggle('on',['forma','lados','angs','marcas'][i]==FG.aba));
-  if(FG.aba=='forma')p.innerHTML=`<label class=f1>Nomes dos vértices</label><div class=fr>${f.n.map((n,i)=>`<input class="fi fgn" maxlength=2 value="${esc(n)}" oninput="FG.f.n[${i}]=this.value;fgCanvas();fgNm()">`).join('')}</div>
+function fgUsar(){Q.e.figura=JSON.stringify(FG.f);qEdDes()}
+/* painéis */
+const fgSel=(v,op,fn)=>`<select onchange="${fn}this.value)">${op.map(([k,t])=>`<option value="${k}" ${String(k)==String(v)?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
+const fgRem2=(lista,i)=>`<button class=sx type=button aria-label="Tirar" onclick="FG.f.${lista}.splice(${i},1);fgCanvas();fgPainel()">✕</button>`;
+const fgNum=(v,fn,ex)=>`<input class="fi fgnum" type=number inputmode=decimal step=any value="${v}" oninput="${fn}"${ex||''}>`;
+function fgPainel(manter){const f=FG.f,p=$('#fgpn');if(!p)return;
+  document.querySelectorAll('#fgtabs .tg').forEach((b,i)=>b.classList.toggle('on',FG_ABAS[f.t][i]&&FG_ABAS[f.t][i][0]==FG.aba));
+  if(manter&&document.activeElement&&p.contains(document.activeElement))return;
+  p.innerHTML=f.t=='circ'?fgPCirc(f):f.t=='cart'?fgPCart(f):fgPPoly(f);melhoraSel()}
+function fgPPoly(f){const N=f.p.length,nm=fgNomes(f);
+  if(FG.aba=='forma')return `<label class=f1>Nomes dos vértices</label><div class=fr>${f.n.map((n,i)=>`<input class="fi fgn" maxlength=2 value="${esc(n)}" oninput="FG.f.n[${i}]=this.value;fgCanvas()">`).join('')}</div>
     <div class=fg><button class="tg ${f.nm?'on':''}" type=button onclick="FG.f.nm=!FG.f.nm;fgCanvas();fgPainel()">Mostrar nomes</button><button class="tg ${FG.grade?'on':''}" type=button onclick="FG.grade=!FG.grade;fgPainel()">Alinhar à grade</button></div>
     <div class=fg><button class=tg type=button onclick="FG.f.p=figNova(FG.f.m).p;fgCanvas()">Restaurar a forma do modelo</button></div>`;
-  else if(FG.aba=='lados')p.innerHTML=nm.map((n,i)=>`<div class=fr2><b class=fgl>${esc(n)}</b><input class=fi placeholder="sem rótulo" value="${esc(f.l[i]||'')}" oninput="FG.f.l[${i}]=this.value;fgCanvas()"></div>`).join('')+'<small class=f11>Exemplos: x + 9, 8 cm, 2x + 3.</small>';
-  else if(FG.aba=='angs')p.innerHTML=f.p.map((_,i)=>{const a=f.a[i]=f.a[i]||{txt:''},arc=!!a.reto?false:(a.arco===true||(a.arco!==false&&!!a.txt));
+  if(FG.aba=='lados')return nm.map((n,i)=>`<div class=fr2><b class=fgl>${esc(n)}</b><input class=fi placeholder="sem rótulo" value="${esc(f.l[i]||'')}" oninput="FG.f.l[${i}]=this.value;fgCanvas()"></div>`).join('')+'<small class=f11>Exemplos: x + 9, 8 cm, 2x + 3.</small>';
+  if(FG.aba=='angs')return f.p.map((_,i)=>{const a=f.a[i]=f.a[i]||{txt:''},arc=!!a.reto?false:(a.arco===true||(a.arco!==false&&!!a.txt));
     return `<div class=fr2><b class=fgl>${esc(f.n[i]||'?')}</b><input class=fi placeholder="sem rótulo" value="${esc(a.txt||'')}" oninput="FG.f.a[${i}].txt=this.value;fgCanvas()"><button class="tg ${arc?'on':''}" type=button onclick="fgAng(${i},'arc')">Arco</button><button class="tg ${a.reto?'on':''}" type=button onclick="fgAng(${i},'reto')">Reto</button><button class="tg ${a.fora?'on':''}" type=button onclick="fgAng(${i},'fora')">Fora</button></div>`}).join('')+'<small class=f11>Exemplo: (3x + 10)°. O arco aparece sozinho quando há rótulo. "Fora" põe o rótulo fora do ângulo.</small>';
-  else p.innerHTML=`<label class=f1>Lados congruentes (toque para trocar 0, 1, 2 ou 3 traços)</label><div class=fr>${nm.map((n,i)=>`<button class="tg ${f.c[i]?'on':''}" type=button onclick="fgCong(${i})">${esc(n)}${f.c[i]?' · '+f.c[i]:''}</button>`).join('')}</div>${N==4?`<div class=fg><button class="tg ${f.d?'on':''}" type=button onclick="FG.f.d=!FG.f.d;fgCanvas();fgPainel()">Diagonais</button></div>`:''}<small class=f11>Ângulo reto: aba Ângulos, botão Reto.</small>`}
-function fgNm(){if(FG.aba=='forma')return;fgPainel()}
+  return `<label class=f1>Lados congruentes (toque para trocar 0, 1, 2 ou 3 traços)</label><div class=fr>${nm.map((n,i)=>`<button class="tg ${f.c[i]?'on':''}" type=button onclick="fgCong(${i})">${esc(n)}${f.c[i]?' · '+f.c[i]:''}</button>`).join('')}</div>${N==4?`<div class=fg><button class="tg ${f.d?'on':''}" type=button onclick="FG.f.d=!FG.f.d;fgCanvas();fgPainel()">Diagonais</button></div>`:''}<small class=f11>Ângulo reto: aba Ângulos, botão Reto.</small>`}
 function fgAng(i,k){const a=FG.f.a[i];if(k=='reto'){a.reto=!a.reto}else if(k=='fora'){a.fora=!a.fora}else{const arc=!a.reto&&(a.arco===true||(a.arco!==false&&!!a.txt));a.arco=!arc;if(a.reto)a.reto=false}fgCanvas();fgPainel()}
 function fgCong(i){FG.f.c[i]=((FG.f.c[i]||0)+1)%4;fgCanvas();fgPainel()}
-function fgUsar(){Q.e.figura=JSON.stringify(FG.f);qEdDes()}
+/* circunferência */
+const fgCop=f=>[[-1,f.c||'O'],...f.pts.map((p,i)=>[i,p.n||'?'])];
+function fgPCirc(f){const op=fgCop(f);
+  if(FG.aba=='pts')return f.pts.map((q,i)=>`<div class=fr2><input class="fi fgn" maxlength=2 value="${esc(q.n)}" oninput="FG.f.pts[${i}].n=this.value;fgCanvas()"><span class=f1i>ângulo</span>${fgNum(Math.round(q.a),`FG.f.pts[${i}].a=((+this.value%360)+360)%360;fgCanvas()`)}<span class=f1i>°</span>${f.pts.length>1?fgRem2('pts',i):''}</div>`).join('')+(f.pts.length<8?'<button class=tg type=button onclick="fgCircAdd()">+ Ponto</button>':'')+'<small class=f11>O ângulo é medido a partir da direita, no sentido anti-horário.</small>';
+  if(FG.aba=='segs')return f.seg.map((s,i)=>`<div class=rowc><div class=fr3>${fgSel(s.i,op,`fgSegSet(${i},'i',+`)}<span class=f1i>até</span>${fgSel(s.j,op,`fgSegSet(${i},'j',+`)}</div><div class=fr2><input class=fi placeholder="rótulo (ex.: r = 5 cm)" value="${esc(s.txt||'')}" oninput="FG.f.seg[${i}].txt=this.value;fgCanvas()"><button class="tg ${s.d?'on':''}" type=button onclick="FG.f.seg[${i}].d=FG.f.seg[${i}].d?0:1;fgCanvas();fgPainel()">Tracejado</button>${fgRem2('seg',i)}</div></div>`).join('')+'<button class=tg type=button onclick="FG.f.seg.push({i:-1,j:0,txt:\'\',d:0});fgCanvas();fgPainel()">+ Segmento</button><small class=f11>Raio: do centro a um ponto. Diâmetro: passa pelo centro. Corda: entre dois pontos.</small>';
+  if(FG.aba=='angs')return f.ang.map((g,i)=>{const arc=!g.reto&&(g.arco===true||(g.arco!==false&&g.arco!==0&&!!g.txt));
+    return `<div class=rowc><div class=fr3>${fgSel(g.v,op,`fgAngSet(${i},'v',+`)}<span class=f1i>de</span>${fgSel(g.a,op,`fgAngSet(${i},'a',+`)}<span class=f1i>a</span>${fgSel(g.b,op,`fgAngSet(${i},'b',+`)}</div><div class=fr2><input class=fi placeholder="rótulo (ex.: 60°)" value="${esc(g.txt||'')}" oninput="FG.f.ang[${i}].txt=this.value;fgCanvas()">${fgRem2('ang',i)}</div>
+    <div class=fg><button class="tg ${arc?'on':''}" type=button onclick="fgCAng(${i},'arc')">Arco</button><button class="tg ${g.reto?'on':''}" type=button onclick="fgCAng(${i},'reto')">Reto</button>${g.v===-1?`<button class="tg ${g.sombra?'on':''}" type=button onclick="fgCAng(${i},'sombra')">Sombrear setor</button>`:''}<button class="tg ${g.inv?'on':''}" type=button onclick="fgCAng(${i},'inv')">Lado maior</button><button class="tg ${g.fora?'on':''}" type=button onclick="fgCAng(${i},'fora')">Rótulo fora</button></div></div>`}).join('')+'<button class=tg type=button onclick="FG.f.ang.push({v:-1,a:0,b:Math.min(1,FG.f.pts.length-1),txt:\'\',arco:null,sombra:0,fora:0,inv:0,reto:0});fgCanvas();fgPainel()">+ Ângulo</button><small class=f11>Central: vértice no centro. Inscrito: vértice em um ponto da circunferência.</small>';
+  return `<label class=f1>Nome do centro</label><input class=fi maxlength=2 value="${esc(f.c||'')}" oninput="FG.f.c=this.value;fgCanvas()"><div class=fg><button class="tg ${f.nm?'on':''}" type=button onclick="FG.f.nm=!FG.f.nm;fgCanvas();fgPainel()">Mostrar nomes</button><button class="tg ${f.cn!==false?'on':''}" type=button onclick="FG.f.cn=f.cn===false;fgCanvas();fgPainel()">Mostrar centro</button><button class="tg ${FG.grade?'on':''}" type=button onclick="FG.grade=!FG.grade;fgPainel()">Alinhar de 5° em 5°</button></div>`.replace('FG.f.cn=f.cn===false','FG.f.cn=FG.f.cn===false')}
+function fgCircAdd(){const f=FG.f,a=f.pts.length?(f.pts[f.pts.length-1].a+50)%360:0;f.pts.push({n:'ABCDEFGH'[f.pts.length]||'P',a});fgCanvas();fgPainel()}
+function fgSegSet(i,k,v){FG.f.seg[i][k]=v;fgCanvas()}
+function fgAngSet(i,k,v){FG.f.ang[i][k]=v;fgCanvas()}
+function fgCAng(i,k){const g=FG.f.ang[i];if(k=='arc'){const arc=!g.reto&&(g.arco===true||(g.arco!==false&&g.arco!==0&&!!g.txt));g.arco=!arc;if(g.reto)g.reto=0}else g[k]=g[k]?0:1;fgCanvas();fgPainel()}
+/* plano cartesiano */
+function fgPCart(f){
+  if(FG.aba=='plano')return `<div class=fr2><span class=f1i style="width:46px">x de</span>${fgNum(f.x[0],'fgLim(0,0,this.value)')}<span class=f1i>a</span>${fgNum(f.x[1],'fgLim(0,1,this.value)')}</div><div class=fr2><span class=f1i style="width:46px">y de</span>${fgNum(f.y[0],'fgLim(1,0,this.value)')}<span class=f1i>a</span>${fgNum(f.y[1],'fgLim(1,1,this.value)')}</div>
+    <div class=fr2><span class=f1i style="width:46px">passo</span>${fgSel(f.passo,[[1,'1'],[2,'2'],[5,'5'],[10,'10'],[0.5,'0,5']],'fgPasso(+')}</div>
+    <div class=fg><button class="tg ${f.grade?'on':''}" type=button onclick="FG.f.grade=!FG.f.grade;fgCanvas();fgPainel()">Grade</button><button class="tg ${f.nums!==false?'on':''}" type=button onclick="FG.f.nums=FG.f.nums===false;fgCanvas();fgPainel()">Números nos eixos</button></div><small class=f11>O plano vai de −40 a 40 em cada eixo.</small>`;
+  if(FG.aba=='pontos')return f.pts.map((p,i)=>`<div class=fr2><input class="fi fgn" maxlength=2 value="${esc(p.n)}" oninput="FG.f.pts[${i}].n=this.value;fgCanvas()"><span class=f1i>x</span>${fgNum(p.x,`FG.f.pts[${i}].x=fgV(this.value);fgCanvas()`)}<span class=f1i>y</span>${fgNum(p.y,`FG.f.pts[${i}].y=fgV(this.value);fgCanvas()`)}<button class="tg ${p.co?'on':''}" type=button onclick="FG.f.pts[${i}].co=!FG.f.pts[${i}].co;fgCanvas();fgPainel()">(x, y)</button>${fgRem2('pts',i)}</div>`).join('')+(f.pts.length<12?'<button class=tg type=button onclick="fgPtAdd()">+ Ponto</button>':'')+'<small class=f11>"(x, y)" mostra as coordenadas ao lado do nome.</small>';
+  if(FG.aba=='ligar')return `<label class=f1>Ordem dos pontos (ex.: A B C D)</label><input class=fi value="${esc(f.liga||'')}" oninput="FG.f.liga=this.value;fgCanvas()"><div class=fg><button class="tg ${f.fecha?'on':''}" type=button onclick="FG.f.fecha=!FG.f.fecha;fgCanvas();fgPainel()">Fechar a figura</button></div><small class=f11>Liga os pontos na ordem escrita. Para um segmento, escreva só dois pontos.</small>`;
+  return f.fn.map((g,i)=>{const ok=!g.e||figExpr(g.e);return `<div class=rowc><div class=fr2><span class=f1i>y =</span><input class=fi placeholder="2x + 1" value="${esc(g.e||'')}" oninput="FG.f.fn[${i}].e=this.value;fgCanvas();fgFnOk(${i},this)">${fgRem2('fn',i)}</div><div class=fr2><input class=fi placeholder="rótulo (ex.: y = 2x + 1)" value="${esc(g.txt||'')}" oninput="FG.f.fn[${i}].txt=this.value;fgCanvas()"></div><small class=f11 id=fnok${i}>${ok?'':'Expressão inválida.'}</small></div>`}).join('')+(f.fn.length<4?'<button class=tg type=button onclick="FG.f.fn.push({e:\'\',txt:\'\'});fgPainel()">+ Função</button>':'')+'<small class=f11>Use x, + − * / ^ e parênteses. Exemplos: 2x + 1, x^2 − 4, (x − 1)(x + 2).</small>'}
+const fgV=v=>{const n=parseFloat(v);return isNaN(n)?0:n};
+function fgLim(eixo,lado,v){const a=eixo?FG.f.y:FG.f.x,n=parseFloat(v);if(isNaN(n))return;const novo=a.slice();novo[lado]=Math.max(-40,Math.min(40,n));if(novo[1]-novo[0]<1)return;a[lado]=novo[lado];fgCanvas()}
+function fgPasso(v){FG.f.passo=v;fgCanvas()}
+function fgPtAdd(){const f=FG.f,n='ABCDEFGHIJKL'[f.pts.length]||'P';f.pts.push({n,x:Math.min(f.x[1],Math.max(f.x[0],0)),y:Math.min(f.y[1],Math.max(f.y[0],0)),co:true});fgCanvas();fgPainel()}
+function fgFnOk(i,el){const g=FG.f.fn[i],s=$('#fnok'+i);if(s)s.textContent=!g.e||figExpr(g.e)?'':'Expressão inválida.'}
